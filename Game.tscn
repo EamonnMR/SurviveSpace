@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/big_light.png" type="Texture" id=3]
+
+[node name="Node" type="Node"]
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="Gameplay" type="CanvasLayer" parent="."]
+
+[node name="System" type="Node2D" parent="Gameplay"]
+
+[node name="pickups" type="Node2D" parent="Gameplay/System"]
+
+[node name="Light2D" type="Light2D" parent="Gameplay/System"]
+position = Vector2( 386.955, 312.891 )
+texture = ExtResource( 3 )
+texture_scale = 2.03
+color = Color( 1, 0, 0, 1 )
+energy = 16.0
+mode = 2
+range_height = 44.0
+shadow_enabled = true
+
+[node name="Player" parent="Gameplay/System" instance=ExtResource( 1 )]
+position = Vector2( 524.44, 298.491 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Gameplay"]
+visible = false
+color = Color( 0.356863, 0.356863, 0.356863, 1 )
+
+[node name="Hud" type="CanvasLayer" parent="."]
