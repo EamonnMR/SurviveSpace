@@ -1,33 +1,59 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=1]
+[ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01_n.png" type="Texture" id=2]
 [ext_resource path="res://assets/big_light.png" type="Texture" id=3]
+[ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange_n.png" type="Texture" id=4]
+[ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange.png" type="Texture" id=5]
+[ext_resource path="res://environment/starfield.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Controller.gd" type="Script" id=7]
+[ext_resource path="res://Player.gd" type="Script" id=8]
 
 [node name="Node" type="Node"]
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Starfield" parent="." instance=ExtResource( 6 )]
+follow_viewport_enable = true
 
-[node name="Gameplay" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="Node2D" parent="."]
 
-[node name="System" type="Node2D" parent="Gameplay"]
+[node name="Asteroids" type="Node2D" parent="CanvasLayer"]
 
-[node name="pickups" type="Node2D" parent="Gameplay/System"]
+[node name="Asteroid" type="RigidBody2D" parent="CanvasLayer/Asteroids"]
 
-[node name="Light2D" type="Light2D" parent="Gameplay/System"]
-position = Vector2( 386.955, 312.891 )
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Asteroids/Asteroid"]
+position = Vector2( 133, 159 )
+texture = ExtResource( 1 )
+normal_map = ExtResource( 2 )
+
+[node name="Ships" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 200.226, 137.489 )
+
+[node name="Player" type="RigidBody2D" parent="CanvasLayer/Ships"]
+rotation = 0.237365
+script = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Ships/Player"]
+rotation = -0.237365
+texture = ExtResource( 5 )
+normal_map = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Ships/Player"]
+
+[node name="Controller" type="Node" parent="CanvasLayer/Ships/Player"]
+script = ExtResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Ships/Player"]
+current = true
+
+[node name="Light2D" type="Light2D" parent="CanvasLayer/Ships"]
+position = Vector2( 35.9826, 40.5051 )
 texture = ExtResource( 3 )
-texture_scale = 2.03
-color = Color( 1, 0, 0, 1 )
-energy = 16.0
-mode = 2
-range_height = 44.0
+texture_scale = 2.0
+color = Color( 0.992157, 0.992157, 0.992157, 1 )
+energy = 2.0
+range_height = 60.0
+range_layer_max = 1
 shadow_enabled = true
 
-[node name="Player" parent="Gameplay/System" instance=ExtResource( 1 )]
-position = Vector2( 524.44, 298.491 )
-
-[node name="CanvasModulate" type="CanvasModulate" parent="Gameplay"]
-visible = false
-color = Color( 0.356863, 0.356863, 0.356863, 1 )
-
-[node name="Hud" type="CanvasLayer" parent="."]
+[node name="AmbientLight" type="CanvasModulate" parent="CanvasLayer/Ships"]
+color = Color( 0.14902, 0.14902, 0.14902, 1 )
