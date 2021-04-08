@@ -5,14 +5,14 @@
 [ext_resource path="res://assets/big_light.png" type="Texture" id=3]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange_n.png" type="Texture" id=4]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange.png" type="Texture" id=5]
-[ext_resource path="res://environment/starfield.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Controller.gd" type="Script" id=7]
 [ext_resource path="res://Player.gd" type="Script" id=8]
 
-[node name="Node" type="Node"]
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 23.9642
+height = 57.8578
 
-[node name="Starfield" parent="." instance=ExtResource( 6 )]
-follow_viewport_enable = true
+[node name="Node" type="Node"]
 
 [node name="CanvasLayer" type="Node2D" parent="."]
 
@@ -28,16 +28,17 @@ normal_map = ExtResource( 2 )
 [node name="Ships" type="Node2D" parent="CanvasLayer"]
 position = Vector2( 200.226, 137.489 )
 
-[node name="Player" type="RigidBody2D" parent="CanvasLayer/Ships"]
-rotation = 0.237365
+[node name="Player" type="KinematicBody2D" parent="CanvasLayer/Ships"]
 script = ExtResource( 8 )
 
 [node name="Sprite2" type="Sprite" parent="CanvasLayer/Ships/Player"]
-rotation = -0.237365
+rotation = 1.5708
 texture = ExtResource( 5 )
 normal_map = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Ships/Player"]
+visible = false
+shape = SubResource( 1 )
 
 [node name="Controller" type="Node" parent="CanvasLayer/Ships/Player"]
 script = ExtResource( 7 )
@@ -46,7 +47,7 @@ script = ExtResource( 7 )
 current = true
 
 [node name="Light2D" type="Light2D" parent="CanvasLayer/Ships"]
-position = Vector2( 35.9826, 40.5051 )
+position = Vector2( 8.36474, 55.6504 )
 texture = ExtResource( 3 )
 texture_scale = 2.0
 color = Color( 0.992157, 0.992157, 0.992157, 1 )

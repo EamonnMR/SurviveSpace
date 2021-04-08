@@ -6,6 +6,7 @@ var thrusting: bool
 var braking: bool
 
 func _physics_process(_delta: float):
+	print("wtf")
 	rotation_change = _get_rotation_change()
 	shooting = Input.is_action_pressed("shoot")
 	braking = Input.is_action_pressed("brakes")

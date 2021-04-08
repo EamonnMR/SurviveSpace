@@ -1,18 +1,18 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 var max_speed = 100
 var accel = 1
 var turn = 1
+var linear_velocity = Vector2()
 const PLAY_AREA_RADIUS = 40000
 
-func get_limited_velocity_with_thrust():
-	var vel = get_linear_velocity()
+func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
-		vel += Vector2(accel, 0).rotated(rotation)
-	if vel.length() > max_speed:
-		return Vector2(max_speed, 0).rotated(vel.angle())
+		linear_velocity += Vector2(accel * delta * 100, 0).rotated(rotation)
+	if linear_velocity.length() > max_speed:
+		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
 	else:
-		return vel
+		return linear_velocity
 
 func wrap_position_with_transform(state):
 	var transform = state.get_transform()
@@ -20,11 +20,10 @@ func wrap_position_with_transform(state):
 		transform.origin = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
 		state.set_transform(transform)
 		
-func _integrate_forces(state):
-	set_applied_torque($Controller.rotation_change)  # Non-physics rotation
-	print($Controller.rotation_change)
-	wrap_position_with_transform(state)
-	set_linear_velocity(get_limited_velocity_with_thrust())
+func _physics_process(delta):
+	linear_velocity = get_limited_velocity_with_thrust(delta)
+	rotation += delta * turn * $Controller.rotation_change
+	move_and_slide(linear_velocity)
 
 func anglemod(angle):
 	"""I wish this was a builtin"""
