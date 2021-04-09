@@ -20,65 +20,64 @@ height = 50.0
 
 [node name="Starfield" parent="." instance=ExtResource( 6 )]
 
-[node name="CanvasLayer" type="Node2D" parent="."]
+[node name="Gameplay" type="Node2D" parent="."]
 
-[node name="Asteroids" type="Node2D" parent="CanvasLayer"]
+[node name="Asteroids" type="Node2D" parent="Gameplay"]
 
-[node name="Asteroid" type="RigidBody2D" parent="CanvasLayer/Asteroids"]
+[node name="Asteroid" type="RigidBody2D" parent="Gameplay/Asteroids"]
 collision_mask = 4
 script = ExtResource( 10 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/Asteroids/Asteroid"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gameplay/Asteroids/Asteroid"]
 position = Vector2( 200.226, 137.489 )
 polygon = PoolVector2Array( -152.913, -150.531, -138.165, -108.701, -162.756, -85.5075, -219.731, -89.9499, -263.83, -122.913, -266.058, -133.604, -254.476, -142.513, -259.376, -157.658, -205.476, -201.312, -196.122, -207.549, -184.095, -203.094, -170.731, -186.167, -159.15, -175.476 )
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Asteroids/Asteroid"]
+[node name="Sprite" type="Sprite" parent="Gameplay/Asteroids/Asteroid"]
 texture = ExtResource( 1 )
 normal_map = ExtResource( 2 )
 
-[node name="Health" type="Node" parent="CanvasLayer/Asteroids/Asteroid"]
+[node name="Health" type="Node" parent="Gameplay/Asteroids/Asteroid"]
 script = ExtResource( 11 )
 __meta__ = {
 "_editor_description_": ""
 }
 max_health = 2
 
-[node name="Projectiles" type="Node2D" parent="CanvasLayer"]
+[node name="Projectiles" type="Node2D" parent="Gameplay"]
 
-[node name="Ships" type="Node2D" parent="CanvasLayer"]
+[node name="Ships" type="Node2D" parent="Gameplay"]
 position = Vector2( 200.226, 137.489 )
 
-[node name="Player" type="KinematicBody2D" parent="CanvasLayer/Ships"]
+[node name="Player" type="KinematicBody2D" parent="Gameplay/Ships"]
 collision_mask = 2
 script = ExtResource( 8 )
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Ships/Player"]
+[node name="Sprite" type="Sprite" parent="Gameplay/Ships/Player"]
 rotation = 1.5708
 texture = ExtResource( 5 )
 normal_map = ExtResource( 4 )
 
-[node name="Controller" type="Node" parent="CanvasLayer/Ships/Player"]
+[node name="Controller" type="Node" parent="Gameplay/Ships/Player"]
 script = ExtResource( 7 )
 
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Ships/Player"]
+[node name="Camera2D" type="Camera2D" parent="Gameplay/Ships/Player"]
 current = true
 
-[node name="Weapons" type="Node2D" parent="CanvasLayer/Ships/Player"]
+[node name="Weapons" type="Node2D" parent="Gameplay/Ships/Player"]
 
-[node name="ZipGun" type="Node2D" parent="CanvasLayer/Ships/Player/Weapons"]
+[node name="ZipGun" type="Node2D" parent="Gameplay/Ships/Player/Weapons"]
 position = Vector2( 41.5, 13.5 )
 script = ExtResource( 9 )
 
-[node name="Timer" type="Timer" parent="CanvasLayer/Ships/Player/Weapons/ZipGun"]
+[node name="Timer" type="Timer" parent="Gameplay/Ships/Player/Weapons/ZipGun"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Ships/Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Ships/Player"]
 visible = false
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="Light2D" type="Light2D" parent="CanvasLayer/Ships"]
-visible = false
-position = Vector2( 16.3037, 33.5835 )
+[node name="Light2D" type="Light2D" parent="Gameplay"]
+position = Vector2( 216.53, 171.072 )
 texture = ExtResource( 3 )
 texture_scale = 2.0
 color = Color( 0.992157, 0.992157, 0.992157, 1 )
@@ -87,8 +86,8 @@ range_height = 60.0
 range_layer_max = 1
 shadow_enabled = true
 
-[node name="AmbientLight" type="CanvasModulate" parent="CanvasLayer/Ships"]
-visible = false
+[node name="AmbientLight" type="CanvasModulate" parent="Gameplay"]
+position = Vector2( 200.226, 137.489 )
 color = Color( 0.14902, 0.14902, 0.14902, 1 )
-[connection signal="ran_out" from="CanvasLayer/Asteroids/Asteroid/Health" to="CanvasLayer/Asteroids/Asteroid" method="_on_Health_ran_out"]
-[connection signal="timeout" from="CanvasLayer/Ships/Player/Weapons/ZipGun/Timer" to="CanvasLayer/Ships/Player/Weapons/ZipGun" method="_on_Timer_timeout"]
+[connection signal="ran_out" from="Gameplay/Asteroids/Asteroid/Health" to="Gameplay/Asteroids/Asteroid" method="_on_Health_ran_out"]
+[connection signal="timeout" from="Gameplay/Ships/Player/Weapons/ZipGun/Timer" to="Gameplay/Ships/Player/Weapons/ZipGun" method="_on_Timer_timeout"]
