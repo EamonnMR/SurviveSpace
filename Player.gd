@@ -27,7 +27,10 @@ func wrap_position(state):
 	var transform = state.get_transform()
 	if position.length() > PLAY_AREA_RADIUS:
 		position = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
-		
+
+func is_player():
+	return true
+
 func anglemod(angle):
 	"""I wish this was a builtin"""
 	var ARC = 2 * PI

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01_n.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://ZipGun.gd" type="Script" id=9]
 [ext_resource path="res://Asteroid.gd" type="Script" id=10]
 [ext_resource path="res://Health.gd" type="Script" id=11]
+[ext_resource path="res://Inventory.gd" type="Script" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 27.011
@@ -43,6 +44,8 @@ __meta__ = {
 }
 max_health = 2
 
+[node name="Pickups" type="Node2D" parent="Gameplay"]
+
 [node name="Projectiles" type="Node2D" parent="Gameplay"]
 
 [node name="Ships" type="Node2D" parent="Gameplay"]
@@ -72,11 +75,14 @@ script = ExtResource( 9 )
 [node name="Timer" type="Timer" parent="Gameplay/Ships/Player/Weapons/ZipGun"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Ships/Player"]
-visible = false
 rotation = 1.5708
 shape = SubResource( 1 )
 
+[node name="Inventory" type="Node" parent="Gameplay/Ships/Player"]
+script = ExtResource( 12 )
+
 [node name="Light2D" type="Light2D" parent="Gameplay"]
+visible = false
 position = Vector2( 216.53, 171.072 )
 texture = ExtResource( 3 )
 texture_scale = 2.0
@@ -87,6 +93,7 @@ range_layer_max = 1
 shadow_enabled = true
 
 [node name="AmbientLight" type="CanvasModulate" parent="Gameplay"]
+visible = false
 position = Vector2( 200.226, 137.489 )
 color = Color( 0.14902, 0.14902, 0.14902, 1 )
 [connection signal="ran_out" from="Gameplay/Asteroids/Asteroid/Health" to="Gameplay/Asteroids/Asteroid" method="_on_Health_ran_out"]
