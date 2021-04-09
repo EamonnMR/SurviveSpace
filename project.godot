@@ -8,14 +8,19 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://ZipGun.gd"
+} ]
 _global_script_class_icons={
-
+"Weapon": ""
 }
 
 [application]
 
-config/name="GalacticSurvival"
+config/name="Survive Space"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 

@@ -16,6 +16,7 @@ region_rect = Rect2( 0, 0, 640, 480 )
 motion_scale = Vector2( 0.7, 0.7 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer3"]
+rotation = 3.14159
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 640, 480 )

@@ -6,6 +6,15 @@ var turn = 1
 var linear_velocity = Vector2()
 const PLAY_AREA_RADIUS = 40000
 
+func _physics_process(delta):
+	linear_velocity = get_limited_velocity_with_thrust(delta)
+	rotation += delta * turn * $Controller.rotation_change
+	move_and_slide(linear_velocity)
+	if $Controller.shooting:
+		for weapon in $Weapons.get_children():
+			weapon.try_shooting()
+
+
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
 		linear_velocity += Vector2(accel * delta * 100, 0).rotated(rotation)
@@ -14,17 +23,11 @@ func get_limited_velocity_with_thrust(delta):
 	else:
 		return linear_velocity
 
-func wrap_position_with_transform(state):
+func wrap_position(state):
 	var transform = state.get_transform()
-	if transform.origin.length() > PLAY_AREA_RADIUS:
-		transform.origin = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
-		state.set_transform(transform)
+	if position.length() > PLAY_AREA_RADIUS:
+		position = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
 		
-func _physics_process(delta):
-	linear_velocity = get_limited_velocity_with_thrust(delta)
-	rotation += delta * turn * $Controller.rotation_change
-	move_and_slide(linear_velocity)
-
 func anglemod(angle):
 	"""I wish this was a builtin"""
 	var ARC = 2 * PI
