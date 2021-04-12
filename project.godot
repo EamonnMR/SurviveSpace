@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "DataRow",
+"language": "GDScript",
+"path": "res://lib/DataRow.gd"
+}, {
+"base": "DataRow",
+"class": "ItemData",
+"language": "GDScript",
+"path": "res://data/ItemData.gd"
+}, {
 "base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://ZipGun.gd"
 } ]
 _global_script_class_icons={
+"DataRow": "",
+"ItemData": "",
 "Weapon": ""
 }
 
@@ -23,6 +35,10 @@ _global_script_class_icons={
 config/name="Survive Space"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Data="*res://Data.gd"
 
 [input]
 
