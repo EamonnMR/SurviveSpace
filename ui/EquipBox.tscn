@@ -5,6 +5,7 @@
 [node name="NinePatchRect" type="NinePatchRect"]
 margin_right = 32.0
 margin_bottom = 32.0
+rect_min_size = Vector2( 40, 40 )
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 27, 27 )
 patch_margin_left = 14

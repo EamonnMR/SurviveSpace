@@ -10,6 +10,8 @@ func _physics_process(_delta: float):
 	shooting = Input.is_action_pressed("shoot")
 	braking = Input.is_action_pressed("brakes")
 	thrusting = Input.is_action_pressed("thrust") and not braking
+	if Input.is_action_just_pressed("toggle_inventory"):
+		_toggle_inventory()
 
 func _get_rotation_change():
 	var dc = 0
@@ -18,3 +20,11 @@ func _get_rotation_change():
 	if Input.is_action_pressed("turn_right"):
 		dc += 1
 	return dc
+	
+func _toggle_inventory():
+	var ui = Client.get_ui()
+	for i in ["Equipment", "Inventory"]:
+		if ui.get_node(i).is_visible():
+			ui.get_node(i).hide()
+		else:
+			ui.get_node(i).show()

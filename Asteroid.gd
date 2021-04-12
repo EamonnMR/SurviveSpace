@@ -8,7 +8,7 @@ func explode():
 
 func drop_loot():
 	var destination = get_node("../../Pickups")
-	for i in range(LOOT_COUNT):
+	for _i in range(LOOT_COUNT):
 		var pickup = preload("pickups/Metal.tscn").instance()
 		pickup.linear_velocity = Vector2(rand_range(1,100), 0).rotated(rand_range(0, 2 * PI))
 		destination.add_child(pickup)

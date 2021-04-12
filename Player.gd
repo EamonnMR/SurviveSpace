@@ -6,6 +6,9 @@ var turn = 1
 var linear_velocity = Vector2()
 const PLAY_AREA_RADIUS = 40000
 
+func _ready():
+	Client.player = self
+
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
 	rotation += delta * turn * $Controller.rotation_change
