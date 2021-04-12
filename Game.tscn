@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01_n.png" type="Texture" id=2]
@@ -14,6 +14,13 @@
 [ext_resource path="res://Inventory.gd" type="Script" id=12]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction8-Spaceships-by-MillionthVector/wship-4.png" type="Texture" id=13]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction8-Spaceships-by-MillionthVector/wship-4-n.png" type="Texture" id=14]
+[ext_resource path="res://ui/NinePatchPanel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://ui/EquipBox.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/FontAwesome/32px-star.png" type="Texture" id=17]
+[ext_resource path="res://assets/FontAwesome/32px-shield.png" type="Texture" id=18]
+[ext_resource path="res://assets/FontAwesome/32px-play.png" type="Texture" id=19]
+[ext_resource path="res://assets/FontAwesome/32px-charge.png" type="Texture" id=20]
+[ext_resource path="res://assets/FontAwesome/32px-crosshairs.png" type="Texture" id=21]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 21.4667
@@ -22,17 +29,17 @@ height = 56.6082
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14.7799, 32.1125 )
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=3]
 radius = 91.3431
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 40.1007
 height = 75.8805
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 28.652, 55.3404 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 28.652, 25.3064 )
 
 [node name="Node" type="Node"]
@@ -107,7 +114,7 @@ shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Ships/Player/InteractRange"]
 visible = false
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="Derelict" type="KinematicBody2D" parent="Gameplay/Ships"]
 position = Vector2( 400, 0 )
@@ -121,17 +128,17 @@ normal_map = ExtResource( 14 )
 visible = false
 position = Vector2( 51.3913, 0.667419 )
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Gameplay/Ships/Derelict"]
 visible = false
 position = Vector2( -104.118, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Gameplay/Ships/Derelict"]
 visible = false
 position = Vector2( -50.724, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Projectiles" type="Node2D" parent="Gameplay"]
 
@@ -153,11 +160,211 @@ color = Color( 0.14902, 0.14902, 0.14902, 1 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="inventory" type="Control" parent="UI"]
+[node name="Hud" type="Control" parent="UI"]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="inventory" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" parent="UI/inventory" instance=ExtResource( 15 )]
+margin_right = 333.0
+margin_bottom = 235.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/inventory/Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/inventory/Background/VBoxContainer"]
+margin_right = 333.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/inventory/Background/VBoxContainer"]
+margin_top = 14.0
+margin_right = 333.0
+margin_bottom = 221.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/inventory/Background/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 207.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="LeftEquip" type="VBoxContainer" parent="UI/inventory/Background/VBoxContainer/HBoxContainer"]
+margin_left = 14.0
+margin_right = 54.0
+margin_bottom = 207.0
+rect_min_size = Vector2( 32, 0 )
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip"]
+margin_right = 40.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Shield" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip" instance=ExtResource( 16 )]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip/Shield"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 19 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Armor" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip" instance=ExtResource( 16 )]
+margin_top = 68.0
+margin_right = 40.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip/Armor"]
+show_behind_parent = true
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 18 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HyperDrive" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip" instance=ExtResource( 16 )]
+margin_top = 112.0
+margin_right = 40.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip/HyperDrive"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 17 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reactor" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip" instance=ExtResource( 16 )]
+margin_top = 156.0
+margin_right = 40.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/LeftEquip/Reactor"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 20 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Middle" type="Control" parent="UI/inventory/Background/VBoxContainer/HBoxContainer"]
+margin_left = 58.0
+margin_right = 275.0
+margin_bottom = 207.0
+size_flags_horizontal = 3
+
+[node name="Name" type="RichTextLabel" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/Middle"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -72.5
+margin_right = 114.5
+margin_bottom = 40.0
+text = "UNS Cardinal Virtue"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Type" type="RichTextLabel" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/Middle"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -75.3316
+margin_top = 20.7652
+margin_right = 111.668
+margin_bottom = 38.7652
+text = "Recon Shuttle"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/Middle"]
+margin_left = 73.6222
+margin_top = 59.4641
+margin_right = 140.622
+margin_bottom = 161.464
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightEquip" type="VBoxContainer" parent="UI/inventory/Background/VBoxContainer/HBoxContainer"]
+margin_left = 279.0
+margin_right = 319.0
+margin_bottom = 207.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/RightEquip"]
+margin_right = 40.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Weapon" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/RightEquip" instance=ExtResource( 16 )]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/inventory/Background/VBoxContainer/HBoxContainer/RightEquip/Weapon"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 21 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/inventory/Background/VBoxContainer/HBoxContainer"]
+margin_left = 323.0
+margin_right = 333.0
+margin_bottom = 207.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/inventory/Background/VBoxContainer"]
+margin_top = 225.0
+margin_right = 333.0
+margin_bottom = 235.0
+rect_min_size = Vector2( 0, 10 )
 [connection signal="ran_out" from="Gameplay/Asteroids/Asteroid/Health" to="Gameplay/Asteroids/Asteroid" method="_on_Health_ran_out"]
 [connection signal="timeout" from="Gameplay/Ships/Player/Weapons/ZipGun/Timer" to="Gameplay/Ships/Player/Weapons/ZipGun" method="_on_Timer_timeout"]
