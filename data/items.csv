@@ -1,4 +1,4 @@
 id,name,equip_category,icon,tooltip
 crew,Frozen Crew,,res://assets/FontAwesome/32px-friends.png,"Frozen for hyperspace travel, thawed to crew ships and stations."
-metal,Metal,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/icon4.png,"Metal, the raw meterial of choice"
+metal,Metal,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon4.png,"Metal, the raw meterial of choice"
 drive_1,Type 1 Hyperdrive,hyperdrive,res://assets/GalagianArtwork_cc_by/raw/enemies/barrier-node.png,Plot short jumps through hyperspace to nearby star systems

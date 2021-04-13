@@ -169,6 +169,7 @@ __meta__ = {
 }
 
 [node name="Equipment" type="Control" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -364,5 +365,6 @@ margin_bottom = 235.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="Inventory" parent="UI" instance=ExtResource( 22 )]
+visible = false
 [connection signal="ran_out" from="Gameplay/Asteroids/Asteroid/Health" to="Gameplay/Asteroids/Asteroid" method="_on_Health_ran_out"]
 [connection signal="timeout" from="Gameplay/Ships/Player/Weapons/ZipGun/Timer" to="Gameplay/Ships/Player/Weapons/ZipGun" method="_on_Timer_timeout"]
