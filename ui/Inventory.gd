@@ -15,10 +15,6 @@ func rebuild():
 		var slot_container = inventory_slot.instance()
 		if i in inv.item_slots:
 			var item: Inventory.InvItem = inv.item_slots[i]
-			var icon = TextureRect.new()
-			icon.texture = Data.items[item.type].icon
-			icon.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
-			icon.anchor_right = 1
-			icon.anchor_bottom = 1
+			var icon = ItemIcon.new(item)
 			slot_container.add_child(icon)
 		grid_container.add_child(slot_container)
