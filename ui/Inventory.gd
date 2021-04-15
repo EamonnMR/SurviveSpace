@@ -1,6 +1,7 @@
 extends Control
 
 var inventory_slot = preload("res://ui/EquipBox.tscn")
+var item_icon = preload("res://ui/ItemIcon.tscn")
 
 onready var grid_container = get_node("NinePatchPanel/MarginContainer/VBoxContainer/ScrollContainer/GridContainer")
 
@@ -20,7 +21,8 @@ func rebuild():
 		slot_container.connect("item_added", self, "_on_item_added", [i])
 		if i in inv.item_slots:
 			var item: Inventory.InvItem = inv.item_slots[i]
-			var icon = ItemIcon.new(item)
+			var icon = item_icon.instance()
+			icon.init(item)
 			slot_container.add_child(icon)
 		grid_container.add_child(slot_container)
 

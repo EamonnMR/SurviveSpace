@@ -4,8 +4,9 @@ class_name ItemIcon
 
 var item #: Inventory.InvItem
 
-func _init(item):
+func init(item):
 	self.item = item
+	name = "ItemIcon"
 	stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 	anchor_right = 1
 	anchor_bottom = 1
@@ -15,12 +16,11 @@ func _ready():
 	update_count()
 
 func update_count():
-	if has_node("Count"):
-		if item.count > 1:
-			$Count.text = str(item.count)
-		else:
-			$Count.text = ""
-	
+	if item.count > 1:
+		$Count.text = str(item.count)
+	else:
+		$Count.text = ""
+
 func get_drag_data(position):
 	var drag_texture = TextureRect.new()
 	drag_texture.texture = texture

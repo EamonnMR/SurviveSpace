@@ -7,8 +7,10 @@ export var category: String
 
 func can_drop_data(pos, data):
 	if has_node("ItemIcon"):
-		return data["dragged_item"].type == $ItemIcon.item.type
+		print("Can put over?")
+		return data["dragged_item"].item.type == $ItemIcon.item.type
 	else:
+		print("Empty")
 		return not category or data["equip_category"] == category
 
 func drop_data(pos, data):

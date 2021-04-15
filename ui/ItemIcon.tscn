@@ -2,12 +2,10 @@
 
 [ext_resource path="res://ui/ItemIcon.gd" type="Script" id=1]
 
-[node name="TextureRect" type="TextureRect"]
+[node name="ItemIcon" type="TextureRect"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -992.0
-margin_bottom = -568.0
 stretch_mode = 4
 script = ExtResource( 1 )
 __meta__ = {
@@ -17,7 +15,8 @@ __meta__ = {
 [node name="Count" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -14.0
+margin_left = 5.0
+margin_top = -18.0
 margin_right = 40.0
 text = "1"
 __meta__ = {
