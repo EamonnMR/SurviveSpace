@@ -6,7 +6,10 @@ signal item_added(item)
 export var category: String
 
 func can_drop_data(pos, data):
-	return not category or data["equip_category"] == category
+	if has_node("ItemIcon"):
+		return data["dragged_item"].type == $ItemIcon.item.type
+	else:
+		return not category or data["equip_category"] == category
 
 func drop_data(pos, data):
 	var dropped_item = data["dragged_item"]
@@ -16,4 +19,4 @@ func drop_data(pos, data):
 
 func remove_item_icon(item_icon):
 	remove_child(item_icon)
-	emit_signal("item_removed", item_icon)
+	emit_signal("item_removed")

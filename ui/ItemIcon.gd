@@ -2,14 +2,24 @@ extends TextureRect
 
 class_name ItemIcon
 
-var item: Inventory.InvItem
+var item #: Inventory.InvItem
 
-func _init(item: Inventory.InvItem):
+func _init(item):
 	self.item = item
 	stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 	anchor_right = 1
 	anchor_bottom = 1
-	texture = Data.items[item.type].icon
+	texture = item.data().icon
+
+func _ready():
+	update_count()
+
+func update_count():
+	if has_node("Count"):
+		if item.count > 1:
+			$Count.text = str(item.count)
+		else:
+			$Count.text = ""
 	
 func get_drag_data(position):
 	var drag_texture = TextureRect.new()
@@ -20,7 +30,7 @@ func get_drag_data(position):
 
 	return {
 		"dragged_item": self,
-		"equip_category": Data.items[item.type].equip_category
+		"equip_category": item.data().equip_category
 	}
 	
 # func can_drop_data(pos, data):
