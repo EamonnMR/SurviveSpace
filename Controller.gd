@@ -23,9 +23,10 @@ func _get_rotation_change():
 	
 func _toggle_inventory():
 	var ui = Client.get_ui()
-	ui.get_node("Inventory").rebuild()
 	for i in ["Equipment", "Inventory"]:
-		if ui.get_node(i).is_visible():
-			ui.get_node(i).hide()
+		var node = ui.get_node(i)
+		if node.is_visible():
+			node.hide()
 		else:
-			ui.get_node(i).show()
+			node.rebuild()
+			node.show()

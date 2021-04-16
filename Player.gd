@@ -5,6 +5,9 @@ var accel = 1
 var turn = 1
 var linear_velocity = Vector2()
 const PLAY_AREA_RADIUS = 40000
+var ship_name = "UNS Ring Of Glory"
+var type_name = "Recon Shuttle"
+
 
 func _ready():
 	Client.player = self
@@ -46,3 +49,10 @@ func add_weapon(weapon, _index):
 func remove_weapon(_index):
 	for child in $Weapons.get_children():
 		$Weapons.remove_child(child)
+
+func get_weapon(_index):
+	var children = $Weapons.get_children()
+	if children.size() == 1:
+		return children[0]
+	else:
+		return null

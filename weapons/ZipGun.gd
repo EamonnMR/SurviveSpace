@@ -2,7 +2,7 @@ extends Node2D
 var cooldown = false
 
 class_name Weapon
-export var type: String
+export var type: String = "zipgun"
 
 func parent():
 	return get_node("../../")

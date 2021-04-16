@@ -20,11 +20,19 @@ func can_drop_data(pos, data):
 func drop_data(pos, data):
 	var dropped_item = data["dragged_item"]
 	dropped_item.dropped()
-	add_child(dropped_item)
-	$TextureRect.hide()
+	attach_item_icon(dropped_item)
 	emit_signal("item_added", dropped_item.item)
+
+func attach_item_icon(item_icon):
+	add_child(item_icon)
+	$TextureRect.hide()
+	
 
 func remove_item_icon(item_icon):
 	remove_child(item_icon)
 	$TextureRect.show()
 	emit_signal("item_removed")
+
+func clear():
+	remove_child($ItemIcon)
+	$TextureRect.show()

@@ -157,7 +157,7 @@ __meta__ = {
 }
 
 [node name="Equipment" parent="UI" instance=ExtResource( 15 )]
-visible = true
 
 [node name="Inventory" parent="UI" instance=ExtResource( 22 )]
+visible = false
 [connection signal="ran_out" from="Gameplay/Asteroids/Asteroid/Health" to="Gameplay/Asteroids/Asteroid" method="_on_Health_ran_out"]
