@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
-"path": "res://ZipGun.gd"
+"path": "res://weapons/ZipGun.gd"
 } ]
 _global_script_class_icons={
 "DataRow": "",

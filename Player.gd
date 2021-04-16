@@ -39,3 +39,10 @@ func anglemod(angle):
 	var ARC = 2 * PI
 	# TODO: Recursive might be too slow
 	return fmod(angle + ARC, ARC)
+
+func add_weapon(weapon, _index):
+	$Weapons.add_child(weapon)
+	
+func remove_weapon(_index):
+	for child in $Weapons.get_children():
+		$Weapons.remove_child(child)

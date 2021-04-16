@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01_n.png" type="Texture" id=2]
@@ -8,19 +8,12 @@
 [ext_resource path="res://environment/starfield.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Controller.gd" type="Script" id=7]
 [ext_resource path="res://Player.gd" type="Script" id=8]
-[ext_resource path="res://ZipGun.gd" type="Script" id=9]
 [ext_resource path="res://Asteroid.gd" type="Script" id=10]
 [ext_resource path="res://Health.gd" type="Script" id=11]
 [ext_resource path="res://Inventory.gd" type="Script" id=12]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction8-Spaceships-by-MillionthVector/wship-4.png" type="Texture" id=13]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction8-Spaceships-by-MillionthVector/wship-4-n.png" type="Texture" id=14]
-[ext_resource path="res://ui/NinePatchPanel.tscn" type="PackedScene" id=15]
-[ext_resource path="res://ui/EquipBox.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/FontAwesome/32px-star.png" type="Texture" id=17]
-[ext_resource path="res://assets/FontAwesome/32px-shield.png" type="Texture" id=18]
-[ext_resource path="res://assets/FontAwesome/32px-play.png" type="Texture" id=19]
-[ext_resource path="res://assets/FontAwesome/32px-charge.png" type="Texture" id=20]
-[ext_resource path="res://assets/FontAwesome/32px-crosshairs.png" type="Texture" id=21]
+[ext_resource path="res://ui/Equipment.tscn" type="PackedScene" id=15]
 [ext_resource path="res://ui/Inventory.tscn" type="PackedScene" id=22]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -92,12 +85,6 @@ current = true
 
 [node name="Weapons" type="Node2D" parent="Gameplay/Ships/Player"]
 
-[node name="ZipGun" type="Node2D" parent="Gameplay/Ships/Player/Weapons"]
-position = Vector2( 41.5, 13.5 )
-script = ExtResource( 9 )
-
-[node name="Timer" type="Timer" parent="Gameplay/Ships/Player/Weapons/ZipGun"]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Ships/Player"]
 visible = false
 rotation = 1.5708
@@ -119,6 +106,7 @@ shape = SubResource( 3 )
 
 [node name="Derelict" type="KinematicBody2D" parent="Gameplay/Ships"]
 position = Vector2( 400, 0 )
+collision_mask = 2
 
 [node name="Sprite" type="Sprite" parent="Gameplay/Ships/Derelict"]
 rotation = 1.5708
@@ -168,203 +156,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Equipment" type="Control" parent="UI"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Background" parent="UI/Equipment" instance=ExtResource( 15 )]
-margin_right = 333.0
-margin_bottom = 235.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Equipment/Background"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Equipment/Background/VBoxContainer"]
-margin_right = 333.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 0, 10 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Equipment/Background/VBoxContainer"]
-margin_top = 14.0
-margin_right = 333.0
-margin_bottom = 221.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer"]
-margin_right = 10.0
-margin_bottom = 207.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="LeftEquip" type="VBoxContainer" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer"]
-margin_left = 14.0
-margin_right = 54.0
-margin_bottom = 207.0
-rect_min_size = Vector2( 32, 0 )
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip"]
-margin_right = 40.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-
-[node name="Shield" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip" instance=ExtResource( 16 )]
-margin_top = 24.0
-margin_right = 40.0
-margin_bottom = 64.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip/Shield"]
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 19 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Armor" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip" instance=ExtResource( 16 )]
-margin_top = 68.0
-margin_right = 40.0
-margin_bottom = 108.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip/Armor"]
-show_behind_parent = true
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 18 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HyperDrive" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip" instance=ExtResource( 16 )]
-margin_top = 112.0
-margin_right = 40.0
-margin_bottom = 152.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip/HyperDrive"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 17 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Reactor" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip" instance=ExtResource( 16 )]
-margin_top = 156.0
-margin_right = 40.0
-margin_bottom = 196.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/LeftEquip/Reactor"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 20 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Middle" type="Control" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer"]
-margin_left = 58.0
-margin_right = 275.0
-margin_bottom = 207.0
-size_flags_horizontal = 3
-
-[node name="Name" type="RichTextLabel" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/Middle"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -72.5
-margin_right = 114.5
-margin_bottom = 40.0
-text = "UNS Cardinal Virtue"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Type" type="RichTextLabel" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/Middle"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -75.3316
-margin_top = 20.7652
-margin_right = 111.668
-margin_bottom = 38.7652
-text = "Recon Shuttle"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/Middle"]
-margin_left = 73.6222
-margin_top = 59.4641
-margin_right = 140.622
-margin_bottom = 161.464
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RightEquip" type="VBoxContainer" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer"]
-margin_left = 279.0
-margin_right = 319.0
-margin_bottom = 207.0
-rect_min_size = Vector2( 25, 0 )
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/RightEquip"]
-margin_right = 40.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-
-[node name="Weapon" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/RightEquip" instance=ExtResource( 16 )]
-margin_top = 24.0
-margin_right = 40.0
-margin_bottom = 64.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer/RightEquip/Weapon"]
-show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 21 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/Equipment/Background/VBoxContainer/HBoxContainer"]
-margin_left = 323.0
-margin_right = 333.0
-margin_bottom = 207.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/Equipment/Background/VBoxContainer"]
-margin_top = 225.0
-margin_right = 333.0
-margin_bottom = 235.0
-rect_min_size = Vector2( 0, 10 )
+[node name="Equipment" parent="UI" instance=ExtResource( 15 )]
 
 [node name="Inventory" parent="UI" instance=ExtResource( 22 )]
 visible = false
 [connection signal="ran_out" from="Gameplay/Asteroids/Asteroid/Health" to="Gameplay/Asteroids/Asteroid" method="_on_Health_ran_out"]
-[connection signal="timeout" from="Gameplay/Ships/Player/Weapons/ZipGun/Timer" to="Gameplay/Ships/Player/Weapons/ZipGun" method="_on_Timer_timeout"]
