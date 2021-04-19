@@ -17,24 +17,24 @@
 [ext_resource path="res://ui/Inventory.tscn" type="PackedScene" id=22]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 21.4667
-height = 56.6082
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.7799, 32.1125 )
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 91.3431
-
-[sub_resource type="CapsuleShape2D" id=4]
 radius = 40.1007
 height = 75.8805
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 28.652, 55.3404 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 28.652, 25.3064 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 21.4667
+height = 56.6082
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 14.7799, 32.1125 )
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 91.3431
 
 [node name="Game" type="Node"]
 
@@ -68,6 +68,31 @@ max_health = 2
 [node name="Ships" type="Node2D" parent="Gameplay"]
 position = Vector2( 200.226, 137.489 )
 
+[node name="Derelict" type="KinematicBody2D" parent="Gameplay/Ships"]
+position = Vector2( 400, 0 )
+collision_mask = 2
+
+[node name="Sprite" type="Sprite" parent="Gameplay/Ships/Derelict"]
+rotation = 1.5708
+texture = ExtResource( 13 )
+normal_map = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Ships/Derelict"]
+visible = false
+position = Vector2( 51.3913, 0.667419 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Gameplay/Ships/Derelict"]
+visible = false
+position = Vector2( -104.118, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Gameplay/Ships/Derelict"]
+visible = false
+position = Vector2( -50.724, 0 )
+shape = SubResource( 3 )
+
 [node name="Player" type="KinematicBody2D" parent="Gameplay/Ships"]
 collision_mask = 2
 script = ExtResource( 8 )
@@ -88,7 +113,7 @@ current = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Ships/Player"]
 visible = false
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Inventory" type="Node" parent="Gameplay/Ships/Player"]
 script = ExtResource( 12 )
@@ -96,37 +121,12 @@ script = ExtResource( 12 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Gameplay/Ships/Player"]
 visible = false
 position = Vector2( -11.694, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="InteractRange" type="Area2D" parent="Gameplay/Ships/Player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Ships/Player/InteractRange"]
 visible = false
-shape = SubResource( 3 )
-
-[node name="Derelict" type="KinematicBody2D" parent="Gameplay/Ships"]
-position = Vector2( 400, 0 )
-collision_mask = 2
-
-[node name="Sprite" type="Sprite" parent="Gameplay/Ships/Derelict"]
-rotation = 1.5708
-texture = ExtResource( 13 )
-normal_map = ExtResource( 14 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Ships/Derelict"]
-visible = false
-position = Vector2( 51.3913, 0.667419 )
-rotation = 1.5708
-shape = SubResource( 4 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Gameplay/Ships/Derelict"]
-visible = false
-position = Vector2( -104.118, 0 )
-shape = SubResource( 5 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Gameplay/Ships/Derelict"]
-visible = false
-position = Vector2( -50.724, 0 )
 shape = SubResource( 6 )
 
 [node name="Projectiles" type="Node2D" parent="Gameplay"]

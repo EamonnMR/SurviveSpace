@@ -10,3 +10,6 @@ var tooltip: String
 
 func _init(data: Dictionary):
 	init(data)
+	
+static func get_csv_path():
+	return "res://data/items.csv"

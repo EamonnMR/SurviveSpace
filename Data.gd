@@ -1,11 +1,15 @@
 extends Node
 
 var items = {}
+var recipes = {}
 
 func _init():
-	load_items()
-	
-func load_items():
-	var item_data = DataRow.load_csv("res://data/items.csv")
-	for key in item_data:
-		items[key] = ItemData.new(item_data[key])
+	for data_class_and_destination in [
+		[ItemData, items],
+		[RecipeData, recipes]
+	]:
+		var DataClass = data_class_and_destination[0]
+		var dest = data_class_and_destination[1]
+		var data = DataRow.load_csv(DataClass.get_csv_path())
+		for key in data:
+			dest[key] = DataClass.new(data[key])
