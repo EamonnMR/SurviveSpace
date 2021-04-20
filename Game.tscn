@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01_n.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://environment/starfield.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Controller.gd" type="Script" id=7]
 [ext_resource path="res://Player.gd" type="Script" id=8]
+[ext_resource path="res://ui/Crafting.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Asteroid.gd" type="Script" id=10]
 [ext_resource path="res://Health.gd" type="Script" id=11]
 [ext_resource path="res://Inventory.gd" type="Script" id=12]
@@ -157,7 +158,13 @@ __meta__ = {
 }
 
 [node name="Equipment" parent="UI" instance=ExtResource( 15 )]
+visible = true
 
 [node name="Inventory" parent="UI" instance=ExtResource( 22 )]
-visible = false
+
+[node name="Crafting" parent="UI" instance=ExtResource( 9 )]
+margin_left = 430.493
+margin_top = 104.65
+margin_right = 430.493
+margin_bottom = 104.65
 [connection signal="ran_out" from="Gameplay/Asteroids/Asteroid/Health" to="Gameplay/Asteroids/Asteroid" method="_on_Health_ran_out"]
