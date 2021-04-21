@@ -15,7 +15,6 @@ func init(data: Dictionary):
 		if prop_name in data:
 			var type: int = prop["type"]
 			var string_val = data[prop_name]
-			print("Prop name: ", prop_name, " Type Class: ", prop["class_name"], " Type Const: ", prop["type"])
 			set(prop_name, convert_column_value(
 				data[prop_name],
 				prop["type"],
@@ -63,7 +62,7 @@ func parse_x_dict(x_dict: String) -> Dictionary:
 		dict[key_count[0]] = int(key_count[1])
 	return dict
 	
-func parse_colon_dict_int_values(colon_dict: String, intify=false) -> Dictionary:
+func parse_colon_dict_int_values(colon_dict: String) -> Dictionary:
 	""" Looks like 'key: 1; key2: 2' translates to:
 		{
 			"key": 1
@@ -75,9 +74,7 @@ func parse_colon_dict_int_values(colon_dict: String, intify=false) -> Dictionary
 		var key_value = kvp.split(":")
 		var key = key_value[0].strip_edges()
 		var value = key_value[1].strip_edges()
-		if intify:
-			value = int(value)
-		dict[key] = value
+		dict[key] = int(value)
 	return dict
 
 func parse_int_array(text: String) -> Array:

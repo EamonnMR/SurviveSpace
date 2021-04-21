@@ -5,6 +5,9 @@ var item_icon = preload("res://ui/ItemIcon.tscn")
 
 onready var grid_container = get_node("NinePatchPanel/MarginContainer/VBoxContainer/ScrollContainer/GridContainer")
 
+func _ready():
+	Client.player.get_node("Inventory").connect("updated", self, "rebuild")
+
 func _clear():
 	for child in grid_container.get_children():
 		grid_container.remove_child(child)

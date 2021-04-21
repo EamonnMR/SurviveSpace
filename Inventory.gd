@@ -5,6 +5,8 @@ var max_items = 32
 
 class_name Inventory
 
+signal updated
+
 class InvItem:
 	var type: String
 	var count: int
@@ -29,6 +31,12 @@ func _get_first_empty_slot():
 	return null
 
 func add(type: String, count: int, slot=null) -> bool: # Represents success/failure
+	var success = _add_inner(type, count, slot)
+	if success:
+		emit_signal("updated")
+	return success
+	
+func _add_inner(type: String, count: int, slot=null) -> bool: 
 	if slot == null:
 		slot = _get_first_available_slot_of_type(type)
 		if slot == null:
@@ -54,3 +62,4 @@ func _get_first_available_slot_of_type(type):
 
 func remove_item_from_slot(slot):
 	item_slots.erase(slot)
+	emit_signal("updated")

@@ -10,7 +10,7 @@ var ingredients: Dictionary
 
 func _init(data: Dictionary):
 	init(data)
-	data["ingredients"] = parse_colon_dict_int_values(data["ingredients"])
-
+	ingredients = parse_colon_dict_int_values(data["ingredients"])
+	
 static func get_csv_path():
 	return "res://data/recipes.csv"

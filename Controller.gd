@@ -23,7 +23,7 @@ func _get_rotation_change():
 	
 func _toggle_inventory():
 	var ui = Client.get_ui()
-	for i in ["Equipment", "Inventory"]:
+	for i in ["Equipment", "Inventory", "Crafting"]:
 		var node = ui.get_node(i)
 		if node.is_visible():
 			node.hide()

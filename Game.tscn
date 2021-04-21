@@ -158,11 +158,12 @@ __meta__ = {
 }
 
 [node name="Equipment" parent="UI" instance=ExtResource( 15 )]
-visible = true
 
 [node name="Inventory" parent="UI" instance=ExtResource( 22 )]
+visible = false
 
 [node name="Crafting" parent="UI" instance=ExtResource( 9 )]
+visible = false
 margin_left = 430.493
 margin_top = 104.65
 margin_right = 430.493
