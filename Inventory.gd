@@ -38,7 +38,8 @@ func add(type: String, count: int, slot=null) -> bool: # Represents success/fail
 	
 func _add_inner(type: String, count: int, slot=null) -> bool: 
 	if slot == null:
-		slot = _get_first_available_slot_of_type(type)
+		if Data.items[type].stackable:
+			slot = _get_first_available_slot_of_type(type)
 		if slot == null:
 			slot = _get_first_empty_slot()
 			if slot == null:

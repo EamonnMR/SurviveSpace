@@ -11,10 +11,8 @@ func _ready():
 
 func can_drop_data(pos, data):
 	if has_node("ItemIcon"):
-		print("Can put over?")
-		return data["dragged_item"].item.type == $ItemIcon.item.type
+		return (data["dragged_item"].item.type == $ItemIcon.item.type) and (Data.items[$ItemIcon.item.type].stackable)
 	else:
-		print("Empty")
 		return not category or data["equip_category"] == category
 
 func drop_data(pos, data):

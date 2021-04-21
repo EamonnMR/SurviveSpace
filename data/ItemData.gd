@@ -7,6 +7,7 @@ var name: String
 var equip_category: String
 var icon: Texture
 var tooltip: String
+var stackable: bool
 
 func _init(data: Dictionary):
 	init(data)

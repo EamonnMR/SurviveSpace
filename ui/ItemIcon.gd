@@ -33,13 +33,6 @@ func get_drag_data(position):
 		"equip_category": item.data().equip_category
 	}
 	
-# func can_drop_data(pos, data):
-# 	print("ItemIcon.can_drop_data")
-#	return true
-
-#func drop_data(pos, data):
-#	breakpoint
-#
 func dropped():
 	get_node("../").remove_item_icon(self)
 
