@@ -5,8 +5,16 @@ onready var RecipeIcon = preload("res://ui/EquipBox.tscn")
 
 var current_recipe = null
 
+func _ready():
+	current_recipe = Data.recipes.values()[0]
+	Client.player.get_node("Inventory").connect("updated", self, "rebuild")
+
 func rebuild():
 	clear(recipes_list)
+	_update_recipe_selection()
+	build_recipe_list()
+
+func build_recipe_list():
 	for recipe_id in Data.recipes:
 		var recipe = Data.recipes[recipe_id]
 		var item_data = Data.items[recipe.prod_type]
@@ -21,10 +29,11 @@ func rebuild():
 		recipes_list.add_child(recipe_icon)
 		
 func _recipe_selected(recipe_id):
-	_switch_recipe_selection(recipe_id)
-	
-func _switch_recipe_selection(recipe_id):
 	current_recipe = Data.recipes[recipe_id]
+	_update_recipe_selection()
+	
+func _update_recipe_selection():
+	var recipe_id = current_recipe.id
 	var recipe = current_recipe
 	recipe_detail.get_node("Name").text = _get_item_name(recipe)
 	recipe_detail.get_node("Description").text = _get_item_description(recipe)
