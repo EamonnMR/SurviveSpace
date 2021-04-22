@@ -63,9 +63,10 @@ func clear(list):
 		list.remove_child(child)
 
 func _can_craft(recipe):
-	return true
+	return Client.player.get_node("Inventory").has_ingredients(current_recipe.ingredients)
 
 
 func _on_CraftButton_pressed():
 	if _can_craft(current_recipe):
+		Client.player.get_node("Inventory").deduct_ingredients(current_recipe.ingredients)
 		Client.player.get_node("Inventory").add(current_recipe.prod_type, current_recipe.prod_count)

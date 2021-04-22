@@ -19,10 +19,7 @@ class InvItem:
 		return Data.items[type]
 
 func _ready():
-	add("crew", 1)
-	add("metal", 1)
-	add("drive_1", 1)
-	add("zipgun", 1)
+	add("metal", 5)
 	
 func _get_first_empty_slot():
 	for i in range(max_items):
@@ -64,3 +61,40 @@ func _get_first_available_slot_of_type(type):
 func remove_item_from_slot(slot):
 	item_slots.erase(slot)
 	emit_signal("updated")
+
+func has_ingredients(ingredients: Dictionary) -> bool:
+	# Copy for mutating
+	ingredients = ingredients.duplicate()
+	for i in range(max_items):
+		if i in item_slots:
+			var item = item_slots[i]
+			if item.type in ingredients:
+				ingredients[item.type] -= item.count
+				if ingredients[item.type] <= 0:
+					ingredients.erase(item.type)
+	return ingredients.size() == 0
+
+func deduct_ingredients(ingredients: Dictionary) -> bool:  # Output represents success
+	if not has_ingredients(ingredients):
+		return false
+	else:
+		ingredients = ingredients.duplicate()
+		var erase_queue = []
+		for slot in range(max_items):
+			if slot in item_slots:
+				var item = item_slots[slot]
+				var type = item.type
+				if type in ingredients:
+					var needed_count = ingredients[type]
+					if needed_count > item.count:
+						ingredients[type] -= item.count
+						item_slots.erase(slot)
+					elif needed_count == item.count:
+						ingredients.erase(type)
+						item_slots.erase(slot)
+					else:
+						ingredients.erase(type)
+						item.count -= needed_count
+
+		emit_signal("updated")
+		return true
