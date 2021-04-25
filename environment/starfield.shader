@@ -9,6 +9,10 @@ const int LAYERS = 5;
 const float DEPTH_FACTOR = 0.7;
 const float DEPTH_OFFSET = 0.0;
 
+float fmod(float f, float m){
+	return sign(f) * ( abs(f) - m * floor(abs(f) / m) );
+}
+
 void fragment(){
 	COLOR = vec4(0,0,0,0);
 	vec2 shifted_uv_front = UV;
@@ -26,13 +30,8 @@ void fragment(){
 		// Extra offset to avoid stacking
 		shifted_uv += (TEXTURE_PIXEL_SIZE * float(i) * 250.0);
 
-		// Fake FMOD
-		shifted_uv.x = sign(shifted_uv.x) * (
-			abs(shifted_uv.x) - TEXTURE_SIZE * floor(abs(shifted_uv.x) / TEXTURE_SIZE)
-		);
-		shifted_uv.y = sign(shifted_uv.y) * (
-			abs(shifted_uv.y) - TEXTURE_SIZE * floor(abs(shifted_uv.y) / TEXTURE_SIZE)
-		);
+		shifted_uv.x = fmod(shifted_uv.x, 1);
+		shifted_uv.y = fmod(shifted_uv.y, 1);
 		
 		// Invert every other layer
 		if(bool(i % 2)){
