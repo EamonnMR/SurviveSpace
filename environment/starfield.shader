@@ -1,8 +1,9 @@
 shader_type canvas_item;
 
 uniform vec2 position;
+uniform sampler2D nebula;
 
-const float TEXTURE_SIZE = 1028.0;
+const float TEXTURE_SIZE = 512.0;
 
 const int LAYERS = 5;
 const float DEPTH_FACTOR = 0.7;
@@ -38,6 +39,13 @@ void fragment(){
 			shifted_uv.x = 1.0 - shifted_uv.x;
 			shifted_uv.y = 1.0 - shifted_uv.y;
 		}
-		COLOR += texture(TEXTURE, shifted_uv) / (float(i) + 0.5)
+		if(bool(i % 3)){
+			if (shifted_uv.x > 1.0 || shifted_uv.y < 0.0 || shifted_uv.y > 1.0 || shifted_uv.y < 0.0){
+				//COLOR = vec4(1,1,1,1)
+			}
+			COLOR += texture(nebula, shifted_uv) / (float(i) + 0.5)
+		} else {
+			COLOR += texture(TEXTURE, shifted_uv) / (float(i) + 0.5)
+		}
 	}
 }
