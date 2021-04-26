@@ -2,16 +2,9 @@ shader_type canvas_item;
 
 uniform vec2 position;
 uniform sampler2D nebula;
-
-const float TEXTURE_SIZE = 512.0;
-
 const int LAYERS = 5;
 const float DEPTH_FACTOR = 0.7;
 const float DEPTH_OFFSET = 0.0;
-
-float fmod(float f, float m){
-	return sign(f) * ( abs(f) - m * floor(abs(f) / m) );
-}
 
 void fragment(){
 	COLOR = vec4(0,0,0,0);
@@ -30,8 +23,8 @@ void fragment(){
 		// Extra offset to avoid stacking
 		shifted_uv += (TEXTURE_PIXEL_SIZE * float(i) * 250.0);
 
-		shifted_uv.x = fmod(shifted_uv.x, 1);
-		shifted_uv.y = fmod(shifted_uv.y, 1);
+		shifted_uv.x = fract(shifted_uv.x);
+		shifted_uv.y = fract(shifted_uv.y);
 		
 		// Invert every other layer
 		if(bool(i % 2)){
