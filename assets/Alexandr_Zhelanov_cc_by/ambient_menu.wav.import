@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ambient_menu.wav-af583224def27ee88f9da39ba8d518f6.sample"
+
+[deps]
+
+source_file="res://assets/Alexandr_Zhelanov_cc_by/ambient_menu.wav"
+dest_files=[ "res://.import/ambient_menu.wav-af583224def27ee88f9da39ba8d518f6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
