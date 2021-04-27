@@ -12,6 +12,8 @@ func _physics_process(_delta: float):
 	thrusting = Input.is_action_pressed("thrust") and not braking
 	if Input.is_action_just_pressed("toggle_inventory"):
 		_toggle_inventory()
+	if Input.is_action_just_pressed("toggle_pause"):
+		_toggle_pause()
 
 func _get_rotation_change():
 	var dc = 0
@@ -30,3 +32,12 @@ func _toggle_inventory():
 		else:
 			node.rebuild()
 			node.show()
+
+func _toggle_pause():
+	var pause_menu = Client.get_ui().get_node("PauseMenu")
+	if get_tree().paused:
+		pause_menu.hide()
+		get_tree().paused = false
+	else:
+		pause_menu.show()
+		get_tree().paused = true

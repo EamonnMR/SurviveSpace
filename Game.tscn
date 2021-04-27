@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01_n.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://pickups/Metal.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Starfield.gd" type="Script" id=17]
 [ext_resource path="res://assets/ScreamingBrain/Green Nebula/1024x1024 Green Nebula 4.png" type="Texture" id=18]
+[ext_resource path="res://ui/PauseMenu.tscn" type="PackedScene" id=19]
 [ext_resource path="res://ui/Inventory.tscn" type="PackedScene" id=22]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -223,4 +224,7 @@ margin_left = 430.493
 margin_top = 104.65
 margin_right = 430.493
 margin_bottom = 104.65
+
+[node name="PauseMenu" parent="UI" instance=ExtResource( 19 )]
+visible = false
 [connection signal="ran_out" from="Gameplay/Asteroids/Asteroid/Health" to="Gameplay/Asteroids/Asteroid" method="_on_Health_ran_out"]
