@@ -11,9 +11,8 @@
 [ext_resource path="res://ui/Equipment.gd" type="Script" id=9]
 
 [node name="Equipment" type="Control"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 336.0
+margin_bottom = 237.0
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -116,6 +115,7 @@ anchor_right = 0.5
 margin_left = -72.5
 margin_right = 114.5
 margin_bottom = 40.0
+text = "UNS Ring Of Glory"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,6 +128,7 @@ margin_left = -75.3316
 margin_top = 20.7652
 margin_right = 111.668
 margin_bottom = 38.7652
+text = "Recon Shuttle"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false

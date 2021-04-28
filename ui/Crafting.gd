@@ -1,6 +1,6 @@
 extends Control
-onready var recipes_list = get_node("NinePatchPanel/MarginContainer/TabContainer/Craft/HBoxContainer/ScrollContainer/Recipes")
-onready var recipe_detail = get_node("NinePatchPanel/MarginContainer/TabContainer/Craft/HBoxContainer/Details")
+onready var recipes_list = get_node("HBoxContainer/ScrollContainer/Recipes")
+onready var recipe_detail = get_node("HBoxContainer/Details")
 onready var RecipeIcon = preload("res://ui/EquipBox.tscn")
 
 var current_recipe = null
