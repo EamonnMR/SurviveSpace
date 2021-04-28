@@ -5,6 +5,7 @@ class_name BuildData
 var id: String
 var name: String
 var scene: PackedScene
+var destination: String
 var require_level: int
 var ingredients: Dictionary
 var icon: Texture
