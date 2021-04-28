@@ -36,12 +36,11 @@ __meta__ = {
 }
 
 [node name="TabContainer" type="TabContainer" parent="NinePatchPanel/MarginContainer"]
-margin_right = 259.0
+margin_right = 260.0
 margin_bottom = 287.0
 tab_align = 0
 
 [node name="Craft" type="Control" parent="NinePatchPanel/MarginContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -113,6 +112,7 @@ __meta__ = {
 }
 
 [node name="Build" type="Control" parent="NinePatchPanel/MarginContainer/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0

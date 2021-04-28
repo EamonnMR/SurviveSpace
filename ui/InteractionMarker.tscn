@@ -1,0 +1,16 @@
+[gd_scene format=2]
+
+[node name="InteractionMarker" type="Panel"]
+margin_left = -23.3345
+margin_top = -6.54074
+margin_right = 26.6655
+margin_bottom = 9.45926
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Press E" type="Label" parent="."]
+text = "Press E"
+__meta__ = {
+"_edit_use_anchors_": false
+}

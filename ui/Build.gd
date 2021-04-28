@@ -72,6 +72,8 @@ func _can_build(recipe):
 
 func _on_BuildButton_pressed():
 	if _can_build(current_build):
+		var constructed = current_build.scene.instance()
+		constructed.position = Client.player.position
 		get_tree().get_root().get_node("Game/Gameplay/" + current_build.destination).add_child(
-			current_build.scene.instance()
+			constructed
 		)
