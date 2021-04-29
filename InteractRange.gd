@@ -34,7 +34,7 @@ func _on_Timer_timeout():
 func _update():
 	var old_top = top
 	in_range.sort_custom(self, "distance_comparitor")
-	print( in_range)
+
 	for i in in_range:
 		if is_instance_valid(i):
 			top = i

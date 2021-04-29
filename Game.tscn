@@ -73,6 +73,7 @@ __meta__ = {
 [node name="Asteroids" type="Node2D" parent="Gameplay"]
 
 [node name="Asteroid" type="RigidBody2D" parent="Gameplay/Asteroids"]
+position = Vector2( 186.468, 201.587 )
 collision_mask = 4
 script = ExtResource( 10 )
 
@@ -127,7 +128,6 @@ position = Vector2( 557.17, 558.945 )
 position = Vector2( 59.7321, 508.002 )
 
 [node name="Ships" type="Node2D" parent="Gameplay"]
-position = Vector2( 200.226, 137.489 )
 
 [node name="Derelict" type="KinematicBody2D" parent="Gameplay/Ships"]
 position = Vector2( 400, 0 )
