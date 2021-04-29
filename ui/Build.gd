@@ -10,7 +10,7 @@ func _ready():
 	Client.player.get_node("Inventory").connect("updated", self, "rebuild")
 
 func rebuild():
-	# clear(builds_list)
+	clear(builds_list)
 	_update_build_selection()
 	build_build_list()
 

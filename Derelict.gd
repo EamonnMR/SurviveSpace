@@ -1,4 +1,4 @@
 extends KinematicBody2D
 
-func selectable():
-	pass
+func can_interact():
+	return true
