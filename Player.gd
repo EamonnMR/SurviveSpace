@@ -24,6 +24,9 @@ func _physics_process(delta):
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
 		linear_velocity += Vector2(accel * delta * 100, 0).rotated(rotation)
+		$EngineEffects.on()
+	else:
+		$EngineEffects.off()
 	if linear_velocity.length() > max_speed:
 		return Vector2(max_speed, 0).rotated(linear_velocity.angle())
 	else:
