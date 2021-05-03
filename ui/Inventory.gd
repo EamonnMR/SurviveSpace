@@ -1,23 +1,35 @@
 extends Control
 
+export var label: String
+export var inventory: NodePath
+
 var inventory_slot = preload("res://ui/EquipBox.tscn")
 var item_icon = preload("res://ui/ItemIcon.tscn")
 
 onready var grid_container = get_node("NinePatchPanel/MarginContainer/VBoxContainer/ScrollContainer/GridContainer")
+onready var name_slot = get_node("NinePatchPanel/MarginContainer/VBoxContainer/HBoxContainer/TextureRect/RichTextLabel")
+
+func assign(bound_inventory: Inventory, new_name: String):
+	inventory = bound_inventory.get_path()
+	label = new_name
+	rebuild()
 
 func _ready():
-	Client.player.get_node("Inventory").connect("updated", self, "rebuild")
+	name_slot.text = label
+	if inventory:
+		_inventory().connect("updated", self, "rebuild")
 
 func _clear():
 	for child in grid_container.get_children():
 		grid_container.remove_child(child)
 
-func _player_inventory():
-	return Client.player.get_node("Inventory")
+func _inventory():
+	return get_node(inventory)
 
 func rebuild():
+	name_slot.text = label
 	_clear()
-	var inv: Inventory = _player_inventory()
+	var inv: Inventory = _inventory()
 	for i in range(inv.max_items):
 		var slot_container = inventory_slot.instance()
 		slot_container.connect("item_removed", self, "_on_item_removed", [i])
@@ -30,7 +42,7 @@ func rebuild():
 		grid_container.add_child(slot_container)
 
 func _on_item_added(item, slot):
-	_player_inventory().add(item.type, item.count, slot)
+	_inventory().add(item.type, item.count, slot)
 
 func _on_item_removed(slot):
-	_player_inventory().remove_item_from_slot(slot)
+	_inventory().remove_item_from_slot(slot)

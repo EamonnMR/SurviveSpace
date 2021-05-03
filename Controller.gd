@@ -14,6 +14,8 @@ func _physics_process(_delta: float):
 		_toggle_inventory()
 	if Input.is_action_just_pressed("toggle_pause"):
 		_toggle_pause()
+	if Input.is_action_just_pressed("interact"):
+		_interact()
 
 func _get_rotation_change():
 	var dc = 0
@@ -24,14 +26,16 @@ func _get_rotation_change():
 	return dc
 	
 func _toggle_inventory():
+
 	var ui = Client.get_ui()
-	for i in ["Equipment", "Inventory", "Crafting"]:
-		var node = ui.get_node(i)
-		if node.is_visible():
-			node.hide()
-		else:
-			node.rebuild()
-			node.show()
+	if get_tree().paused:
+		for i in ui.get_all_inventory_children():
+			i.hide()
+		get_tree().paused = false
+	else:
+		for i in ui.get_default_children():
+			i.show()
+		get_tree().paused = true
 
 func _toggle_pause():
 	var pause_menu = Client.get_ui().get_node("PauseMenu")
@@ -41,3 +45,12 @@ func _toggle_pause():
 	else:
 		pause_menu.show()
 		get_tree().paused = true
+
+func _interact():
+	var entity = Client.player.get_node("InteractRange").top
+	if is_instance_valid(Client.player.get_node("InteractRange").top):
+		if entity.has_node("Inventory"):
+			var other_inventory = Client.get_ui().get_node("OtherInventory")
+			other_inventory.assign(entity.get_node("Inventory"), entity.name)
+			other_inventory.show()
+		_toggle_inventory()

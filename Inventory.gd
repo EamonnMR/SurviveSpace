@@ -1,5 +1,7 @@
 extends Node
 
+export var default_contents: Dictionary
+
 var item_slots = {}
 var max_items = 32
 
@@ -19,7 +21,8 @@ class InvItem:
 		return Data.items[type]
 
 func _ready():
-	add("metal", 5)
+	for key in default_contents:
+		add(key, default_contents[key])
 	
 func _get_first_empty_slot():
 	for i in range(max_items):
