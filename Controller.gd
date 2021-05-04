@@ -34,6 +34,7 @@ func _toggle_inventory():
 		get_tree().paused = false
 	else:
 		for i in ui.get_default_children():
+			i.rebuild()
 			i.show()
 		get_tree().paused = true
 
