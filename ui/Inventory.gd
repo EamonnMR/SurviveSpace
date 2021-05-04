@@ -12,13 +12,13 @@ onready var name_slot = get_node("NinePatchPanel/MarginContainer/VBoxContainer/H
 func assign(bound_inventory: Inventory, new_name: String):
 	inventory = bound_inventory.get_path()
 	label = new_name
+	bound_inventory.connect("updated", self, "rebuild")
 	rebuild()
 
 func _ready():
 	name_slot.text = label
 	if inventory:
-		_inventory().connect("updated", self, "rebuild")
-
+		assign(get_node(inventory), label)
 func _clear():
 	for child in grid_container.get_children():
 		grid_container.remove_child(child)
