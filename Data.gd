@@ -3,12 +3,16 @@ extends Node
 var items = {}
 var recipes = {}
 var builds = {}
+var spawns = {}
+var biomes = {}
 
 func _init():
 	for data_class_and_destination in [
 		[ItemData, items],
 		[RecipeData, recipes],
-		[BuildData, builds]
+		[BuildData, builds],
+		[SpawnData, spawns],
+		[BiomeData, biomes]
 	]:
 		var DataClass = data_class_and_destination[0]
 		var dest = data_class_and_destination[1]

@@ -3,10 +3,10 @@
 [ext_resource path="res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon4.png" type="Texture" id=1]
 [ext_resource path="res://pickups/Metal.gd" type="Script" id=2]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 20.4825
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id=2]
 light_mode = 1
 
 [node name="Metal" type="RigidBody2D"]
@@ -15,10 +15,10 @@ linear_damp = 1.0
 [node name="PickupRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRange"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 1 )
+material = SubResource( 2 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 [connection signal="body_entered" from="PickupRange" to="Sprite" method="_on_PickupRange_body_entered"]

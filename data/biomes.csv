@@ -1,0 +1,4 @@
+id,spawns
+start,start_sleeper start_asteroids
+empty,sleeper asteroids
+aliens,aliens sleeper asteroids

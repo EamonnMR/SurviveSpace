@@ -1,0 +1,7 @@
+id,count,respawn,chance,scene,destination
+start_sleeper,1,FALSE,1,res://spawns/Sleeper.tscn,ships
+start_asteroids,1,FALSE,1,res://spawns/Asteroid.tscn,asteroids
+sleeper,1,FALSE,0.5,res://spawns/Sleeper.tscn,ships
+asteroids,10,FALSE,1,res://spawns/Asteroid.tscn,asteroids
+aliens,1,TRUE,0.5,res://spawns/Sleeper.tscn,ships
+free_asteroids,25,FALSE,1,res://pickups/Metal.tscn,pickups

@@ -83,6 +83,9 @@ func parse_int_array(text: String) -> Array:
 		int_array.append(int(i))
 	return int_array
 
+func parse_string_array(text: String) -> Array:
+	return Array(text.split(" "))
+
 static func load_csv(csv):
 	var file = File.new()
 	var directory = Directory.new();

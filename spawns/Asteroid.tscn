@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Health.gd" type="Script" id=1]
+[ext_resource path="res://Asteroid.gd" type="Script" id=2]
+[ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01_n.png" type="Texture" id=3]
+[ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=4]
+
+[node name="Asteroid" type="RigidBody2D"]
+position = Vector2( 186.468, 201.587 )
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 200.226, 137.489 )
+polygon = PoolVector2Array( -152.913, -150.531, -138.165, -108.701, -162.756, -85.5075, -219.731, -89.9499, -263.83, -122.913, -266.058, -133.604, -254.476, -142.513, -259.376, -157.658, -205.476, -201.312, -196.122, -207.549, -184.095, -203.094, -170.731, -186.167, -159.15, -175.476 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+normal_map = ExtResource( 3 )
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+max_health = 2
+[connection signal="ran_out" from="Health" to="." method="_on_Health_ran_out"]
