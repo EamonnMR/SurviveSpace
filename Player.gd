@@ -11,6 +11,7 @@ var type_name = "Recon Shuttle"
 
 func _ready():
 	Client.player = self
+	Client.add_radar_pip(self)
 
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)

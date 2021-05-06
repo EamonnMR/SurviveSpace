@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
+[ext_resource path="res://assets/danc_cc_by/radar.png" type="Texture" id=1]
 [ext_resource path="res://Gameplay.gd" type="Script" id=2]
 [ext_resource path="res://assets/big_light.png" type="Texture" id=3]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange_n.png" type="Texture" id=4]
@@ -8,6 +9,7 @@
 [ext_resource path="res://Controller.gd" type="Script" id=7]
 [ext_resource path="res://Player.gd" type="Script" id=8]
 [ext_resource path="res://ui/Crafting.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Radar.gd" type="Script" id=10]
 [ext_resource path="res://Inventory.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/Equipment.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Starfield.gd" type="Script" id=17]
@@ -142,8 +144,19 @@ pause_mode = 2
 script = ExtResource( 25 )
 
 [node name="Hud" type="Control" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Radar" type="TextureRect" parent="UI/Hud"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -238.0
+margin_bottom = 238.0
+texture = ExtResource( 1 )
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -2,6 +2,9 @@ extends RigidBody2D
 
 const LOOT_COUNT = 5
 
+func _ready():
+	Client.add_radar_pip(self)
+
 func explode():
 	# TODO
 	pass
