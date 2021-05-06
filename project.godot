@@ -76,6 +76,7 @@ config/icon="res://icon.png"
 
 Data="*res://Data.gd"
 Client="*res://Client.gd"
+Procgen="*res://Procgen.gd"
 
 [input]
 
