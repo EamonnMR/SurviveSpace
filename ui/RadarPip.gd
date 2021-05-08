@@ -1,7 +1,7 @@
 extends Node2D
 
 var subject: Node2D
-var radar_scale = 1.0 / 4
+var radar_scale = 1.0 / 16
 var size: int
 
 onready var radar_offset = get_node("../").rect_size / 2 
@@ -16,7 +16,7 @@ var DISPOSITION_COLORS = {
 
 func _relative_position():
 	var relative_position = subject.position - Client.player.position
-	return relative_position.clamped(radar_offset.x - 5)
+	return relative_position.clamped((radar_offset.x - 5) / radar_scale)
 
 func _process(delta):
 	# TODO: This is kind of hacky
