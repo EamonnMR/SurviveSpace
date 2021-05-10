@@ -4,7 +4,7 @@ var max_speed = 100
 var accel = 1
 var turn = 1
 var linear_velocity = Vector2()
-const PLAY_AREA_RADIUS = 40000
+const PLAY_AREA_RADIUS = 3000
 var ship_name = "UNS Ring Of Glory"
 var type_name = "Recon Shuttle"
 
@@ -20,7 +20,9 @@ func _physics_process(delta):
 	if $Controller.shooting:
 		for weapon in $Weapons.get_children():
 			weapon.try_shooting()
-
+	
+	if position.length() > PLAY_AREA_RADIUS:
+		position = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
 
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
@@ -53,6 +55,16 @@ func add_weapon(weapon, _index):
 func remove_weapon(_index):
 	for child in $Weapons.get_children():
 		$Weapons.remove_child(child)
+
+func add_hyperdrive(drive):
+	var root = get_tree().get_root()
+	var game = root.get_node("Game")
+	root.remove_child(game)
+	game.queue_free()
+	root.add_child(preload("res://ui/WinScreen.tscn").instance())
+	
+func remove_warpdrive(_index):
+	pass
 
 func get_weapon(_index):
 	var children = $Weapons.get_children()

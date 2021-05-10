@@ -41,7 +41,7 @@ func _on_Armor_item_removed():
 
 
 func _on_HyperDrive_item_added(item):
-	pass # Replace with function body.
+	Client.player.add_hyperdrive(item)
 
 
 func _on_HyperDrive_item_removed():
