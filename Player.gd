@@ -8,6 +8,7 @@ const PLAY_AREA_RADIUS = 3000
 var ship_name = "UNS Ring Of Glory"
 var type_name = "Recon Shuttle"
 
+export var crafting_level: int = 0
 
 func _ready():
 	Client.player = self

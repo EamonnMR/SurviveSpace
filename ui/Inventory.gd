@@ -30,16 +30,17 @@ func rebuild():
 	name_slot.text = label
 	_clear()
 	var inv: Inventory = _inventory()
-	for i in range(inv.max_items):
-		var slot_container = inventory_slot.instance()
-		slot_container.connect("item_removed", self, "_on_item_removed", [i])
-		slot_container.connect("item_added", self, "_on_item_added", [i])
-		if i in inv.item_slots:
-			var item: Inventory.InvItem = inv.item_slots[i]
-			var icon = item_icon.instance()
-			icon.init(item)
-			slot_container.add_child(icon)
-		grid_container.add_child(slot_container)
+	if is_instance_valid(inv):
+		for i in range(inv.max_items):
+			var slot_container = inventory_slot.instance()
+			slot_container.connect("item_removed", self, "_on_item_removed", [i])
+			slot_container.connect("item_added", self, "_on_item_added", [i])
+			if i in inv.item_slots:
+				var item: Inventory.InvItem = inv.item_slots[i]
+				var icon = item_icon.instance()
+				icon.init(item)
+				slot_container.add_child(icon)
+			grid_container.add_child(slot_container)
 
 func _on_item_added(item, slot):
 	_inventory().add(item.type, item.count, slot)

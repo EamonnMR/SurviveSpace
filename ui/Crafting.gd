@@ -4,6 +4,7 @@ onready var recipe_detail = get_node("HBoxContainer/Details")
 onready var RecipeIcon = preload("res://ui/EquipBox.tscn")
 
 var current_recipe = null
+var crafting_level: int = 0
 
 func _ready():
 	current_recipe = Data.recipes.values()[0]
@@ -14,19 +15,32 @@ func rebuild():
 	_update_recipe_selection()
 	build_recipe_list()
 
+func assign(crafting_level_object):
+	var bench_level = crafting_level_object.level
+	var player_level = Client.player.crafting_level
+	crafting_level =  max(bench_level, player_level)
+	
+func unassign():
+	crafting_level = Client.player.crafting_level
+
 func build_recipe_list():
 	for recipe_id in Data.recipes:
 		var recipe = Data.recipes[recipe_id]
-		var item_data = Data.items[recipe.prod_type]
-		var recipe_icon = TextureButton.new()
-		
-		recipe_icon.texture_disabled = item_data.icon
-		recipe_icon.texture_focused = item_data.icon
-		recipe_icon.texture_hover = item_data.icon
-		recipe_icon.texture_normal = item_data.icon
-		recipe_icon.texture_pressed = item_data.icon
-		recipe_icon.connect("pressed", self, "_recipe_selected", [recipe_id])
-		recipes_list.add_child(recipe_icon)
+		if recipe.require_level <= crafting_level:
+			var recipe_icon = _get_icon(recipe)
+			recipe_icon.connect("pressed", self, "_recipe_selected", [recipe_id])
+			recipes_list.add_child(recipe_icon)
+
+func _get_icon(recipe):
+	var item_data = Data.items[recipe.prod_type]
+	var recipe_icon = TextureButton.new()
+	
+	recipe_icon.texture_disabled = item_data.icon
+	recipe_icon.texture_focused = item_data.icon
+	recipe_icon.texture_hover = item_data.icon
+	recipe_icon.texture_normal = item_data.icon
+	recipe_icon.texture_pressed = item_data.icon
+	return recipe_icon
 		
 func _recipe_selected(recipe_id):
 	current_recipe = Data.recipes[recipe_id]
@@ -73,7 +87,6 @@ func clear(list):
 
 func _can_craft(recipe):
 	return Client.player.get_node("Inventory").has_ingredients(current_recipe.ingredients)
-
 
 func _on_CraftButton_pressed():
 	if _can_craft(current_recipe):

@@ -101,7 +101,8 @@ shape = SubResource( 1 )
 
 [node name="Inventory" parent="Gameplay/Ships/Player" instance=ExtResource( 12 )]
 default_contents = {
-"metal": 5
+"crew": 1,
+"metal": 10
 }
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Gameplay/Ships/Player"]
@@ -162,9 +163,6 @@ __meta__ = {
 [node name="Equipment" parent="UI" instance=ExtResource( 15 )]
 visible = false
 
-[node name="Crafting" parent="UI" instance=ExtResource( 9 )]
-visible = false
-
 [node name="Inventory" parent="UI" instance=ExtResource( 22 )]
 visible = false
 label = "Inventory"
@@ -179,6 +177,9 @@ margin_left = 794.366
 margin_top = 106.061
 margin_right = 88.3662
 margin_bottom = -131.939
+
+[node name="Crafting" parent="UI" instance=ExtResource( 9 )]
+visible = false
 [connection signal="area_entered" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_area_entered"]
 [connection signal="area_exited" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_area_exited"]
 [connection signal="body_entered" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_body_entered"]
