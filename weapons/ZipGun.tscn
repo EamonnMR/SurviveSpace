@@ -1,10 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://weapons/ZipGun.gd" type="Script" id=1]
+[ext_resource path="res://assets/Eamonn/particle.png" type="Texture" id=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.214286, 0.690476, 1 )
+colors = PoolColorArray( 1, 0.328125, 0.328125, 1, 1, 0.0386963, 0.015625, 1, 0.324219, 0.0151978, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 0.06
+flag_disable_z = true
+spread = 30.49
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 64.86
+initial_velocity_random = 0.16
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 2 )
+hue_variation_random = 0.09
 
 [node name="ZipGun" type="Node2D"]
 position = Vector2( 41.5, 13.5 )
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="MuzzleSparks" type="Particles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.66
+process_material = SubResource( 3 )
+texture = ExtResource( 2 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

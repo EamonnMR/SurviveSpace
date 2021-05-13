@@ -14,3 +14,6 @@ func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node
 				var instance: Node = spawn.scene.instance()
 				instance.position = position
 				gameplay.get_node(spawn.destination).add_child(instance)
+
+func generate_systems():
+	pass

@@ -15,10 +15,11 @@ func try_shooting():
 		_shoot()
 
 func _shoot():
+	$MuzzleSparks.restart()
+	$MuzzleSparks.emitting = true
 	var bullet = _get_bullet()
 	bullet.position = global_position
 	bullet.setup(parent())
-	# parent.get_node("../").add_child(bullet)
 	cooldown = true
 	$Timer.start()
 	#$AudioStreamPlayer2D.play()

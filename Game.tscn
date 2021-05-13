@@ -123,6 +123,8 @@ autostart = true
 
 [node name="Projectiles" type="Node2D" parent="Gameplay"]
 
+[node name="Effects" type="Node2D" parent="Gameplay"]
+
 [node name="Light2D" type="Light2D" parent="Gameplay"]
 visible = false
 position = Vector2( 303.351, 240.696 )

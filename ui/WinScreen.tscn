@@ -14,15 +14,16 @@ __meta__ = {
 
 [node name="MenuBackdrop" parent="." instance=ExtResource( 2 )]
 margin_left = -2.66968
-margin_top = 2.66968
+margin_top = 5.33936
 margin_right = -2.66968
-margin_bottom = 426.67
+margin_bottom = 429.34
 
 [node name="Label" type="Label" parent="."]
 margin_right = 50.0
 margin_bottom = 19.0
 rect_scale = Vector2( 10, 10 )
-text = "Victory"
+text = "Victory
+You Escape"
 __meta__ = {
 "_edit_use_anchors_": false
 }
