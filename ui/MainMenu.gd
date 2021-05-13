@@ -3,7 +3,7 @@ extends Control
 func _on_NewGame_pressed():
 	queue_free()
 	get_tree().get_root().add_child(
-		preload("res://Game.tscn").instance()
+		preload("res://ui/Instructions.tscn").instance()
 	)
 	
 func _on_LoadGame_pressed():
