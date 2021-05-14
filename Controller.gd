@@ -14,6 +14,8 @@ func _physics_process(_delta: float):
 		_toggle_inventory([])
 	if Input.is_action_just_pressed("toggle_pause"):
 		_toggle_pause()
+	if Input.is_action_just_pressed("toggle_map"):
+		_toggle_map()
 	if Input.is_action_just_pressed("interact"):
 		_interact()
 
@@ -53,6 +55,15 @@ func _toggle_pause():
 		get_tree().paused = false
 	else:
 		pause_menu.show()
+		get_tree().paused = true
+
+func _toggle_map():
+	var map = Client.get_ui().get_node("Map")
+	if get_tree().paused:
+		map.hide()
+		get_tree().paused = false
+	else:
+		map.show()
 		get_tree().paused = true
 
 func _interact():

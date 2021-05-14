@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/danc_cc_by/radar.png" type="Texture" id=1]
 [ext_resource path="res://Gameplay.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Controller.gd" type="Script" id=7]
 [ext_resource path="res://Player.gd" type="Script" id=8]
 [ext_resource path="res://ui/Crafting.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ui/NinePatchPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Inventory.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/Equipment.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Starfield.gd" type="Script" id=17]
@@ -182,6 +183,29 @@ margin_bottom = -131.939
 
 [node name="Crafting" parent="UI" instance=ExtResource( 9 )]
 visible = false
+
+[node name="Map" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Map"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchPanel" parent="UI/Map/MarginContainer" instance=ExtResource( 10 )]
+margin_right = 984.0
+margin_bottom = 560.0
 [connection signal="area_entered" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_area_entered"]
 [connection signal="area_exited" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_area_exited"]
 [connection signal="body_entered" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_body_entered"]
