@@ -4,6 +4,7 @@ class_name BiomeData
 
 var id: String
 var spawns: Array
+var map_color: Color
 
 func _init(data: Dictionary):
 	init(data)

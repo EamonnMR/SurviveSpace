@@ -1,11 +1,6 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	Procgen.do_spawns(0, "foo", "start", self)
+	var seed_int = 0
+	Procgen.generate_systems(seed_int)
+	Procgen.do_spawns(seed_int, "0", "start", self)

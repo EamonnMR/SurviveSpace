@@ -77,3 +77,6 @@ func _interact():
 			Client.get_ui().get_node("Crafting").assign(entity.get_node("CraftingLevel"))
 			interaction_modes += ["Crafting"]
 		_toggle_inventory(interaction_modes)
+
+func map_select_system(system_id: String):
+	print("System Selected: ", system_id)

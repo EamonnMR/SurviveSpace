@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/danc_cc_by/radar.png" type="Texture" id=1]
 [ext_resource path="res://Gameplay.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Player.gd" type="Script" id=8]
 [ext_resource path="res://ui/Crafting.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/NinePatchPanel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ui/Map.gd" type="Script" id=11]
 [ext_resource path="res://Inventory.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/Equipment.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Starfield.gd" type="Script" id=17]
@@ -30,6 +31,8 @@ extents = Vector2( 14.7799, 32.1125 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 91.3431
+
+[sub_resource type="Theme" id=4]
 
 [node name="Game" type="Node"]
 
@@ -185,9 +188,11 @@ margin_bottom = -131.939
 visible = false
 
 [node name="Map" type="Control" parent="UI"]
+pause_mode = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -206,6 +211,28 @@ __meta__ = {
 [node name="NinePatchPanel" parent="UI/Map/MarginContainer" instance=ExtResource( 10 )]
 margin_right = 984.0
 margin_bottom = 560.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Map/MarginContainer/NinePatchPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/Map/MarginContainer/NinePatchPanel/MarginContainer2"]
+margin_right = 954.0
+margin_bottom = 530.0
+rect_clip_content = true
+theme = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Movement" type="Node2D" parent="UI/Map/MarginContainer/NinePatchPanel/MarginContainer2/Panel"]
 [connection signal="area_entered" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_area_entered"]
 [connection signal="area_exited" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_area_exited"]
 [connection signal="body_entered" from="Gameplay/Ships/Player/InteractRange" to="Gameplay/Ships/Player/InteractRange" method="_on_body_entered"]
