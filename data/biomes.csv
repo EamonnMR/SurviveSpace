@@ -1,5 +1,6 @@
-id,spawns,map_color
-start,start_sleeper start_asteroids free_asteroids,0 100 0
-empty,sleeper asteroids,100 100 100
-aliens,aliens sleeper asteroids,150 0 0 
-rich,asteroids asteroids free_asteroids,100 100 100
+id,spawns,map_color,do_seed
+start,start_sleeper start_asteroids free_asteroids,0 100 0,FALSE
+empty,sleeper asteroids,100 100 100,TRUE
+aliens,aliens sleeper asteroids,150 0 0 ,TRUE
+rich,asteroids asteroids free_asteroids,100 100 100,FALSE
+blue,aliens sleeper,0 0 100,TRUE
