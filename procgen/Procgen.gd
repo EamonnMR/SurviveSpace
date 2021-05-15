@@ -3,6 +3,7 @@ extends Node
 const SYSTEMS_COUNT = 100
 const RADIUS = 500
 var systems = {}
+var hyperlanes = []
 var MIN_DISTANCE = 50
 
 func _random_location_in_system():
@@ -21,6 +22,7 @@ func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node
 				gameplay.get_node(spawn.destination).add_child(instance)
 
 func generate_systems(seed_value: int):
+	var systems_by_position = {}
 	for i in SYSTEMS_COUNT:
 		var system_id = str(i)
 		rand_seed(seed_value + i * i)
@@ -31,6 +33,16 @@ func generate_systems(seed_value: int):
 		if position:
 			system.position = position
 			systems[system_id] = system
+			systems_by_position[position] = system_id
+	var points = PoolVector2Array(systems_by_position.keys())
+	var link_mesh = Geometry.triangulate_delaunay_2d(points)
+	for i in range(0, link_mesh.size(), 3):
+		var first = systems_by_position[points[link_mesh[i]]]
+		var second = systems_by_position[points[link_mesh[i+1]]]
+		var third = systems_by_position[points[link_mesh[i+2]]]
+		hyperlanes.append(HyperlaneData.new(first, second))
+		hyperlanes.append(HyperlaneData.new(first, third))
+		hyperlanes.append(HyperlaneData.new(second, third))
 
 func _get_non_overlapping_position():
 	var max_iter = 10

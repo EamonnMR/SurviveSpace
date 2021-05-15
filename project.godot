@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://lib/DataRow.gd"
 }, {
+"base": "Reference",
+"class": "HyperlaneData",
+"language": "GDScript",
+"path": "res://procgen/HyperlaneData.gd"
+}, {
 "base": "Node",
 "class": "Inventory",
 "language": "GDScript",
@@ -63,6 +68,7 @@ _global_script_class_icons={
 "BiomeData": "",
 "BuildData": "",
 "DataRow": "",
+"HyperlaneData": "",
 "Inventory": "",
 "ItemData": "",
 "ItemIcon": "",
@@ -82,7 +88,7 @@ config/icon="res://icon.png"
 
 Data="*res://Data.gd"
 Client="*res://Client.gd"
-Procgen="*res://Procgen.gd"
+Procgen="*res://procgen/Procgen.gd"
 
 [input]
 

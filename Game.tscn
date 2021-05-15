@@ -10,7 +10,7 @@
 [ext_resource path="res://Player.gd" type="Script" id=8]
 [ext_resource path="res://ui/Crafting.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/NinePatchPanel.tscn" type="PackedScene" id=10]
-[ext_resource path="res://ui/Map.gd" type="Script" id=11]
+[ext_resource path="res://ui/map/Map.gd" type="Script" id=11]
 [ext_resource path="res://Inventory.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ui/Equipment.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Starfield.gd" type="Script" id=17]
@@ -21,6 +21,7 @@
 [ext_resource path="res://effects/EngineExhaust.tscn" type="PackedScene" id=23]
 [ext_resource path="res://EngineEffects.gd" type="Script" id=24]
 [ext_resource path="res://UI.gd" type="Script" id=25]
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 21.4667

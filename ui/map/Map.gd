@@ -2,8 +2,13 @@ extends Control
 
 onready var movement = get_node("MarginContainer/NinePatchPanel/MarginContainer2/Panel/Movement")
 var dragging = false
-onready var circle_class = preload("res://ui/system.tscn")
+onready var circle_class = preload("res://ui/map/system.tscn")
+onready var lane_class = preload("res://ui/map/hyperlane.tscn")
 func _ready():
+	for i in Procgen.hyperlanes:
+		var lane = lane_class.instance()
+		lane.data = i
+		movement.add_child(lane)
 	for i in Procgen.systems:
 		var circle = circle_class.instance()
 		circle.system_id = i
