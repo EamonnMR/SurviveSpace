@@ -86,7 +86,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Data="*res://Data.gd"
+Data="*res://data/Data.gd"
 Client="*res://Client.gd"
 Procgen="*res://procgen/Procgen.gd"
 

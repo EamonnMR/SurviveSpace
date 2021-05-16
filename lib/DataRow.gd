@@ -39,10 +39,10 @@ func convert_column_value(string_val: String, type: int, type_class: String):
 	
 func parse_color(color_text) -> Color:
 	"""
-	"1 3 4" -> Color(1,3,4)
+	Uses the default string constructor, ARGB or RBG
 	"""
-	var color_parsed = color_text.split(" ")
-	return Color(color_parsed[0], color_parsed[1], color_parsed[2])
+	var color = Color(color_text)
+	return color
 
 func parse_bool(caps_true_or_false: String) -> bool:
 	return caps_true_or_false == "TRUE"

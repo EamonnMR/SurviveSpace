@@ -8,7 +8,8 @@ var hyperlanes = []
 var longjumps = []
 var MIN_DISTANCE = 50
 var MAX_LANE_LENGTH = 130
-var MAX_GROW_ITERATIONS = 5
+var MAX_GROW_ITERATIONS = 3
+var SEED_DENSITY = 1.0/5.0
 
 func _random_location_in_system():
 	return random_circular_coordinate(1000)
@@ -71,17 +72,23 @@ func generate_systems(seed_value: int):
 	for biome_id in Data.biomes:
 		if Data.biomes[biome_id].do_seed:
 			seed_biomes.append(biome_id)
-			
-	for _i in range(systems.size() / 10):
+	
+	
+	var seed_count = int(systems.size() * SEED_DENSITY)
+	print("Seed count: ", seed_count)
+	var seeds_planted = 0
+	while seeds_planted < seed_count:
 		var biome_id = random_select(seed_biomes)
 		var system_id = random_select(systems.keys())
-		systems[system_id].biome = biome_id
-
+		if not systems[system_id].biome:
+			systems[system_id].biome = biome_id
+			seeds_planted += 1
 	# Player start system always gets the "start" biome
 	systems["0"].biome = "start"
 	
 	# Grow Seeds
 	for _i in MAX_GROW_ITERATIONS:
+		print("Growing Seeds")
 		for system in systems.values():
 			if not system.biome:
 				var possible_biomes = []
@@ -90,10 +97,11 @@ func generate_systems(seed_value: int):
 				for list in [system.links_cache, system.long_links_cache]:
 					for link in list:
 						var other_system = systems[link]
-						if other_system.biome:
+						if other_system.biome and Data.biomes[other_system.biome].grow:
 							possible_biomes.append(other_system.biome)
-					if possible_biomes.size():
-						system.biome = random_select(possible_biomes)
+				if possible_biomes.size():
+					print(possible_biomes)
+					system.biome = random_select(possible_biomes)
 						
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
