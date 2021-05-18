@@ -75,7 +75,6 @@ func generate_systems(seed_value: int):
 	
 	
 	var seed_count = int(systems.size() * SEED_DENSITY)
-	print("Seed count: ", seed_count)
 	var seeds_planted = 0
 	while seeds_planted < seed_count:
 		var biome_id = random_select(seed_biomes)
