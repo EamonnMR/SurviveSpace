@@ -6,6 +6,10 @@ var builds = {}
 var spawns = {}
 var biomes = {}
 
+# Game constants:
+const PLAY_AREA_RADIUS = 3000
+# const JUMP_RADIUS = 2000
+
 func _init():
 	for data_class_and_destination in [
 		[ItemData, items],

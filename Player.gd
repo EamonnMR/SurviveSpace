@@ -25,6 +25,10 @@ func _physics_process(delta):
 	if position.length() > PLAY_AREA_RADIUS:
 		position = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
 
+	if $Controller.do_jump:
+		$Controller.do_jump = false  # Only jump once!
+		Client.exit_system_hyperjump("1")
+	
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:
 		linear_velocity += Vector2(accel * delta * 100, 0).rotated(rotation)

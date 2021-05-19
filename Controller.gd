@@ -4,6 +4,7 @@ var rotation_change: float
 var shooting: bool
 var thrusting: bool
 var braking: bool
+var do_jump: bool
 
 func _physics_process(_delta: float):
 	rotation_change = _get_rotation_change()
@@ -18,6 +19,8 @@ func _physics_process(_delta: float):
 		_toggle_map()
 	if Input.is_action_just_pressed("interact"):
 		_interact()
+	if Input.is_action_just_pressed("jump"):
+		do_jump = true
 
 func _get_rotation_change():
 	var dc = 0

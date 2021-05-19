@@ -1,6 +1,8 @@
 extends Node2D
 
+func _get_biome():
+	return Procgen.systems[Client.current_system].biome
+
 func _ready():
 	var seed_int = 0
-	Procgen.generate_systems(seed_int)
-	Procgen.do_spawns(seed_int, "0", "start", self)
+	Procgen.do_spawns(seed_int, Client.current_system, _get_biome(), self)

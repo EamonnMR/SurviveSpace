@@ -99,7 +99,6 @@ func generate_systems(seed_value: int):
 						if other_system.biome and Data.biomes[other_system.biome].grow:
 							possible_biomes.append(other_system.biome)
 				if possible_biomes.size():
-					print(possible_biomes)
 					system.biome = random_select(possible_biomes)
 						
 	# Fill in any systems that somehow fell through the cracks

@@ -7,7 +7,7 @@ var dragging = false
 onready var circle_class = preload("res://ui/map/system.tscn")
 onready var lane_class = preload("res://ui/map/hyperlane.tscn")
 func _ready():
-	
+	print("Init Map")
 	for i in Procgen.hyperlanes:
 		var lane = lane_class.instance()
 		lane.data = i
