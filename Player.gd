@@ -13,6 +13,7 @@ export var crafting_level: int = 0
 func _ready():
 	Client.player = self
 	Client.add_radar_pip(self)
+	Client.get_ui().get_node("Inventory").assign($Inventory, "Inventory")
 
 func _physics_process(delta):
 	linear_velocity = get_limited_velocity_with_thrust(delta)
