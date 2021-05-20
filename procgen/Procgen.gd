@@ -128,7 +128,7 @@ func _get_non_overlapping_position():
 	var max_iter = 10
 	var bad_position = true
 	var position = Vector2()
-	for i in range(max_iter):
+	for _i in range(max_iter):
 		position = random_circular_coordinate(RADIUS)
 		bad_position = false
 		for key in systems:

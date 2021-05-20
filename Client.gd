@@ -19,6 +19,7 @@ func current_system_id():
 	return current_system
 
 func exit_system_hyperjump(new_system):
+	explore_system(new_system)
 	player.get_node("../").remove_child(player)
 	var game = get_tree().root.get_node("Game")
 	var old_gameplay = game.get_node("Gameplay")
@@ -37,6 +38,7 @@ func start_new_game():
 	player = preload("res://ships/Player.tscn").instance()
 	var game = preload("res://Game.tscn").instance()
 	get_tree().get_root().add_child(game)
+	explore_system(current_system)
 	spawn_player()
 	
 func current_system_data():
@@ -44,3 +46,7 @@ func current_system_data():
 
 func cache_load(path):
 	return load(path)
+	
+func explore_system(system):
+	Procgen.systems[system].explored = true
+	get_ui().get_node("Map").update_for_explore(system)

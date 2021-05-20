@@ -14,8 +14,7 @@ func clicked():
 	var bla = self
 	Client.player.get_node("Controller").map_select_system(system_id, self)
 	update()
-	print("Clicked!")
-	
+
 func update():
 	$circle.update()
 	# TODO: Update hyperlanes too

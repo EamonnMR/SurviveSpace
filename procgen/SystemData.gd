@@ -6,3 +6,4 @@ var biome: String
 var links_cache: Array
 var long_links_cache: Array
 var state: Dictionary
+var explored: bool
