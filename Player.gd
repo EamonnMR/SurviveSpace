@@ -28,7 +28,10 @@ func _physics_process(delta):
 
 	if $Controller.do_jump:
 		$Controller.do_jump = false  # Only jump once!
-		Client.exit_system_hyperjump("1")
+		if $Controller.selected_system:
+			Client.exit_system_hyperjump($Controller.selected_system)
+		else:
+			print("Can't jump, select a system from the map with 'M'")
 	
 func get_limited_velocity_with_thrust(delta):
 	if $Controller.thrusting:

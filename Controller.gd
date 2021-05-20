@@ -5,6 +5,8 @@ var shooting: bool
 var thrusting: bool
 var braking: bool
 var do_jump: bool
+var selected_system: String
+var selected_system_circle_cache: Array =  []
 
 func _physics_process(_delta: float):
 	rotation_change = _get_rotation_change()
@@ -81,5 +83,9 @@ func _interact():
 			interaction_modes += ["Crafting"]
 		_toggle_inventory(interaction_modes)
 
-func map_select_system(system_id: String):
-	print("System Selected: ", system_id)
+func map_select_system(system_id: String, node):
+	selected_system = system_id
+	for old_node in selected_system_circle_cache:
+		old_node.update()
+	selected_system_circle_cache = [node]
+	# TODO: If we're in immediate jump mode, toggle out of the map and initiate a jump

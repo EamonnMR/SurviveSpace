@@ -11,9 +11,14 @@ func _ready():
 	rect_position = data.position
 
 func clicked():
-	Client.player.get_node("Controller").map_select_system(system_id)
-	$circle.update()
+	var bla = self
+	Client.player.get_node("Controller").map_select_system(system_id, self)
+	update()
 	print("Clicked!")
+	
+func update():
+	$circle.update()
+	# TODO: Update hyperlanes too
 
 func _on_Button_pressed():
 	clicked()
