@@ -28,3 +28,11 @@ func gain_health(amount) -> bool:  # Returns false if health was full
 			health = max_health
 		_print_amount()
 		return true
+
+func serialize() -> Dictionary:
+	return {
+		"health": health
+	}
+	
+func deserialize(data: Dictionary):
+	health = data["health"]

@@ -21,8 +21,10 @@ class InvItem:
 		return Data.items[type]
 
 func _ready():
-	for key in default_contents:
-		add(key, default_contents[key])
+	if not item_slots: # Don't populate defaults if we already deserialized
+		for key in default_contents:
+			add(key, default_contents[key])
+	
 	
 func _get_first_empty_slot():
 	for i in range(max_items):
@@ -101,3 +103,21 @@ func deduct_ingredients(ingredients: Dictionary) -> bool:  # Output represents s
 
 		emit_signal("updated")
 		return true
+
+func serialize() -> Dictionary:
+	var data ={}
+	for slot in item_slots:
+		data[slot] = {
+			"type": item_slots[slot].type,
+			"count": item_slots[slot].count
+		}
+	return data
+	
+func deserialize(data):
+	item_slots = {}
+	for slot in data:
+		var slot_data = data[slot]
+		item_slots[slot] = InvItem.new(
+			slot_data.type,
+			int(slot_data.count)
+		)

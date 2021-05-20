@@ -20,10 +20,10 @@ func current_system_id():
 
 func exit_system_hyperjump(new_system):
 	player.get_node("../").remove_child(player)
-	current_system = new_system
 	var game = get_tree().root.get_node("Game")
 	var old_gameplay = game.get_node("Gameplay")
-	# TODO: Dump State?
+	current_system_data().state = old_gameplay.serialize()
+	current_system = new_system
 	game.remove_child(old_gameplay)
 	old_gameplay.queue_free()
 	game.add_child(preload("res://Gameplay.tscn").instance())
@@ -38,3 +38,9 @@ func start_new_game():
 	var game = preload("res://Game.tscn").instance()
 	get_tree().get_root().add_child(game)
 	spawn_player()
+	
+func current_system_data():
+	return Procgen.systems[current_system]
+
+func cache_load(path):
+	return load(path)

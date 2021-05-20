@@ -25,3 +25,13 @@ func _on_Health_ran_out():
 	explode()
 	drop_loot()
 	queue_free()
+	
+func serialize() -> Dictionary:
+	return {
+		"position": position,
+		"health": $Health.serialize()
+	}
+
+func deserialize(data):
+	position = data["position"]
+	$Health.deserialize(data["health"])
