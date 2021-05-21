@@ -9,6 +9,7 @@ func _ready():
 	$Label.text = "GSC " + system_id
 	data = Procgen.systems[system_id]
 	rect_position = data.position
+	update()
 
 func clicked():
 	var bla = self
@@ -17,7 +18,9 @@ func clicked():
 
 func update():
 	$circle.update()
-	# TODO: Update hyperlanes too
-
+	if data.explored:
+		$Label.show()
+	else:
+		$Label.hide()
 func _on_Button_pressed():
 	clicked()
