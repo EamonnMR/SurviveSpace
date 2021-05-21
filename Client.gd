@@ -3,6 +3,8 @@ extends Node
 var player
 var current_system = "0"
 
+signal system_selection_updated
+
 func get_ui():
 	var bla = get_tree().root.get_node("Game/UI")
 	return bla
@@ -50,3 +52,7 @@ func cache_load(path):
 func explore_system(system):
 	Procgen.systems[system].explored = true
 	get_ui().get_node("Map").update_for_explore(system)
+
+func map_select_system(system_id, system_node):
+	player.get_node("Controller").map_select_system(system_id, system_node)
+	emit_signal("map_selection_updated")

@@ -81,10 +81,11 @@ func generate_systems(seed_value: int):
 		var system_id = random_select(systems.keys())
 		if not systems[system_id].biome:
 			systems[system_id].biome = biome_id
+			systems[system_id].name = random_name(systems[system_id])
 			seeds_planted += 1
 	# Player start system always gets the "start" biome
 	systems["0"].biome = "start"
-	
+	systems["0"].name = "Holdfast"
 	# Grow Seeds
 	for _i in MAX_GROW_ITERATIONS:
 		print("Growing Seeds")
@@ -100,12 +101,14 @@ func generate_systems(seed_value: int):
 							possible_biomes.append(other_system.biome)
 				if possible_biomes.size():
 					system.biome = random_select(possible_biomes)
+					# TODO: Names - per - biome
+					system.name = random_name(system)
 						
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
 		if not system.biome:
 			system.biome = "empty"
-			
+			system.name = random_name(system)
 func cache_links():
 	for lane in hyperlanes:
 		var lsys = systems[lane.lsys]
@@ -140,6 +143,9 @@ func _get_non_overlapping_position():
 			return position
 	print("Cannot find a suitable position for system in ", max_iter, " iterations")
 	return null
+
+func random_name(sys: SystemData):
+	return "GSC " + sys.id
 
 func randi_radius(radius):
 	return (randi() % (2 * radius)) - radius

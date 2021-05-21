@@ -6,14 +6,13 @@ export var system_id: String
 var data: SystemData
 
 func _ready():
-	$Label.text = "GSC " + system_id
 	data = Procgen.systems[system_id]
+	$Label.text = data.name
 	rect_position = data.position
 	update()
 
 func clicked():
-	var bla = self
-	Client.player.get_node("Controller").map_select_system(system_id, self)
+	Client.map_select_system(system_id, self)
 	update()
 
 func update():
