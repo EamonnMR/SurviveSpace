@@ -4,10 +4,12 @@ export var default_contents: Dictionary
 
 var item_slots = {}
 var max_items = 32
+var fresh = true
 
 class_name Inventory
 
 signal updated
+
 
 class InvItem:
 	var type: String
@@ -21,9 +23,10 @@ class InvItem:
 		return Data.items[type]
 
 func _ready():
-	if not item_slots: # Don't populate defaults if we already deserialized
+	if fresh:
 		for key in default_contents:
 			add(key, default_contents[key])
+	fresh = false
 	
 	
 func _get_first_empty_slot():
@@ -121,3 +124,4 @@ func deserialize(data):
 			slot_data.type,
 			int(slot_data.count)
 		)
+	fresh = false

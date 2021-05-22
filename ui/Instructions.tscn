@@ -35,7 +35,8 @@ text = "The fleet is stranded in unknown space. You have been awakened from cold
 WASD or arrow keys to move.
 Press TAB to equip/craft
 Press E to interact
-SPACE to fire (if weapon is equipped)"
+SPACE to fire (if weapon is equipped)
+M to view galaxy map"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

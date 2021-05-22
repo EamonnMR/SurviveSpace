@@ -82,7 +82,7 @@ _global_script_class_icons={
 
 config/name="Survive Space"
 run/main_scene="res://ui/MainMenu.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange.png"
 
 [autoload]
 

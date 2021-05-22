@@ -110,3 +110,4 @@ __meta__ = {
 }
 
 [node name="Map" parent="UI" instance=ExtResource( 3 )]
+visible = false
