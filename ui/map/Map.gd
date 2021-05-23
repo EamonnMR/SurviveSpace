@@ -38,6 +38,14 @@ func _ready():
 		if Procgen.systems[i].explored:
 			update_for_explore(i)
 	
+	_set_initial_center()
+	
+func _set_initial_center():
+		var position = Procgen.systems[Client.current_system].position * -1
+		var mvm: Control = movement
+		var size = mvm.rect_size / 2
+		mvm.rect_position = position + size
+	
 func _input(event):
 	if event is InputEventMouseButton:
 		dragging = event.pressed

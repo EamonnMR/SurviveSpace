@@ -3,6 +3,7 @@ extends DataRow
 class_name BiomeData
 
 var id: String
+var name: String
 var spawns: Array
 var map_color: Color
 var do_seed: bool
