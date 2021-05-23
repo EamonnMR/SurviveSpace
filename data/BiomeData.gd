@@ -7,6 +7,7 @@ var spawns: Array
 var map_color: Color
 var do_seed: bool
 var grow: bool
+var background: Texture
 
 func _init(data: Dictionary):
 	init(data)

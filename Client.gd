@@ -27,11 +27,12 @@ func exit_system_hyperjump(new_system):
 	var old_gameplay = game.get_node("Gameplay")
 	current_system_data().state = old_gameplay.serialize()
 	current_system = new_system
+	_get_background_node().set_background_for_current_system()
 	game.remove_child(old_gameplay)
 	old_gameplay.queue_free()
 	game.add_child(preload("res://Gameplay.tscn").instance())
 	spawn_player()
-	
+
 func spawn_player():
 	get_player_dest().add_child(player)
 
@@ -40,6 +41,7 @@ func start_new_game():
 	player = preload("res://ships/Player.tscn").instance()
 	var game = preload("res://Game.tscn").instance()
 	get_tree().get_root().add_child(game)
+	_get_background_node().set_background_for_current_system()
 	explore_system(current_system)
 	spawn_player()
 	
@@ -56,3 +58,6 @@ func explore_system(system):
 func map_select_system(system_id, system_node):
 	player.get_node("Controller").map_select_system(system_id, system_node)
 	emit_signal("map_selection_updated")
+
+func _get_background_node():
+	return get_tree().get_root().get_node("Game/Background/Control/Starfield")
