@@ -14,6 +14,7 @@ func _ready():
 	Client.add_radar_pip(self)
 	$Health.connect("ran_out", self, "_health_ran_out")
 	$Health.connect("took_damage", self, "_took_damage")
+	$Health.connect("took_damage", $Controller, "_ship_took_damage")
 func _health_ran_out():
 	if not disabled:
 		# TODO: Trigger a re-evaluation of interactibility

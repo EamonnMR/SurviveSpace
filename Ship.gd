@@ -6,6 +6,9 @@ var max_speed = 0
 var accel = 0
 var turn = 0
 
+var has_turrets = false
+var standoff = false
+
 var disabled = false
 
 var linear_velocity = Vector2()

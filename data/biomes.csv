@@ -1,5 +1,5 @@
 id,name,spawns,map_color,do_seed,grow,background
-start,Deserted,start_sleeper start_asteroids free_asteroids,#C0C0C0,FALSE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png
+start,Deserted,start_sleeper start_asteroids free_asteroids aliens aliens aliens aliens aliens aliens,#C0C0C0,FALSE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png
 empty,Deserted,sleeper asteroids,#C0C0C0,TRUE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png
 aliens,Hostile,aliens sleeper asteroids,#FF0000,TRUE,TRUE,res://assets/ScreamingBrain/modified/1024x1024 Red Nebula 1.png
 rich,Rich,asteroids asteroids free_asteroids,#A0A0A0,FALSE,TRUE,res://assets/ScreamingBrain/Purple Nebula/1024x1024 Purple Nebula 1.png
