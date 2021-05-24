@@ -19,7 +19,7 @@ func _on_Area2D_body_entered(body):
 	else:
 		# explode()
 		if body.has_node("Health"):
-			body.get_node("Health").take_damage(damage)
+			body.get_node("Health").take_damage(damage, parent)
 		queue_free()
 
 func _on_Timer_timeout():

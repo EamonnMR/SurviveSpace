@@ -5,5 +5,6 @@ drive_1,Type 1 Hyperdrive,hyperdrive,res://assets/GalagianArtwork_cc_by/raw/enem
 zipgun,Zipgun,weapon,res://assets/damnwing_cc_by/zipgun.png,A crude weapon built with on-hand materials,FALSE
 o2,Oxygen,consumable,res://assets/gods_and_idols/oxygen.jpg,Vital for human life. Right click to fill o2 tanks.,TRUE
 si,Silica,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon10.png,Common mineral used in everything from glass to microchips,TRUE
-grnr,Green Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon22.pngStrange material with strange properties,,TRUE
+grnr,Green Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon22.png,Strange material with strange properties,TRUE
 prpl,Purple Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon39.png,Stranger material with stranger properties,TRUE
+power,Power Cell,consumable,,,
