@@ -12,7 +12,7 @@ func _anglemod(angle: float) -> float:
 	return fmod(angle, PI * 2)
 
 func _get_ideal_face(from: Node2D, to: Vector2):
-	return _anglemod(from.get_angle_to(to))
+	return (to - from.global_position).angle()
 
 func _constrained_point(subject, current_rotation, max_turn, position: Vector2):
 	# For finding the right direction and amount to turn when your rotation speed is limited
@@ -30,11 +30,3 @@ func _constrained_point(subject, current_rotation, max_turn, position: Vector2):
 		return [max_turn, ideal_face]
 	else:
 		return [ideal_turn, ideal_face]
-
-func _flatten_to_sign(value):
-	# For getting direction change
-	if value > 0:
-		return 1
-	if value < 0:
-		return -1
-	return 0

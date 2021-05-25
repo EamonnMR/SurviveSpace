@@ -8,6 +8,8 @@ var turn = 0
 
 var has_turrets = false
 var standoff = false
+var wimpy = false
+var joust = true
 
 var disabled = false
 

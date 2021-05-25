@@ -63,7 +63,7 @@ func _hunt(delta):
 	rotation_change = 0
 	ideal_face = null
 	if(target):
-		get_ideal_face_and_direction_change(target.position, delta)
+		get_ideal_face_and_direction_change(target.global_position, delta)
 		shooting = _should_shoot()
 		thrusting = _should_thrust()
 		braking = _should_brake()
@@ -82,7 +82,7 @@ func get_ideal_face_and_direction_change(at: Vector2, delta):
 	var impulse = _constrained_point(
 		parent, parent.rotation, parent.turn * delta, at
 	)
-	rotation_change = _flatten_to_sign(impulse[0])
+	rotation_change = sign(impulse[0])
 	ideal_face = impulse[1]
 
 func _find_target():
@@ -160,7 +160,7 @@ func _should_shoot():
 
 func _ship_took_damage(source):
 	waiting = false
-	if (parent.health < parent.armor * 0.75) and parent.wimpy:
+	if (parent.get_node("Health").health < parent.get_node("Health").max_health * 0.75) and parent.wimpy:
 		print("Fleeing system")
 		_start_leaving_system()
 		# print("Flee destination: ", puppet_selected_system)
