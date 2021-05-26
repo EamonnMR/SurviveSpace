@@ -35,5 +35,21 @@ func _took_damage(from):
 	pass
 
 func can_interact():
-	# TODO: Trigger a re-
+	# TODO: Trigger a re-evaluation of interaction priority
 	return disabled
+
+func serialize() -> Dictionary:
+	return {
+		"position": position,
+		"rotation": rotation,
+		"inventory": $Inventory.serialize(),
+		"health": $Health.serialize(),
+		"disabled": disabled
+	}
+
+func deserialize(data):
+	position = data["position"]
+	rotation = data["rotation"]
+	$Inventory.deserialize(data["inventory"])
+	$Health.deserialize(data["health"])
+	disabled = data["disabled"]
