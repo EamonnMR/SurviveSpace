@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Eamonn/particle.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.519048, 0.97619, 1 )
+colors = PoolColorArray( 0.296232, 0.996094, 0.011673, 1, 0, 0.834961, 0.521019, 1, 0.419608, 0.419608, 0.419608, 0, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+min_value = 1.0
+max_value = 4.0
+_data = [ Vector2( 0, 1.32161 ), 0.0, 0.0, 0, 0, Vector2( 0.987124, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.03
+flag_disable_z = true
+spread = 3.28
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 182.54
+initial_velocity_random = 0.38
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[node name="Particles2D" type="Particles2D"]
+rotation = 3.14159
+amount = 35
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )
