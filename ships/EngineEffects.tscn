@@ -1,8 +1,9 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://EngineEffects.gd" type="Script" id=1]
+[ext_resource path="res://components/EngineEffects.gd" type="Script" id=1]
 [ext_resource path="res://assets/Eamonn/particle.png" type="Texture" id=2]
 [ext_resource path="res://effects/EngineExhaust.tscn" type="PackedScene" id=3]
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.294416, 0.604061, 1 )

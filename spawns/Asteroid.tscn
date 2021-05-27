@@ -1,10 +1,11 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Health.gd" type="Script" id=1]
+[ext_resource path="res://components/Health.gd" type="Script" id=1]
 [ext_resource path="res://spawns/Asteroid.gd" type="Script" id=2]
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01_n.png" type="Texture" id=3]
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=4]
 [ext_resource path="res://assets/Eamonn/particle.png" type="Texture" id=5]
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.428571, 0.861905, 1 )

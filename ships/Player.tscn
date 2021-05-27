@@ -2,11 +2,13 @@
 
 [ext_resource path="res://ships/EngineEffects.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Controller.gd" type="Script" id=3]
-[ext_resource path="res://Player.gd" type="Script" id=5]
+[ext_resource path="res://ships/Player.gd" type="Script" id=5]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange_n.png" type="Texture" id=6]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange.png" type="Texture" id=7]
 [ext_resource path="res://InteractRange.gd" type="Script" id=8]
-[ext_resource path="res://Inventory.tscn" type="PackedScene" id=9]
+[ext_resource path="res://components/Inventory.tscn" type="PackedScene" id=9]
+
+
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 21.4667

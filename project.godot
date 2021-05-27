@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Inventory",
 "language": "GDScript",
-"path": "res://Inventory.gd"
+"path": "res://components/Inventory.gd"
 }, {
 "base": "DataRow",
 "class": "ItemData",
@@ -52,12 +52,12 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Ship",
 "language": "GDScript",
-"path": "res://Ship.gd"
+"path": "res://ships/Ship.gd"
 }, {
 "base": "Node",
 "class": "ShipController",
 "language": "GDScript",
-"path": "res://ShipController.gd"
+"path": "res://ships/ShipController.gd"
 }, {
 "base": "DataRow",
 "class": "SpawnData",

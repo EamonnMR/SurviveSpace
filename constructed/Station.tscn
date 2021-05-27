@@ -3,8 +3,9 @@
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/orange_station_n.png" type="Texture" id=1]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/orange_station.png" type="Texture" id=2]
 [ext_resource path="res://constructed/Station.gd" type="Script" id=3]
-[ext_resource path="res://Inventory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/Inventory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://constructed/CraftingLevel.gd" type="Script" id=5]
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 53.431
