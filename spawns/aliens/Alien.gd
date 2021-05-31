@@ -19,6 +19,7 @@ func _health_ran_out():
 	if not disabled:
 		# TODO: Trigger a re-evaluation of interactibility
 		disabled = true
+		Client.entity_became_interactive(self)
 		_disabled_effects()
 	else:
 		_destroyed_effects()

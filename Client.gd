@@ -4,6 +4,7 @@ var player
 var current_system = "0"
 
 signal system_selection_updated
+signal became_interactive(entity)
 
 func get_ui():
 	var bla = get_tree().root.get_node("Game/UI")
@@ -61,3 +62,6 @@ func map_select_system(system_id, system_node):
 
 func _get_background_node():
 	return get_tree().get_root().get_node("Game/Background/Control/Starfield")
+
+func entity_became_interactive(entity):
+	emit_signal("became_interactive", entity)

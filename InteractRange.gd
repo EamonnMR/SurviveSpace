@@ -1,7 +1,11 @@
 extends Area2D
 
 var in_range = []
+var in_range_but_noninteractive = []
 var top = null
+
+func _ready():
+	Client.connect("became_interactive", self, "_became_interactive")
 
 func _distance_comparitor(lval, rval):
 	# For sorting other nodes by how close they are
@@ -14,6 +18,8 @@ func _on_area_entered(area):
 	if _is_interactive(area):
 		in_range.append(area)
 		_update()
+	else:
+		in_range_but_noninteractive.append(area)
 
 func _on_area_exited(area):
 	_erase(area)
@@ -23,7 +29,9 @@ func _on_body_entered(body):
 	if _is_interactive(body):
 		in_range.append(body)
 		_update()
-
+	else:
+		in_range_but_noninteractive.append(body)
+		
 func _on_body_exited(body):
 	_erase(body)
 	_update()
@@ -49,6 +57,7 @@ func _update():
 
 func _erase(entity):
 	in_range.erase(entity)
+	in_range_but_noninteractive.erase(entity)
 	if entity == top:
 		_remove_marker(entity)
 		top = null
@@ -63,3 +72,9 @@ func _add_marker(new_top):
 
 func _is_interactive(entity):
 	return entity.has_method("can_interact") and entity.can_interact()
+
+func _became_interactive(entity):
+	if entity in in_range_but_noninteractive:
+		in_range_but_noninteractive.erase(entity)
+		in_range.append(entity)
+		_update()

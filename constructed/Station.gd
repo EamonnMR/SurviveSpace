@@ -5,6 +5,7 @@ func can_interact():
 
 func _ready():
 	Client.add_radar_pip(self)
+	Client.interactivity_changed()
 
 func serialize() -> Dictionary:
 	return {
