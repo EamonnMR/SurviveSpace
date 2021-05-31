@@ -1,11 +1,11 @@
 id,name,spawns,map_color,do_seed,grow,background
-start,Deserted,start_sleeper start_asteroids free_asteroids aliens aliens aliens aliens aliens aliens,#C0C0C0,FALSE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png
+start,Deserted,start_sleeper start_asteroids free_asteroids,#C0C0C0,FALSE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png
 empty,Deserted,sleeper asteroids,#C0C0C0,TRUE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 4.png
-aliens,Hostile,aliens sleeper asteroids,#FF0000,TRUE,TRUE,res://assets/ScreamingBrain/modified/1024x1024 Red Nebula 1.png
-rich,Rich,asteroids asteroids free_asteroids,#A0A0A0,FALSE,TRUE,res://assets/ScreamingBrain/Purple Nebula/1024x1024 Purple Nebula 1.png
-blue,Empty,aliens sleeper,#000080,TRUE,TRUE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 2.png
-green,Green,aliens asteroids,#00AA00,TRUE,TRUE,res://assets/ScreamingBrain/Green Nebula/1024x1024 Green Nebula 4.png
-orange,Orange,aliens sleeper asteroids,#FF4500,TRUE,TRUE,res://assets/ScreamingBrain/modified/1024x1024 Orange Nebula 1.png
-lightblue,Light Blue,aliens sleeper asteroids,#00CED1,TRUE,TRUE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 5.png
+aliens,Hostile,aliens sleeper asteroids aliens,#FF0000,TRUE,TRUE,res://assets/ScreamingBrain/modified/1024x1024 Red Nebula 1.png
+rich,Rich,asteroids asteroids free_asteroids planet,#A0A0A0,FALSE,TRUE,res://assets/ScreamingBrain/Purple Nebula/1024x1024 Purple Nebula 1.png
+blue,Blue,aliens sleeper planet,#000080,TRUE,TRUE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 2.png
+green,Green,aliens asteroids planet,#00AA00,TRUE,TRUE,res://assets/ScreamingBrain/Green Nebula/1024x1024 Green Nebula 4.png
+orange,Orange,aliens sleeper asteroids planet,#FF4500,TRUE,TRUE,res://assets/ScreamingBrain/modified/1024x1024 Orange Nebula 1.png
+lightblue,Light Blue,aliens sleeper asteroids planet,#00CED1,TRUE,TRUE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 5.png
 gold,Gold,asteroids asteroids asteroids,#FFD700,TRUE,FALSE,res://assets/ScreamingBrain/Blue Nebula/1024x1024 Blue Nebula 6.png
 purple,Purple,asteroids asteroids asteroids sleeper aliens,#800080,TRUE,FALSE,res://assets/ScreamingBrain/modified/1024x1024 Purple Nebula 1.png

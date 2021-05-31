@@ -5,3 +5,4 @@ sleeper,1,FALSE,0.5,res://spawns/Sleeper.tscn,Npcs
 asteroids,10,FALSE,1,res://spawns/Asteroid.tscn,Asteroids
 aliens,1,TRUE,0.5,res://spawns/aliens/Alien.tscn,Npcs
 free_asteroids,25,FALSE,1,res://pickups/Metal.tscn,Pickups
+planet,1,FALSE,0.5,res://spawns/Planet.tscn,Planets
