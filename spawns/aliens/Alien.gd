@@ -20,7 +20,11 @@ func _health_ran_out():
 		# TODO: Trigger a re-evaluation of interactibility
 		disabled = true
 		Client.entity_became_interactive(self)
+		remove_child($Controller)
+		add_child(preload("res://ships/ShipController.tscn").instance())
 		_disabled_effects()
+		$EngineEffects.off()
+		$Sprite.texture = Client.cache_load("res://assets/millionthvector_cc_by/Faction6-Spaceships-by-MillionthVector/redship4_disabled.png")
 	else:
 		_destroyed_effects()
 		queue_free()
