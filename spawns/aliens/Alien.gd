@@ -24,7 +24,7 @@ func _health_ran_out():
 		add_child(preload("res://ships/ShipController.tscn").instance())
 		_disabled_effects()
 		$EngineEffects.off()
-		$Sprite.texture = Client.cache_load("res://assets/millionthvector_cc_by/Faction6-Spaceships-by-MillionthVector/redship4_disabled.png")
+		set_disabled_texture()
 	else:
 		_destroyed_effects()
 		queue_free()
@@ -58,3 +58,9 @@ func deserialize(data):
 	$Inventory.deserialize(data["inventory"])
 	$Health.deserialize(data["health"])
 	disabled = data["disabled"]
+	
+	if disabled:
+		set_disabled_texture()
+
+func set_disabled_texture():
+	$Sprite.texture = Client.cache_load("res://assets/millionthvector_cc_by/Faction6-Spaceships-by-MillionthVector/redship4_disabled.png")

@@ -2,6 +2,7 @@ extends Node
 
 var player
 var current_system = "0"
+var spawn_point = "0"
 
 signal system_selection_updated
 signal became_interactive(entity)
@@ -32,7 +33,21 @@ func exit_system_hyperjump(new_system):
 	game.remove_child(old_gameplay)
 	old_gameplay.queue_free()
 	game.add_child(preload("res://Gameplay.tscn").instance())
+	# spawn_player()
+	
+func player_respawn():
+	# TODO: Mark system with skull to remind them it's where they died
+	var game = get_tree().root.get_node("Game")
+	var old_gameplay = game.get_node("Gameplay")
+	current_system_data().state = old_gameplay.serialize()
+	current_system = spawn_point
+	_get_background_node().set_background_for_current_system()
+	game.remove_child(old_gameplay)
+	old_gameplay.queue_free()
+	game.add_child(preload("res://Gameplay.tscn").instance())
+	player = preload("res://ships/Player.tscn").instance()
 	spawn_player()
+	
 
 func spawn_player():
 	get_player_dest().add_child(player)
