@@ -9,9 +9,7 @@ func _ready():
 	max_speed = 100
 	accel = 1
 	turn = 1
-	Client.player = self
 	Client.add_radar_pip(self)
-	Client.get_ui().get_node("Inventory").assign($Inventory, "Inventory")
 	$Health.connect("ran_out", self, "_health_ran_out")
 
 func do_jump():
@@ -24,6 +22,7 @@ func is_player():
 	return not disabled
 
 func serialize() -> Dictionary:
+	print("Serialized Player")
 	return {
 		"position": position,
 		"rotation": rotation,
@@ -41,11 +40,30 @@ func deserialize(data):
 	
 	if disabled:
 		set_disabled_texture()
+		disable_control()
 
 func _health_ran_out():
 	disabled = true
 	set_disabled_texture()
+	disable_control()
+	# TODO: Wait
 	Client.player_respawn()
 	
 func set_disabled_texture():
-	$Sprite.texture = Client.cache_load("res://assets/millionthvector_cc_by/Faction6-Spaceships-by-MillionthVector/redship4_disabled.png")
+	$Sprite.texture = Client.cache_load("res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange_disabled.png")
+
+func disable_control():
+	remove_child($Controller)
+	remove_child($Camera2D)
+	add_child(preload("res://ships/ShipController.tscn").instance())
+	$EngineEffects.off()
+	
+func enable_control():
+	remove_child($Controller)
+	add_child(preload("res://ships/PlayerController.tscn").instance())
+	var camera = Camera2D.new()
+	add_child(camera)
+	camera.current = true
+
+func can_interact():
+	return disabled

@@ -7,7 +7,6 @@ var current_build = null
 
 func _ready():
 	current_build = Data.builds.values()[0]
-	Client.player.get_node("Inventory").connect("updated", self, "rebuild")
 
 func rebuild():
 	clear(builds_list)

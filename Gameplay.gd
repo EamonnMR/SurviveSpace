@@ -4,7 +4,8 @@ const SERIAL_CHILDREN = [
 	"Stations",
 	"Asteroids",
 	"Pickups",
-	"Npcs"
+	"Npcs",
+	"Ships"
 ]
 
 func _get_biome():

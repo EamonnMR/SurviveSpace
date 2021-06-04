@@ -8,7 +8,6 @@ var crafting_level: int = 0
 
 func _ready():
 	current_recipe = Data.recipes.values()[0]
-	Client.player.get_node("Inventory").connect("updated", self, "rebuild")
 
 func rebuild():
 	clear(recipes_list)
