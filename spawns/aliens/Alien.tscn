@@ -35,21 +35,27 @@ default_contents = {
 
 [node name="Particles2D" parent="EngineEffects" instance=ExtResource( 9 )]
 position = Vector2( -0.745605, -64.6504 )
+emitting = false
 
 [node name="Particles2D3" parent="EngineEffects" instance=ExtResource( 8 )]
 position = Vector2( -8.31366, -42.7872 )
+emitting = false
 
 [node name="Particles2D4" parent="EngineEffects" instance=ExtResource( 8 )]
 position = Vector2( -145.379, -25.1284 )
+emitting = false
 
 [node name="Particles2D2" parent="EngineEffects" instance=ExtResource( 9 )]
 position = Vector2( -0.746, 64.65 )
+emitting = false
 
 [node name="Particles2D5" parent="EngineEffects" instance=ExtResource( 8 )]
 position = Vector2( -8.314, 42.787 )
+emitting = false
 
 [node name="Particles2D6" parent="EngineEffects" instance=ExtResource( 8 )]
 position = Vector2( -145.379, 25.128 )
+emitting = false
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708

@@ -31,9 +31,11 @@ max_health = 3
 
 [node name="Particles2D" parent="EngineEffects" instance=ExtResource( 2 )]
 position = Vector2( -43, -14 )
+emitting = false
 
 [node name="Particles2D2" parent="EngineEffects" instance=ExtResource( 2 )]
 position = Vector2( -43, 14 )
+emitting = false
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
