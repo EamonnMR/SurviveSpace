@@ -1,4 +1,4 @@
-extends Sprite
+extends RigidBody2D
 
 var type = "metal"
 var count = 1
