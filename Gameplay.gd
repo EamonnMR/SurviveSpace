@@ -35,7 +35,8 @@ func get_each_serialized(node):
 				# "type": child.type
 			})
 		else:
-			print("No Serialization method, discardig: ", child.name)
+			breakpoint
+			print("No Serialization method, discarding: ", child.name)
 	return list
 
 func deserialize(data: Dictionary):

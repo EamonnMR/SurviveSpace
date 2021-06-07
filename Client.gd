@@ -3,6 +3,8 @@ extends Node
 var player
 var current_system = "0"
 var spawn_point = "0"
+var player_name = ""
+var game_seed: int
 
 signal system_selection_updated
 signal became_interactive(entity)
@@ -45,23 +47,29 @@ func player_respawn():
 	game.remove_child(old_gameplay)
 	old_gameplay.queue_free()
 	game.add_child(preload("res://Gameplay.tscn").instance())
-	spawn_player()
+	respawn_player()
 	
 
-func spawn_player():
+func respawn_player():
 	player = preload("res://ships/Player.tscn").instance()
-	get_player_dest().add_child(player)
+	spawn_player()
 	player.get_node("Inventory").connect("updated", get_ui().get_node("Crafting"), "rebuild")
 	get_ui().get_node("Inventory").assign(player.get_node("Inventory"), "Inventory")
 	player.enable_control()
+	
+func spawn_player():
+	get_player_dest().add_child(player)
 
-func start_new_game():
-	Procgen.generate_systems(0)
+func start_new_game(game_seed, player_name):
+	self.player_name = player_name
+	self.game_seed = game_seed
+	Procgen.generate_systems(game_seed)
 	var game = preload("res://Game.tscn").instance()
 	get_tree().get_root().add_child(game)
 	_get_background_node().set_background_for_current_system()
 	explore_system(current_system)
-	spawn_player()
+	respawn_player()
+	save()
 	
 func current_system_data():
 	return Procgen.systems[current_system]
@@ -82,3 +90,6 @@ func _get_background_node():
 
 func entity_became_interactive(entity):
 	emit_signal("became_interactive", entity)
+
+func save():
+	pass

@@ -20,9 +20,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -153.5
-margin_top = -101.0
+margin_top = -145.5
 margin_right = 153.5
-margin_bottom = 101.0
+margin_bottom = 145.5
 
 [node name="Label" type="Label" parent="NinePatchPanel"]
 anchor_left = 0.5
@@ -42,17 +42,74 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label2" type="Label" parent="NinePatchPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.082
+margin_top = 179.672
+margin_right = -88.0822
+margin_bottom = 198.672
+text = "Seed"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="NinePatchPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.082
+margin_top = 217.981
+margin_right = -88.0822
+margin_bottom = 236.981
+text = "Name"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="NinePatchPanel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 45.9052
-margin_top = 66.3325
-margin_right = 121.905
-margin_bottom = 86.3325
+margin_left = 48.7337
+margin_top = 101.688
+margin_right = 124.734
+margin_bottom = 121.688
 text = "Enter Ship"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Seed" type="HSlider" parent="NinePatchPanel"]
+margin_left = 75.6003
+margin_top = 175.0
+margin_right = 240.6
+margin_bottom = 199.0
+max_value = 2.14748e+09
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerName" type="LineEdit" parent="NinePatchPanel"]
+margin_left = 78.0
+margin_top = 214.0
+margin_right = 282.0
+margin_bottom = 238.0
+text = "Bees Uplifted"
+
+[node name="SeedValue" type="Label" parent="NinePatchPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 102.661
+margin_top = 180.563
+margin_right = 142.661
+margin_bottom = 199.563
+text = "0"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="NinePatchPanel/Button" to="." method="_on_Button_pressed"]
+[connection signal="value_changed" from="NinePatchPanel/Seed" to="." method="_on_Seed_value_changed"]

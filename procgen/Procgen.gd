@@ -27,10 +27,12 @@ func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node
 				gameplay.get_node(spawn.destination).add_child(instance)
 
 func generate_systems(seed_value: int):
+	print("Seed Value: ", seed_value)
 	var systems_by_position = {}
 	for i in SYSTEMS_COUNT:
 		var system_id = str(i)
-		rand_seed(seed_value + i * i)
+		print("seed_value + i * i = ", (seed_value + i) * i)
+		rand_seed((seed_value + i) * i)
 		var system = SystemData.new()
 		system.id = system_id
 		# Avoid overlap
