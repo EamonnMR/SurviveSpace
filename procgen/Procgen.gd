@@ -11,32 +11,34 @@ var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
 
-func _random_location_in_system():
-	return random_circular_coordinate(1000)
+func _random_location_in_system(rng: RandomNumberGenerator):
+	return random_circular_coordinate(1000, rng)
 
 func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node):
+	var rng = RandomNumberGenerator.new()
+	rng.seed = seed_value * system_id.hash()
 	var biome_data: BiomeData = Data.biomes[biome]
-	rand_seed(seed_value + system_id.hash())
 	for spawn_id in biome_data.spawns:
 		var spawn: SpawnData = Data.spawns[spawn_id]
 		for _i in range(spawn.count):
-			if spawn.chance >= randf():
-				var position = _random_location_in_system()
+			if spawn.chance >= rng.randf():
+				var position = _random_location_in_system(rng)
 				var instance: Node = spawn.scene.instance()
 				instance.position = position
 				gameplay.get_node(spawn.destination).add_child(instance)
 
 func generate_systems(seed_value: int):
+	var rng = RandomNumberGenerator.new()
+	rng.seed = seed_value
 	print("Seed Value: ", seed_value)
 	var systems_by_position = {}
 	for i in SYSTEMS_COUNT:
 		var system_id = str(i)
 		print("seed_value + i * i = ", (seed_value + i) * i)
-		rand_seed((seed_value + i) * i)
 		var system = SystemData.new()
 		system.id = system_id
 		# Avoid overlap
-		var position = _get_non_overlapping_position()
+		var position = _get_non_overlapping_position(rng)
 		if position:
 			system.position = position
 			systems[system_id] = system
@@ -79,11 +81,11 @@ func generate_systems(seed_value: int):
 	var seed_count = int(systems.size() * SEED_DENSITY)
 	var seeds_planted = 0
 	while seeds_planted < seed_count:
-		var biome_id = random_select(seed_biomes)
-		var system_id = random_select(systems.keys())
+		var biome_id = random_select(seed_biomes, rng)
+		var system_id = random_select(systems.keys(), rng)
 		if not systems[system_id].biome:
 			systems[system_id].biome = biome_id
-			systems[system_id].name = random_name(systems[system_id])
+			systems[system_id].name = random_name(systems[system_id], rng)
 			seeds_planted += 1
 	# Player start system always gets the "start" biome
 	systems["0"].biome = "start"
@@ -102,15 +104,15 @@ func generate_systems(seed_value: int):
 						if other_system.biome and Data.biomes[other_system.biome].grow:
 							possible_biomes.append(other_system.biome)
 				if possible_biomes.size():
-					system.biome = random_select(possible_biomes)
+					system.biome = random_select(possible_biomes, rng)
 					# TODO: Names - per - biome
-					system.name = random_name(system)
+					system.name = random_name(system, rng)
 						
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
 		if not system.biome:
 			system.biome = "empty"
-			system.name = random_name(system)
+			system.name = random_name(system, rng)
 func cache_links():
 	for lane in hyperlanes:
 		var lsys = systems[lane.lsys]
@@ -129,12 +131,12 @@ func cache_links():
 			rsys.long_links_cache.append(lane.lsys)
 
 
-func _get_non_overlapping_position():
+func _get_non_overlapping_position(rng: RandomNumberGenerator):
 	var max_iter = 10
 	var bad_position = true
 	var position = Vector2()
 	for _i in range(max_iter):
-		position = random_circular_coordinate(RADIUS)
+		position = random_circular_coordinate(RADIUS, rng)
 		bad_position = false
 		for key in systems:
 			var other_system: SystemData = systems[key]
@@ -146,19 +148,24 @@ func _get_non_overlapping_position():
 	print("Cannot find a suitable position for system in ", max_iter, " iterations")
 	return null
 
-func random_name(sys: SystemData):
+func random_name(sys: SystemData, _rng: RandomNumberGenerator):
+	# TODO: Use the markov thing?
+	# TODO: Let the player change the name?
 	return "GSC " + sys.id
 
-func randi_radius(radius):
-	return (randi() % (2 * radius)) - radius
+func randi_radius(radius: int, rng: RandomNumberGenerator):
+	return (rng.randi() % (2 * radius)) - radius
 
-func random_circular_coordinate(radius) -> Vector2:
+func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vector2:
 	"""Remember to seed first if desired"""
 	var position: Vector2
 	while not position or position.length() > radius:
-		position = Vector2(self.randi_radius(radius), self.randi_radius(radius))
+		position = Vector2(
+			self.randi_radius(radius, rng),
+			self.randi_radius(radius, rng)
+		)
 	return position
 	
-func random_select(iterable):
+func random_select(iterable, rng: RandomNumberGenerator):
 	""" Remember to seed the rng"""
-	return iterable[randi() % iterable.size()]
+	return iterable[rng.randi() % iterable.size()]
