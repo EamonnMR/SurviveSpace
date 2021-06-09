@@ -46,6 +46,7 @@ func _health_ran_out():
 	disabled = true
 	set_disabled_texture()
 	disable_control()
+	name = "PlayerHulk"
 	# TODO: Wait
 	Client.player_respawn()
 	
