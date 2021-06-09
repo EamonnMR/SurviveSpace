@@ -16,7 +16,8 @@ func _random_location_in_system(rng: RandomNumberGenerator):
 
 func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node):
 	var rng = RandomNumberGenerator.new()
-	rng.seed = seed_value * system_id.hash()
+	print("Seed: ", (seed_value + 10) * int(system_id))
+	rng.seed = (seed_value + 10) * int(system_id)
 	var biome_data: BiomeData = Data.biomes[biome]
 	for spawn_id in biome_data.spawns:
 		var spawn: SpawnData = Data.spawns[spawn_id]

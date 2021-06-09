@@ -12,11 +12,10 @@ func _get_biome():
 	return Procgen.systems[Client.current_system].biome
 
 func _ready():
-	var seed_int = 0
 	if Client.current_system_data().state:
 		deserialize(Client.current_system_data().state)
 	else:
-		Procgen.do_spawns(seed_int, Client.current_system, _get_biome(), self)
+		Procgen.do_spawns(Client.game_seed, Client.current_system, _get_biome(), self)
 
 func serialize() -> Dictionary:
 	var children = {}
