@@ -11,6 +11,38 @@ var MAX_LANE_LENGTH = 130
 var MAX_GROW_ITERATIONS = 3
 var SEED_DENSITY = 1.0/5.0
 
+func serialize() -> Dictionary:
+	# Make sure you cache state from the current system
+	var serial_systems = {}
+	var serial_hyperlanes = []
+	var serial_longjumps = []
+	
+	for system_id in systems:
+		 serial_systems[system_id] = systems[system_id].serialize()
+	for jump in hyperlanes:
+		serial_hyperlanes.append([jump.lsys, jump.rsys])
+	for jump in longjumps:
+		serial_longjumps.append([jump.lsys, jump.rsys])
+	return {
+		"systems": serial_systems,
+		"hyperlanes": serial_hyperlanes,
+		"longjumps": serial_longjumps
+	}
+	
+func deserialize(data: Dictionary):
+	systems = {}
+	hyperlanes = []
+	longjumps = []
+	for system_id in data["systems"]:
+		var system = SystemData.new()
+		system.deserialize(data["systems"]["system_id"])
+		systems[system_id] = system
+	for lane in data["hyperlanes"]:
+		hyperlanes.append(HyperlaneData.new(lane[0], lane[1]))
+	for lane in data["longjumps"]:
+		longjumps.append(HyperlaneData.new(lane[0], lane[1]))
+
+
 func _random_location_in_system(rng: RandomNumberGenerator):
 	return random_circular_coordinate(1000, rng)
 

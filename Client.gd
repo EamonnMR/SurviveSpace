@@ -1,9 +1,9 @@
 extends Node
 
 var player
-var current_system = "0"
-var spawn_point = "0"
-var player_name = ""
+var current_system: String = "0"
+var spawn_point: String = "0"
+var player_name: String = ""
 var game_seed: int
 
 signal system_selection_updated
@@ -53,6 +53,9 @@ func player_respawn():
 func respawn_player():
 	player = preload("res://ships/Player.tscn").instance()
 	spawn_player()
+	setup_player()
+
+func setup_player():
 	player.get_node("Inventory").connect("updated", get_ui().get_node("Crafting"), "rebuild")
 	get_ui().get_node("Inventory").assign(player.get_node("Inventory"), "Inventory")
 	player.enable_control()
@@ -69,7 +72,7 @@ func start_new_game(game_seed, player_name):
 	_get_background_node().set_background_for_current_system()
 	explore_system(current_system)
 	respawn_player()
-	save()
+	save_game()
 	
 func current_system_data():
 	return Procgen.systems[current_system]
@@ -91,5 +94,48 @@ func _get_background_node():
 func entity_became_interactive(entity):
 	emit_signal("became_interactive", entity)
 
-func save():
-	pass
+func savefile_name(player_name: String) -> String:
+	return "user://" + player_name.split(" ")[-1] + ".json"
+
+func save_game():
+	var save_game = File.new()
+	save_game.open(savefile_name(player_name), File.WRITE)
+	save_game.store_line(to_json(serialize()))
+	save_game.close()
+
+
+func serialize() -> Dictionary:
+	# Save the current system's state so it ends up in the procgen.serialize dump
+	current_system_data().state = get_tree().root.get_node("Game/Gameplay").serialize()
+	
+	return {
+		"procgen": Procgen.serialize(),
+		"player": player.get_path(), # The actual data for the player is in the procgen dump
+		"current_system": current_system,
+		"spawn_point": spawn_point,
+		"player_name": player_name,
+		"game_seed": game_seed,
+	}
+
+func load_game():
+	# TODO: Open file to get blob
+	deserialize({})
+
+func deserialize(save_blob: Dictionary):
+	
+	# Load the procedurally generated world and world state
+	Procgen.deserialize(save_blob["procgen"])
+	
+	# Load client vars
+	current_system = save_blob["current_system"]
+	spawn_point = save_blob["spawn_point"]
+	player_name = save_blob["player_name"]
+	game_seed = save_blob["game_seed"]
+	
+	# Set up gameplay
+	var game = get_tree().root.get_node("Game")
+	game.add_child(preload("res://Gameplay.tscn").instance())
+	
+	# Set up the player by first getting the right ent, then applying the camera to it
+	player = get_tree().root.get_node[save_blob["player"]]
+	setup_player()
