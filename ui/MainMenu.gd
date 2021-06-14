@@ -7,8 +7,10 @@ func _on_NewGame_pressed():
 	)
 	
 func _on_LoadGame_pressed():
-	# TODO: Show Available Games
-	pass
+	queue_free()
+	get_tree().get_root().add_child(
+		preload("res://ui/LoadGameMenu.tscn").instance()
+	)
 
 func _on_Quit_pressed():
 	get_tree().quit()

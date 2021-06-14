@@ -67,8 +67,7 @@ func start_new_game(game_seed, player_name):
 	self.player_name = player_name
 	self.game_seed = game_seed
 	Procgen.generate_systems(game_seed)
-	var game = preload("res://Game.tscn").instance()
-	get_tree().get_root().add_child(game)
+	enter_gameplay()
 	_get_background_node().set_background_for_current_system()
 	explore_system(current_system)
 	respawn_player()
@@ -117,9 +116,15 @@ func serialize() -> Dictionary:
 		"game_seed": game_seed,
 	}
 
-func load_game():
-	# TODO: Open file to get blob
-	deserialize({})
+func list_game_saves():
+	return list_files_in_directory("user://")
+
+func load_game(file):
+	var save_game = File.new()
+	save_game.open("user://" + file, File.READ)
+	var text = save_game.get_as_text()
+	var json  = parse_json(text)
+	return deserialize(json)
 
 func deserialize(save_blob: Dictionary):
 	
@@ -134,8 +139,32 @@ func deserialize(save_blob: Dictionary):
 	
 	# Set up gameplay
 	var game = get_tree().root.get_node("Game")
-	game.add_child(preload("res://Gameplay.tscn").instance())
+	if not is_instance_valid(game):
+		enter_gameplay()
 	
 	# Set up the player by first getting the right ent, then applying the camera to it
-	player = get_tree().root.get_node[save_blob["player"]]
+	player = get_tree().root.get_node(save_blob["player"])
 	setup_player()
+
+func enter_gameplay():
+	var game = preload("res://Game.tscn").instance()
+	get_tree().get_root().add_child(game)
+	return game
+
+func list_files_in_directory(path: String) -> Array:
+	# https://godotengine.org/qa/1349/find-files-in-directories
+	var files = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin()
+
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with("."):
+			files.append(file)
+
+	dir.list_dir_end()
+	return files
+	

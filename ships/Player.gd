@@ -24,7 +24,7 @@ func is_player():
 func serialize() -> Dictionary:
 	print("Serialized Player")
 	return {
-		"position": position,
+		"position": [position.x, position.y],
 		"rotation": rotation,
 		"inventory": $Inventory.serialize(),
 		"health": $Health.serialize(),
@@ -32,7 +32,7 @@ func serialize() -> Dictionary:
 	}
 
 func deserialize(data):
-	position = data["position"]
+	position = Vector2(data["position"][0], data["position"][1])
 	rotation = data["rotation"]
 	$Inventory.deserialize(data["inventory"])
 	$Health.deserialize(data["health"])

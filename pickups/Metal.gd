@@ -10,8 +10,9 @@ func _on_PickupRange_body_entered(body):
 
 func serialize() -> Dictionary:
 	return {
-		"position": position
+		"position": [position.x, position.y]
 	}
 
 func deserialize(data):
-	position = data["position"]
+	position = Vector2(data["position"][0], data["position"][1])
+

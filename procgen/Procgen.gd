@@ -35,7 +35,7 @@ func deserialize(data: Dictionary):
 	longjumps = []
 	for system_id in data["systems"]:
 		var system = SystemData.new()
-		system.deserialize(data["systems"]["system_id"])
+		system.deserialize(data["systems"][system_id])
 		systems[system_id] = system
 	for lane in data["hyperlanes"]:
 		hyperlanes.append(HyperlaneData.new(lane[0], lane[1]))

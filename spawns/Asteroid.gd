@@ -28,10 +28,10 @@ func _on_Health_ran_out():
 	
 func serialize() -> Dictionary:
 	return {
-		"position": position,
+		"position": [position.x, position.y],
 		"health": $Health.serialize()
 	}
 
 func deserialize(data):
-	position = data["position"]
+	position = Vector2(data["position"][0], data["position"][1])
 	$Health.deserialize(data["health"])
