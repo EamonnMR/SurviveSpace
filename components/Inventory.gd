@@ -120,7 +120,7 @@ func deserialize(data):
 	item_slots = {}
 	for slot in data:
 		var slot_data = data[slot]
-		item_slots[slot] = InvItem.new(
+		item_slots[int(slot)] = InvItem.new(
 			slot_data.type,
 			int(slot_data.count)
 		)
