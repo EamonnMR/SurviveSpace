@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/asteroids/asteroid_render_01.png" type="Texture" id=4]
 [ext_resource path="res://assets/Eamonn/particle.png" type="Texture" id=5]
 
-
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.428571, 0.861905, 1 )
 colors = PoolColorArray( 0.992188, 0.988312, 0.988312, 1, 0.394531, 0.394531, 0.394531, 0.419048, 1, 1, 1, 0 )
@@ -47,6 +46,9 @@ color_ramp = SubResource( 2 )
 position = Vector2( 186.468, 201.587 )
 collision_mask = 4
 script = ExtResource( 2 )
+loot = {
+"metal": 10
+}
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 200.226, 137.489 )

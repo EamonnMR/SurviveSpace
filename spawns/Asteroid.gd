@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const LOOT_COUNT = 5
+export var loot = {} # keys: loot type values: loot 
 
 func _ready():
 	Client.add_radar_pip(self)
@@ -15,11 +15,13 @@ func explode():
 
 func drop_loot():
 	var destination = get_node("../../Pickups")
-	for _i in range(LOOT_COUNT):
-		var pickup = preload("../pickups/Metal.tscn").instance()
-		pickup.position = position
-		pickup.linear_velocity = Vector2(rand_range(1,100), 0).rotated(rand_range(0, 2 * PI))
-		destination.add_child(pickup)
+	for loot_type in loot:
+		for _i in range(loot[loot_type]):
+			var pickup = preload("../pickups/Pickup.tscn").instance()
+			pickup.type = loot_type
+			pickup.position = position
+			pickup.linear_velocity = Vector2(rand_range(1,100), 0).rotated(rand_range(0, 2 * PI))
+			destination.add_child(pickup)
 
 func _on_Health_ran_out():
 	explode()

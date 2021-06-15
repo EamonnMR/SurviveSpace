@@ -7,4 +7,4 @@ o2,Oxygen,consumable,res://assets/gods_and_idols/oxygen.png,Vital for human life
 si,Silica,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon10.png,Common mineral used in everything from glass to microchips,TRUE
 grnr,Green Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon22.png,Strange material with strange properties,TRUE
 prpl,Purple Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon39.png,Stranger material with stranger properties,TRUE
-power,Power Cell,consumable,res://assets/gods_and_idols/energy.png,Recharge your power instantly,TRUE
+power,Power Cell,consumable,res://assets/gods_and_idols/energy_icon.png,Recharge your power instantly,TRUE

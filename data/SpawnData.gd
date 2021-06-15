@@ -8,6 +8,7 @@ var respawn: bool
 var chance: float
 var scene: PackedScene
 var destination: String
+var type: String
 
 func _init(data: Dictionary):
 	init(data)

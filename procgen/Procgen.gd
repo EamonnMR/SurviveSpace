@@ -57,6 +57,8 @@ func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node
 			if spawn.chance >= rng.randf():
 				var position = _random_location_in_system(rng)
 				var instance: Node = spawn.scene.instance()
+				if spawn.type:
+					instance.type = spawn.type
 				instance.position = position
 				gameplay.get_node(spawn.destination).add_child(instance)
 
