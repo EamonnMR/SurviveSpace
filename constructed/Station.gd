@@ -5,14 +5,14 @@ func can_interact():
 
 func _ready():
 	Client.add_radar_pip(self)
-	Client.interactivity_changed()
+	Client.entity_became_interactive(self)
 
 func serialize() -> Dictionary:
 	return {
-		"position": position,
+		"position": [position.x, position.y],
 		"inventory": $Inventory.serialize()
 	}
 
 func deserialize(data):
-	position = data["position"]
+	position = Vector2(data["position"][0], data["position"][1])
 	$Inventory.deserialize(data["inventory"])
