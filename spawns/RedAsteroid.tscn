@@ -4,6 +4,9 @@
 [ext_resource path="res://assets/GalagianArtwork_cc_by/unused/modified/asteroid_render_01_red.png" type="Texture" id=2]
 
 [node name="Asteroid" instance=ExtResource( 1 )]
+loot = {
+"redr": 8
+}
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
