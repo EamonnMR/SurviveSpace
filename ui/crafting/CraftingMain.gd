@@ -9,6 +9,7 @@ func rebuild():
 
 func assign(crafting_level_node):
 	craft_submenu.assign(crafting_level_node)
+	build_submenu.assign(crafting_level_node)
 
 func unassign():
 	craft_submenu.unassign()

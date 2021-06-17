@@ -1,5 +1,7 @@
 extends Control
 
+class_name Crafting
+
 "Uses the generic term blueprint to refer to recipe/build/whatever"
 
 onready var blueprint_list = get_node("HBoxContainer/ScrollContainer/Recipes")
@@ -13,9 +15,8 @@ func _ready():
 	current_blueprint = _blueprints().values()[0]
 
 func _blueprints():
-	# Override with whatever blueprint type list you want to use for this; ex blueprints."
-	# return {}
-	return Data.recipes
+	# Override with whatever blueprint type list you want to use for this; ex Data.recipes."
+	return {}
 
 func rebuild():
 	clear(blueprint_list)
@@ -55,7 +56,7 @@ func _get_icon_texture(blueprint):
 	# Return the icon representing this blueprint.
 	# For example if it makes an item, implement a function that returns that
 	# item's icon
-	return Data.items[blueprint.prod_type].icon
+	return null
 
 func _blueprint_selected(blueprint_id):
 	current_blueprint = _blueprints()[blueprint_id]
@@ -86,16 +87,11 @@ func _update_blueprint_selection():
 		
 func _get_product_name(blueprint):
 	# Get the name representing the blueprint
-	var item_data = Data.items[blueprint.prod_type]
-	var suffix = ""
-	if blueprint.prod_count > 1:
-		suffix = " x " + str(blueprint.prod_count)
-	return item_data.name + suffix
+	return ""
 
 func _get_product_description(blueprint):
 	# Get the text blurb for the blueprint
-	var item_data = Data.items[blueprint.prod_type]
-	return item_data.tooltip
+	return ""
 
 func clear(list):
 	for child in list.get_children():
@@ -110,4 +106,4 @@ func _on_CraftButton_pressed():
 		_do_craft()
 
 func _do_craft():
-	Client.player.get_node("Inventory").add(current_blueprint.prod_type, current_blueprint.prod_count)
+	pass

@@ -69,7 +69,6 @@ func generate_systems(seed_value: int):
 	var systems_by_position = {}
 	for i in SYSTEMS_COUNT:
 		var system_id = str(i)
-		print("seed_value + i * i = ", (seed_value + i) * i)
 		var system = SystemData.new()
 		system.id = system_id
 		# Avoid overlap
