@@ -28,7 +28,8 @@ script = ExtResource( 3 )
 [node name="Inventory" parent="." instance=ExtResource( 4 )]
 default_contents = {
 "o2": 3,
-"power": 1
+"power": 1,
+"scute": 1
 }
 
 [node name="EngineEffects" parent="." instance=ExtResource( 7 )]

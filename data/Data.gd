@@ -5,6 +5,7 @@ var recipes = {}
 var builds = {}
 var spawns = {}
 var biomes = {}
+var ships = {}
 
 # Game constants:
 const PLAY_AREA_RADIUS = 3000
@@ -16,7 +17,8 @@ func _init():
 		[RecipeData, recipes],
 		[BuildData, builds],
 		[SpawnData, spawns],
-		[BiomeData, biomes]
+		[BiomeData, biomes],
+		[ShipData, ships]
 	]:
 		var DataClass = data_class_and_destination[0]
 		var dest = data_class_and_destination[1]
@@ -25,8 +27,16 @@ func _init():
 			dest[key] = DataClass.new(data[key])
 	# Tests
 	assert_ingredients_exist()
+	
 func assert_ingredients_exist():
-	for recipe_id in recipes:
-		var recipe: RecipeData = recipes[recipe_id]
-		for key in recipe.ingredients:
-			assert(key in items)
+	# Test to prove that no recipes require nonexistent items
+	for craftable_type in [
+		recipes,
+		builds,
+		ships
+	]:
+		for recipe_id in craftable_type:
+			var recipe: RecipeData = recipes[recipe_id]
+			for key in recipe.ingredients:
+				assert(key in items)
+

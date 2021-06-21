@@ -16,6 +16,13 @@ var disabled = false
 var linear_velocity = Vector2()
 const PLAY_AREA_RADIUS = 3000
 
+var type: String
+var data: ShipData
+
+func apply_stats():
+	data = Data.ships[type]
+	data.apply(self)
+
 func _physics_process(delta):
 	if not disabled:
 		linear_velocity = get_limited_velocity_with_thrust(delta)

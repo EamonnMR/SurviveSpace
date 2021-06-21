@@ -6,6 +6,7 @@ var type_name = "Recon Shuttle"
 export var crafting_level: int = 0
 
 func _ready():
+	apply_stats()
 	max_speed = 100
 	accel = 1
 	turn = 1

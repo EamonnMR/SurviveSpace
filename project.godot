@@ -65,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://ships/ShipController.gd"
 }, {
 "base": "DataRow",
+"class": "ShipData",
+"language": "GDScript",
+"path": "res://data/ShipData.gd"
+}, {
+"base": "DataRow",
 "class": "SpawnData",
 "language": "GDScript",
 "path": "res://data/SpawnData.gd"
@@ -91,6 +96,7 @@ _global_script_class_icons={
 "RecipeData": "",
 "Ship": "",
 "ShipController": "",
+"ShipData": "",
 "SpawnData": "",
 "SystemData": "",
 "Weapon": ""

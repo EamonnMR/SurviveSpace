@@ -1,2 +1,2 @@
 id,name,scene,destination,require_level,ingredients,icon,text
-station,Crafting Station,res://constructed/Station.tscn,Stations,0,metal: 10  crew: 1,assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/orange_station_icon.png,Orbital construction yard. Craft larger and more advanced items.
+station,Crafting Station,res://constructed/Station.tscn,Stations,0,metal: 10 crew: 1,assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/orange_station_icon.png,Orbital construction yard. Craft larger and more advanced items.
