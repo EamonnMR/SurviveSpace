@@ -5,7 +5,7 @@ class_name ShipData
 var id: String
 var type_name: String
 var ingredients: Dictionary
-var require_crafting_level: int
+var require_level: int
 var max_speed: float
 var accel: float
 var turn: float
@@ -13,6 +13,7 @@ var health: int
 var inventory_size: int
 var scene: PackedScene
 var desc: String
+var icon: Texture
 
 func _init(data: Dictionary):
 	init(data)

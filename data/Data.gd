@@ -35,8 +35,7 @@ func assert_ingredients_exist():
 		builds,
 		ships
 	]:
-		for recipe_id in craftable_type:
-			var recipe: RecipeData = recipes[recipe_id]
-			for key in recipe.ingredients:
+		for blueprint_id in craftable_type:
+			var blueprint = craftable_type[blueprint_id ]
+			for key in blueprint.ingredients:
 				assert(key in items)
-

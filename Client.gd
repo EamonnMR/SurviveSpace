@@ -62,6 +62,8 @@ func replace_player_ship(new_ship: Ship):
 
 func respawn_player():
 	player = preload("res://ships/Player.tscn").instance()
+	player.type = "shuttle"
+	spawn_player()
 	setup_player()
 
 func setup_player():

@@ -24,7 +24,6 @@ func drop_data(pos, data):
 func attach_item_icon(item_icon):
 	add_child(item_icon)
 	$TextureRect.hide()
-	
 
 func remove_item_icon(item_icon):
 	remove_child(item_icon)
