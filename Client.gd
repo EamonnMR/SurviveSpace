@@ -51,11 +51,13 @@ func player_respawn():
 	
 func replace_player_ship(new_ship: Ship):
 	var ships = get_tree().root.get_node("Game/Gameplay/Ships")
-	var inventory = player.get_child("Inventory")
+	var inventory = player.get_node("Inventory")
 	ships.remove_child(player)
-	player.remove_child("Inventory")
+	player.remove_child(inventory)
 	new_ship.add_child(inventory)
+	new_ship.position = player.position
 	# TODO: Also inherit the old ship's equipment
+	player = new_ship
 	ships.add_child(player)
 	player.enable_control()
 	spawn_player()

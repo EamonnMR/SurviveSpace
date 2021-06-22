@@ -92,10 +92,11 @@ func parse_colon_dict_int_values(colon_dict: String) -> Dictionary:
 	var dict = {}
 	if colon_dict != "":
 		for kvp in colon_dict.split(";"):
-			var key_value = kvp.split(":")
-			var key = key_value[0].strip_edges()
-			var value = key_value[1].strip_edges()
-			dict[key] = int(value)
+			if kvp != "":
+				var key_value = kvp.split(":")
+				var key = key_value[0].strip_edges()
+				var value = key_value[1].strip_edges()
+				dict[key] = int(value)
 	return dict
 
 func parse_int_array(text: String) -> Array:
