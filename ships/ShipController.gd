@@ -8,6 +8,9 @@ var thrusting: bool
 var braking: bool
 var do_jump: bool
 
+func is_player() -> bool:
+	return false
+
 func _anglemod(angle: float) -> float:
 	return fmod(angle, PI * 2)
 

@@ -1,9 +1,9 @@
 id,count,respawn,chance,scene,type,destination
-start_sleeper,1,FALSE,1,res://spawns/Sleeper.tscn,,Npcs
+start_sleeper,1,FALSE,1,res://spawns/Sleeper.tscn,sleeper,Npcs
 start_asteroids,5,FALSE,1,res://spawns/Asteroid.tscn,,Asteroids
-sleeper,1,FALSE,0.5,res://spawns/Sleeper.tscn,,Npcs
+sleeper,1,FALSE,0.5,res://spawns/Sleeper.tscn,sleeper,Npcs
 asteroids,10,FALSE,1,res://spawns/Asteroid.tscn,,Asteroids
-aliens,1,TRUE,0.5,res://spawns/aliens/Alien.tscn,,Npcs
+aliens,1,TRUE,0.5,res://spawns/aliens/Alien.tscn,serp_python,Npcs
 free_asteroids,25,FALSE,1,res://pickups/Pickup.tscn,metal,Pickups
 planet,1,FALSE,0.5,res://spawns/Planet.tscn,,Planets
 red_asteroids,11,FALSE,1,res://spawns/RedAsteroid.tscn,,Asteroids
