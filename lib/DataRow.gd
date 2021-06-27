@@ -7,6 +7,23 @@ class_name DataRow
 static func get_csv_path():
 	print("Implement _get_csv_path in your subclass")
 	return ""
+	
+func get_columns():
+	var keys = []
+	for prop in get_property_list():
+		if not (prop["name"] in ["Script", "script", "Script Variables"]):
+			keys.append(prop["name"])
+	return keys
+	
+func apply_to_node(node: Node):
+	# For each column in the data row that maps 1:1 to a field in the node,
+	# set that node's field to match the column.
+	for stat in get_columns():
+		if stat in node:
+			var dat = get(stat)
+			if dat is Dictionary:
+				dat = dat.duplicate()
+			node.set(stat, dat)
 
 func init(data: Dictionary):
 	var props = get_property_list()
@@ -73,11 +90,13 @@ func parse_colon_dict_int_values(colon_dict: String) -> Dictionary:
 		}
 	"""
 	var dict = {}
-	for kvp in colon_dict.split(";"):
-		var key_value = kvp.split(":")
-		var key = key_value[0].strip_edges()
-		var value = key_value[1].strip_edges()
-		dict[key] = int(value)
+	if colon_dict != "":
+		for kvp in colon_dict.split(";"):
+			if kvp != "":
+				var key_value = kvp.split(":")
+				var key = key_value[0].strip_edges()
+				var value = key_value[1].strip_edges()
+				dict[key] = int(value)
 	return dict
 
 func parse_int_array(text: String) -> Array:

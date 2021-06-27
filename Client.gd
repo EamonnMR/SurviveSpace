@@ -49,9 +49,22 @@ func player_respawn():
 	game.add_child(preload("res://Gameplay.tscn").instance())
 	respawn_player()
 	
+func replace_player_ship(new_ship: Ship):
+	var ships = get_tree().root.get_node("Game/Gameplay/Ships")
+	var inventory = player.get_node("Inventory")
+	ships.remove_child(player)
+	player.remove_child(inventory)
+	new_ship.add_child(inventory)
+	new_ship.position = player.position
+	# TODO: Also inherit the old ship's equipment
+	player = new_ship
+	ships.add_child(player)
+	player.enable_control()
+	spawn_player()
 
 func respawn_player():
 	player = preload("res://ships/Player.tscn").instance()
+	player.type = "shuttle"
 	spawn_player()
 	setup_player()
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://spawns/Derelict.gd" type="Script" id=1]
+[ext_resource path="res://components/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/Inventory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction8-Spaceships-by-MillionthVector/wship-4-n.png" type="Texture" id=4]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction8-Spaceships-by-MillionthVector/wship-4.png" type="Texture" id=5]
@@ -25,7 +26,14 @@ default_contents = {
 "crew": 5
 }
 
+[node name="Health" parent="." instance=ExtResource( 2 )]
+
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
+texture = ExtResource( 5 )
+normal_map = ExtResource( 4 )
+
+[node name="SpriteDisabled" type="Sprite" parent="."]
 rotation = 1.5708
 texture = ExtResource( 5 )
 normal_map = ExtResource( 4 )

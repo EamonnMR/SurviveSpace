@@ -8,6 +8,9 @@ var do_jump: bool
 var selected_system: String
 var selected_system_circle_cache: Array =  []
 
+func is_player() -> bool:
+	return true
+
 func _physics_process(_delta: float):
 	rotation_change = _get_rotation_change()
 	shooting = Input.is_action_pressed("shoot")
