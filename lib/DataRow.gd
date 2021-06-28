@@ -126,7 +126,7 @@ static func load_csv(csv):
 		for column in range(line.size()):
 			parsed_line[headers[column]] = line[column]
 		parsed_file[line[0]] = parsed_line
-	print("Parsed ", csv + ".txt ", "got ", parsed_file.size(), " rows")
+	print("Parsed ", csv, "got ", parsed_file.size(), " rows")
 	return parsed_file
 
 	
