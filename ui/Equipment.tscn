@@ -19,8 +19,8 @@ __meta__ = {
 }
 
 [node name="Background" parent="." instance=ExtResource( 5 )]
-margin_right = 333.0
-margin_bottom = 235.0
+margin_right = 443.0
+margin_bottom = 307.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background"]
 anchor_right = 1.0
@@ -30,14 +30,14 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer"]
-margin_right = 333.0
+margin_right = 443.0
 margin_bottom = 10.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer"]
 margin_top = 14.0
-margin_right = 333.0
-margin_bottom = 221.0
+margin_right = 443.0
+margin_bottom = 293.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,13 +45,13 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer"]
 margin_right = 10.0
-margin_bottom = 207.0
+margin_bottom = 279.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="LeftEquip" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
 margin_left = 14.0
 margin_right = 54.0
-margin_bottom = 207.0
+margin_bottom = 279.0
 rect_min_size = Vector2( 32, 0 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer/LeftEquip"]
@@ -105,8 +105,8 @@ texture = ExtResource( 2 )
 
 [node name="Middle" type="Control" parent="Background/VBoxContainer/HBoxContainer"]
 margin_left = 58.0
-margin_right = 275.0
-margin_bottom = 207.0
+margin_right = 385.0
+margin_bottom = 279.0
 size_flags_horizontal = 3
 
 [node name="Name" type="RichTextLabel" parent="Background/VBoxContainer/HBoxContainer/Middle"]
@@ -135,19 +135,24 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/HBoxContainer/Middle"]
-margin_left = 73.6222
-margin_top = 59.4641
-margin_right = 140.622
-margin_bottom = 161.464
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -163.5
+margin_top = -139.5
+margin_right = 163.5
+margin_bottom = 139.5
 texture = ExtResource( 8 )
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RightEquip" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
-margin_left = 279.0
-margin_right = 319.0
-margin_bottom = 207.0
+margin_left = 389.0
+margin_right = 429.0
+margin_bottom = 279.0
 rect_min_size = Vector2( 25, 0 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer/RightEquip"]
@@ -167,20 +172,16 @@ category = "weapon"
 texture = ExtResource( 1 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="Background/VBoxContainer/HBoxContainer"]
-margin_left = 323.0
-margin_right = 333.0
-margin_bottom = 207.0
+margin_left = 433.0
+margin_right = 443.0
+margin_bottom = 279.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="Background/VBoxContainer"]
-margin_top = 225.0
-margin_right = 333.0
-margin_bottom = 235.0
+margin_top = 297.0
+margin_right = 443.0
+margin_bottom = 307.0
 rect_min_size = Vector2( 0, 10 )
-[connection signal="item_added" from="Background/VBoxContainer/HBoxContainer/LeftEquip/Shield" to="." method="_on_Shield_item_added"]
-[connection signal="item_removed" from="Background/VBoxContainer/HBoxContainer/LeftEquip/Shield" to="." method="_on_Shield_item_removed"]
-[connection signal="item_added" from="Background/VBoxContainer/HBoxContainer/LeftEquip/Armor" to="." method="_on_Armor_item_added"]
-[connection signal="item_removed" from="Background/VBoxContainer/HBoxContainer/LeftEquip/Armor" to="." method="_on_Armor_item_removed"]
 [connection signal="item_added" from="Background/VBoxContainer/HBoxContainer/LeftEquip/HyperDrive" to="." method="_on_HyperDrive_item_added"]
 [connection signal="item_removed" from="Background/VBoxContainer/HBoxContainer/LeftEquip/HyperDrive" to="." method="_on_HyperDrive_item_removed"]
 [connection signal="item_added" from="Background/VBoxContainer/HBoxContainer/LeftEquip/Reactor" to="." method="_on_Reactor_item_added"]

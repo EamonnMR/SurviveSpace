@@ -1,6 +1,6 @@
 extends NinePatchRect
 
-signal item_removed
+signal item_removed(item)
 signal item_added(item)
 
 export var category: String
@@ -28,7 +28,7 @@ func attach_item_icon(item_icon):
 func remove_item_icon(item_icon):
 	remove_child(item_icon)
 	$TextureRect.show()
-	emit_signal("item_removed")
+	emit_signal("item_removed", item_icon.item)
 
 func clear():
 	remove_child($ItemIcon)

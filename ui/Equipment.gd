@@ -18,17 +18,13 @@ func rebuild():
 		box_weapon
 	]:
 		i.clear()
-	var weapon = Client.player.get_weapon(0)
-	if weapon:
-		var icon = item_icon.instance()
-		icon.init(Inventory.InvItem.new(weapon.type, 1))
-		box_weapon.attach_item_icon(icon)
-
+		connect(""
+		# i.connect(Client.player.get_node("Equipment"))
 func _on_Shield_item_added(item):
 	pass # Replace with function body.
 
 
-func _on_Shield_item_removed():
+func _on_Shield_item_removed(item):
 	pass # Replace with function body.
 
 
@@ -36,7 +32,7 @@ func _on_Armor_item_added(item):
 	pass # Replace with function body.
 
 
-func _on_Armor_item_removed():
+func _on_Armor_item_removed(item):
 	pass # Replace with function body.
 
 
@@ -44,7 +40,7 @@ func _on_HyperDrive_item_added(item):
 	Client.player.add_hyperdrive(item)
 
 
-func _on_HyperDrive_item_removed():
+func _on_HyperDrive_item_removed(item):
 	pass # Replace with function body.
 
 
@@ -52,12 +48,12 @@ func _on_Reactor_item_added(item):
 	pass # Replace with function body.
 
 
-func _on_Reactor_item_removed():
+func _on_Reactor_item_removed(item):
 	pass # Replace with function body.
 
 
 func _on_Weapon_item_added(item):
 	Client.player.add_weapon(preload("res://weapons/ZipGun.tscn").instance(), 0)
 	
-func _on_Weapon_item_removed():
+func _on_Weapon_item_removed(item):
 	Client.player.remove_weapon(0)
