@@ -10,6 +10,8 @@ Once you've crafted and equipped a weapon, SPACE to fire
 If you die you will respawn in a shuttle
 Explore the procgen galaxy
 
+Normal maps generated with: https://azagaya.itch.io/laigter
+
 ART ATTRIBUTIONS FOLLOW
 
 ---------------------------------------
