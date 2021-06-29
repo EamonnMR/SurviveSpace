@@ -89,6 +89,7 @@ margin_bottom = 92.0
 text = "Quit"
 
 [node name="Credits" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 4 )
