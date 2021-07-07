@@ -24,6 +24,8 @@ var data: ShipData
 
 export var crafting_level: int = 0
 
+signal disabled;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	apply_stats()
@@ -40,16 +42,11 @@ func _health_ran_out():
 		_disabled_effects()
 		$EngineEffects.off()
 		set_disabled_texture()
-		if is_player():
-			indestructable = true
-			disable_control()
-			name = "PlayerHulk"
-			# Client.player_respawn()
+		emit_signal("disabled")
 	else:
 		if not indestructable:
-			pass
-			#_destroyed_effects()
-			#queue_free()
+			_destroyed_effects()
+			queue_free()
 
 
 func _disabled_effects():
@@ -121,11 +118,7 @@ func remove_weapon(_index):
 		$Weapons.remove_child(child)
 
 func add_hyperdrive(drive):
-	var root = get_tree().get_root()
-	var game = root.get_node("Game")
-	root.remove_child(game)
-	game.queue_free()
-	root.add_child(preload("res://ui/WinScreen.tscn").instance())
+	pass
 	
 func remove_warpdrive(_index):
 	pass
@@ -144,10 +137,12 @@ func serialize() -> Dictionary:
 		"inventory": $Inventory.serialize(),
 		"health": $Health.serialize(),
 		"disabled": disabled,
-		"controller": serialize_controller()
+		"controller": serialize_controller(),
+		"type": type
 	}
 
 func deserialize(data):
+	type = data["type"]
 	position = Vector2(data["position"][0], data["position"][1])
 	rotation = data["rotation"]
 	$Inventory.deserialize(data["inventory"])
@@ -183,6 +178,7 @@ func enable_control():
 	var camera = Camera2D.new()
 	add_child(camera)
 	camera.current = true
+	connect("disabled", self, "_player_disabled")
 
 func do_jump():
 	if is_player():
@@ -193,3 +189,9 @@ func do_jump():
 	else:
 		_jump_effects()
 		queue_free()
+
+func _player_disabled():
+	indestructable = true
+	disable_control()
+	name = "PlayerHulk"
+	Client.player_respawn()
