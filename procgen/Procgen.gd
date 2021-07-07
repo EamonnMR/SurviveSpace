@@ -62,10 +62,16 @@ func do_spawns(seed_value: int, system_id: String, biome: String, gameplay: Node
 				instance.position = position
 				gameplay.get_node(spawn.destination).add_child(instance)
 
-func generate_systems(seed_value: int):
+func generate_systems(seed_value: int) -> String:
+	# Returns the id of the system that "start" gets put in
+	var start_sys: String
+	
 	var rng = RandomNumberGenerator.new()
 	rng.seed = seed_value
 	print("Seed Value: ", seed_value)
+	
+	# Generate Systems
+	
 	var systems_by_position = {}
 	for i in SYSTEMS_COUNT:
 		var system_id = str(i)
@@ -104,9 +110,34 @@ func generate_systems(seed_value: int):
 	
 	cache_links()
 	
+	# Select systems for special biomes
+	var always_biomes = []
+	
+	for biome_id in Data.biomes:
+		var biome = Data.biomes[biome_id]
+		if biome.always_do_one:
+			while true:
+				var system_id = random_select(systems.keys(), rng)
+				var system = systems[system_id]
+				if not systems[system_id].biome:
+					system.biome = biome_id
+					system.explored = biome.auto_explore
+					if biome.fixed_name:
+						system.name = biome.fixed_name
+					else:
+						system.name = random_name(systems[system_id], rng)
+					
+					if biome.startloc:
+						start_sys = system_id
+					break
+				else:
+					print("Cannot put always_do biome in an occupied system.")
+	
+	
 	# Select seed systems for biomes
 	
 	var seed_biomes = []
+	
 	for biome_id in Data.biomes:
 		if Data.biomes[biome_id].do_seed:
 			seed_biomes.append(biome_id)
@@ -147,6 +178,10 @@ func generate_systems(seed_value: int):
 		if not system.biome:
 			system.biome = "empty"
 			system.name = random_name(system, rng)
+	
+	# Remember, we had a return value. Client needs to know which system to start in.
+	return start_sys
+
 func cache_links():
 	for lane in hyperlanes:
 		var lsys = systems[lane.lsys]

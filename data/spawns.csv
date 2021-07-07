@@ -10,3 +10,4 @@ red_asteroids,11,FALSE,1,res://spawns/RedAsteroid.tscn,,Asteroids
 blue_asteroids,6,FALSE,1,res://spawns/BlueAsteroid.tscn,,Asteroids
 green_asteroids,8,FALSE,1,res://spawns/GreenAsteroid.tscn,,Asteroids
 yellow_asteroids,3,FALSE,1,res://spawns/YellowAsteroid.tscn,,Asteroids
+boss,1,FALSE,1,res://spawns/aliens/Boss.tscn,boss,Npcs

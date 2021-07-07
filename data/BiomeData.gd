@@ -9,6 +9,10 @@ var map_color: Color
 var do_seed: bool
 var grow: bool
 var background: Texture
+var always_do_one: bool
+var startloc: bool
+var fixed_name: String
+var auto_explore: bool
 
 func _init(data: Dictionary):
 	init(data)

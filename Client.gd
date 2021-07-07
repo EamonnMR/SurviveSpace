@@ -79,7 +79,8 @@ func spawn_player():
 func start_new_game(game_seed, player_name):
 	self.player_name = player_name
 	self.game_seed = game_seed
-	Procgen.generate_systems(game_seed)
+	current_system = Procgen.generate_systems(game_seed)
+	spawn_point = current_system
 	enter_gameplay()
 	_get_background_node().set_background_for_current_system()
 	explore_system(current_system)
@@ -181,3 +182,10 @@ func list_files_in_directory(path: String) -> Array:
 	dir.list_dir_end()
 	return files
 	
+func victory():
+	var root = get_tree().get_root()
+	var game = root.get_node("Game")
+	root.remove_child(game)
+	game.queue_free()
+	root.add_child(preload("res://ui/WinScreen.tscn").instance())
+

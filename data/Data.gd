@@ -27,6 +27,7 @@ func _init():
 			dest[key] = DataClass.new(data[key])
 	# Tests
 	assert_ingredients_exist()
+	assert_spawns_exist()
 	
 func assert_ingredients_exist():
 	# Test to prove that no recipes require nonexistent items
@@ -39,3 +40,9 @@ func assert_ingredients_exist():
 			var blueprint = craftable_type[blueprint_id ]
 			for key in blueprint.ingredients:
 				assert(key in items)
+
+func assert_spawns_exist():
+	for biome_id in biomes:
+		var biome = biomes[biome_id]
+		for spawn_id in biome.spawns:
+			assert(spawn_id in spawns)
