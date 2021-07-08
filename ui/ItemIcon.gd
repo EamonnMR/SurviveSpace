@@ -2,7 +2,7 @@ extends TextureRect
 
 class_name ItemIcon
 
-var item #: Inventory.InvItem
+var item: Inventory.InvItem
 
 func init(item):
 	self.item = item
