@@ -69,8 +69,8 @@ func _physics_process(delta):
 		rotation += delta * turn * $Controller.rotation_change
 		move_and_slide(linear_velocity)
 		if $Controller.shooting:
-			for weapon in $Weapons.get_children():
-				weapon.try_shooting()
+			for weapon_slot in $Weapons.get_children():
+				weapon_slot.try_shooting()
 		
 		if position.length() > PLAY_AREA_RADIUS:
 			position = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
@@ -110,8 +110,8 @@ func anglemod(angle):
 	# TODO: Recursive might be too slow
 	return fmod(angle + ARC, ARC)
 
-func add_weapon(weapon, _index):
-	$Weapons.add_child(weapon)
+func add_weapon(weapon, key):
+	$Weapons.get_child(key).add_child(weapon)
 	
 func remove_weapon(_index):
 	for child in $Weapons.get_children():

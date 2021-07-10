@@ -11,6 +11,7 @@ var accel: float
 var turn: float
 var health: int
 var inventory_size: int
+var armor_slots: int
 var scene: PackedScene
 var desc: String
 var icon: Texture

@@ -33,8 +33,8 @@ func init(data: Dictionary):
 			var type: int = prop["type"]
 			var string_val = data[prop_name]
 			set(prop_name, convert_column_value(
-				data[prop_name],
-				prop["type"],
+				string_val,
+				type,
 				prop["class_name"]
 			))
 

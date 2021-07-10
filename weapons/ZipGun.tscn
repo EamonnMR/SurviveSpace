@@ -23,7 +23,6 @@ color_ramp = SubResource( 2 )
 hue_variation_random = 0.09
 
 [node name="ZipGun" type="Node2D"]
-position = Vector2( 41.5, 13.5 )
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
