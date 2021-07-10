@@ -3,7 +3,7 @@ extends Node
 export var default_contents: Dictionary
 
 var item_slots = {}
-var max_items = 32
+var max_items: int
 var fresh = true
 
 class_name Inventory
@@ -23,11 +23,14 @@ class InvItem:
 		return Data.items[type]
 
 func _ready():
+	max_items = Data.ships[get_node("../").type].inventory_size
+	var type = get_node("../").type
+	var data = Data.ships[get_node("../").type]
 	if fresh:
 		for key in default_contents:
 			add(key, default_contents[key])
 	fresh = false
-	
+	emit_signal("updated")
 	
 func _get_first_empty_slot():
 	for i in range(max_items):

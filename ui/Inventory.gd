@@ -31,7 +31,8 @@ func rebuild():
 	_clear()
 	var inv: Inventory = _inventory()
 	if is_instance_valid(inv):
-		for i in range(inv.max_items):
+		var max_items = inv.max_items
+		for i in range(max_items):
 			var slot_container = inventory_slot.instance()
 			slot_container.connect("item_removed", self, "_on_item_removed", [i])
 			slot_container.connect("item_added", self, "_on_item_added", [i])
