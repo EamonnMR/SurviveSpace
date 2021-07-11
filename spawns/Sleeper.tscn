@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://spawns/Derelict.gd" type="Script" id=1]
 [ext_resource path="res://components/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/Inventory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction8-Spaceships-by-MillionthVector/wship-4-n.png" type="Texture" id=4]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction8-Spaceships-by-MillionthVector/wship-4.png" type="Texture" id=5]
+[ext_resource path="res://components/Equipment.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 40.1007
@@ -53,3 +54,7 @@ shape = SubResource( 2 )
 visible = false
 position = Vector2( -50.724, 0 )
 shape = SubResource( 3 )
+
+[node name="Equipment" parent="." instance=ExtResource( 6 )]
+
+[node name="Weapons" type="Node2D" parent="."]

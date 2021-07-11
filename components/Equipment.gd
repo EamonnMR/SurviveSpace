@@ -25,9 +25,10 @@ func _ready():
 	# Determine weapon slots by the ship
 	var parent = get_node("../")
 	for weapon_slot in parent.get_node("Weapons").get_children():
-		weapons[weapon_slot.name]
+		if not weapon_slot.name in weapons:
+			weapons[weapon_slot.name] = null
 		
-	max_armors = parent.data.max_armors
+	max_armors = Data.ships[parent.type].armor_slots
 	
 	for i in [
 		[max_armors, armors],
@@ -41,20 +42,37 @@ func _ready():
 			if not(key in slots):
 				slots[key] = null
 
-func equip_item(item: Inventory.InvItem, key, category):
+func equip_item(item: Inventory.InvItem, key: String, category: String):
 	assert(item.data().equip_category == category)
 	assert(key in slot_keys[category])
-	assert(key in slot_keys[category][key] == null)
+	assert(slot_keys[category][key] == null)
 	slot_keys[category][key] = item
 	
-	if category == "weapon":
-		Client.player.add_weapon(preload("res://weapons/ZipGun.tscn").instance(), key)
-
-func remove_item(key, category):
+	_add(item, key, category)
+	
+func remove_item(key: String, category: String):
 	assert(slot_keys[category][key])
 	slot_keys[category][key] = null
+	
+	_remove(key, category)
+	
+func _add(item: Inventory.InvItem, key: String, category: String):
 	if category == "weapon":
-		Client.player.remove_weapon(key)
+		_parent().add_weapon(preload("res://weapons/ZipGun.tscn").instance(), key)
+
+func _remove(key: String, category: String):
+	if category == "weapon":
+		_parent().remove_weapon(key)
+		
+func apply():
+	# Use this if the data has been instantiated but _add hasn't been called for all items yet.
+	for group_name in slot_keys:
+		var group = slot_keys[group_name]
+		for key in group:
+			_add(group[key], key, group_name)
+			
+func _parent():
+	return get_node("../")
 
 func serialize() -> Dictionary:
 	var slots = {}
@@ -62,10 +80,11 @@ func serialize() -> Dictionary:
 		var group = slot_keys[group_name]
 		var slot_data = {}
 		for key in group:
-			slot_data[key] = {
-				"type": group[key].type,
-				"count": group[key].count
-			}
+			if group[key]:
+				slot_data[key] = {
+					"type": group[key].type,
+					"count": group[key].count
+				}
 		slots[group_name] = slot_data
 		
 	return slots
@@ -79,3 +98,4 @@ func deserialize(data):
 				item_data.type,
 				int(item_data.count)
 			)
+	apply()

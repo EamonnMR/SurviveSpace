@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ships/EngineEffects.tscn" type="PackedScene" id=1]
 [ext_resource path="res://effects/BasicEngine.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://components/Inventory.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange_disabled.png" type="Texture" id=10]
 [ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=11]
+[ext_resource path="res://components/Equipment.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 24.7717
@@ -85,6 +86,8 @@ shape = SubResource( 3 )
 [node name="Timer" type="Timer" parent="InteractRange"]
 wait_time = 0.1
 autostart = true
+
+[node name="Equipment" parent="." instance=ExtResource( 12 )]
 [connection signal="area_entered" from="InteractRange" to="InteractRange" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractRange" to="InteractRange" method="_on_area_exited"]
 [connection signal="body_entered" from="InteractRange" to="InteractRange" method="_on_body_entered"]

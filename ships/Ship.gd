@@ -111,12 +111,12 @@ func anglemod(angle):
 	return fmod(angle + ARC, ARC)
 
 func add_weapon(weapon, key):
-	$Weapons.get_child(key).add_child(weapon)
+	$Weapons.get_node(key).add_child(weapon)
 	
 func remove_weapon(key):
-	var weapon = $Weapons.get_child(key).get_children()
-	assert(weapon.size == 1)
-	$Weapons.get_child(key).remove_child(weapon[0])
+	var weapon = $Weapons.get_node(key).get_children()
+	assert(weapon.size() == 1)
+	$Weapons.get_node(key).remove_child(weapon[0])
 	weapon[0].queue_free()
 
 func add_hyperdrive(drive):
@@ -133,6 +133,7 @@ func serialize() -> Dictionary:
 		"health": $Health.serialize(),
 		"disabled": disabled,
 		"controller": serialize_controller(),
+		"equipment": $Equipment.serialize(),
 		"type": type
 	}
 
@@ -142,6 +143,7 @@ func deserialize(data):
 	rotation = data["rotation"]
 	$Inventory.deserialize(data["inventory"])
 	$Health.deserialize(data["health"])
+	$Equipment.deserialize(data["equipment"])
 	disabled = data["disabled"]
 	if data["controller"]:
 		add_child(deserialize_controller(data["controller"]))
