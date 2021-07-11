@@ -113,22 +113,17 @@ func anglemod(angle):
 func add_weapon(weapon, key):
 	$Weapons.get_child(key).add_child(weapon)
 	
-func remove_weapon(_index):
-	for child in $Weapons.get_children():
-		$Weapons.remove_child(child)
+func remove_weapon(key):
+	var weapon = $Weapons.get_child(key).get_children()
+	assert(weapon.size == 1)
+	$Weapons.get_child(key).remove_child(weapon[0])
+	weapon[0].queue_free()
 
 func add_hyperdrive(drive):
 	pass
 	
 func remove_warpdrive(_index):
 	pass
-
-func get_weapon(_index):
-	var children = $Weapons.get_children()
-	if children.size() == 1:
-		return children[0]
-	else:
-		return null
 		
 func serialize() -> Dictionary:
 	return {

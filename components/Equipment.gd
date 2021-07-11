@@ -1,5 +1,7 @@
 extends Node
 
+class_name Equipment
+
 # This is populated by the weapon slot nodes in ../Weapons/
 var weapons = {}
 
@@ -14,7 +16,7 @@ var reactors = {}
 
 var slot_keys = {
 	"armor": armors,
-	"shields": shields,
+	"shield": shields,
 	"hyperdrive": hyperdrives,
 	"reactor": reactors,
 	"weapon": weapons
@@ -46,17 +48,23 @@ func equip_item(item: Inventory.InvItem, key, category):
 	slot_keys[category][key] = item
 	
 	if category == "weapon":
-		Client.player.add_weapon(preload("res://weapons/ZipGun.tscn").instance(), "WeaponSlot")
+		Client.player.add_weapon(preload("res://weapons/ZipGun.tscn").instance(), key)
+
+func remove_item(key, category):
+	assert(slot_keys[category][key])
+	slot_keys[category][key] = null
+	if category == "weapon":
+		Client.player.remove_weapon(key)
 
 func serialize() -> Dictionary:
 	var slots = {}
 	for group_name in slot_keys:
-		group = slot_keys[group_name]
+		var group = slot_keys[group_name]
 		var slot_data = {}
 		for key in group:
 			slot_data[key] = {
-				"type": item_slots[slot].type,
-				"count": item_slots[slot].count
+				"type": group[key].type,
+				"count": group[key].count
 			}
 		slots[group_name] = slot_data
 		
@@ -64,9 +72,9 @@ func serialize() -> Dictionary:
 		
 func deserialize(data):
 	for group_key in slot_keys:
-		group = slot_keys[group_key]
-		for key in data[group_name]:
-			var item_data = data[group_name][key]
+		var group = slot_keys[group_key]
+		for key in data[group_key]:
+			var item_data = data[group_key][key]
 			group[key] = Inventory.InvItem.new(
 				item_data.type,
 				int(item_data.count)
