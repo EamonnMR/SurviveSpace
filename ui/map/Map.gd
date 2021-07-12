@@ -74,3 +74,7 @@ func update_for_explore(system_id):
 			# link.show() #Conditionally show these if the player has a good hyperdrive
 			movement.get_node(link.data.lsys).show()
 			movement.get_node(link.data.rsys).show()
+
+
+func _on_Recenter_pressed():
+	_set_initial_center()
