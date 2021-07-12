@@ -23,9 +23,10 @@ class InvItem:
 		return Data.items[type]
 
 func _ready():
-	max_items = Data.ships[get_node("../").type].inventory_size
-	var type = get_node("../").type
-	var data = Data.ships[get_node("../").type]
+	if get_node("../") is Ship:
+		max_items = Data.ships[get_node("../").type].inventory_size
+	else:
+		max_items = 16
 	if fresh:
 		for key in default_contents:
 			add(key, default_contents[key])

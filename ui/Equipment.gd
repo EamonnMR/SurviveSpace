@@ -3,7 +3,7 @@ extends Control
 var item_icon = preload("res://ui/ItemIcon.tscn")
 var EquipBox = preload("res://ui/EquipBox.tscn")
 onready var left_equip = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip")
-onready var right_equip = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip")
+onready var right_equip = get_node("Background/VBoxContainer/HBoxContainer/RightEquip")
 
 
 
@@ -24,6 +24,9 @@ func rebuild():
 	# Populate panels with slots for the ship
 	for i in [
 		["shield", left_equip, preload("res://assets/FontAwesome/32px-play.png")],
+		["hyperdrive", left_equip, preload("res://assets/FontAwesome/32px-star.png")],
+		["reactor", left_equip, preload("res://assets/FontAwesome/32px-charge.png")],
+		["armor", left_equip, preload("res://assets/FontAwesome/32px-shield.png")],
 		["weapon", right_equip, preload("res://assets/FontAwesome/32px-crosshairs.png")]
 	]:
 		# I yearn for Tuples
