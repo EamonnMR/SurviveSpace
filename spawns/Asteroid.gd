@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 export var loot = {} # keys: loot type values: loot 
+var exploded = false
 
 func _ready():
 	Client.add_radar_pip(self)
@@ -24,9 +25,11 @@ func drop_loot():
 			destination.add_child(pickup)
 
 func _on_Health_ran_out():
-	explode()
-	drop_loot()
-	queue_free()
+	if not exploded:
+		var exploded = true
+		explode()
+		drop_loot()
+		queue_free()
 	
 func serialize() -> Dictionary:
 	return {

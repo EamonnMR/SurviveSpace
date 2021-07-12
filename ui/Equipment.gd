@@ -38,6 +38,7 @@ func rebuild():
 		for slot in equipment_slots:
 			var box = EquipBox.instance()
 			box.get_node("TextureRect").texture = background
+			box.category = category
 			
 			if equipment_slots[slot]:
 				var item = equipment_slots[slot]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/millionthvector_cc_by/Faction6-Spaceships-by-MillionthVector/redship4.png" type="Texture" id=1]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction6-Spaceships-by-MillionthVector/RD4N.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://weapons/ZipGun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction6-Spaceships-by-MillionthVector/redship4_disabled.png" type="Texture" id=11]
 [ext_resource path="res://components/Equipment.tscn" type="PackedScene" id=12]
+[ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.0947, 37.0583 )
@@ -92,6 +93,19 @@ shape = SubResource( 3 )
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[node name="ZipGun" parent="Weapons" instance=ExtResource( 10 )]
+[node name="WeaponSlot" parent="Weapons" instance=ExtResource( 13 )]
+position = Vector2( 120, -20 )
 
-[node name="ZipGun2" parent="Weapons" instance=ExtResource( 10 )]
+[node name="ZipGun" parent="Weapons/WeaponSlot" instance=ExtResource( 10 )]
+position = Vector2( -120, 20 )
+
+[node name="WeaponSlot2" parent="Weapons" instance=ExtResource( 13 )]
+position = Vector2( 120, 20 )
+
+[node name="ZipGun" parent="Weapons/WeaponSlot2" instance=ExtResource( 10 )]
+
+[node name="WeaponSlot3" parent="Weapons" instance=ExtResource( 13 )]
+position = Vector2( 100, -60 )
+
+[node name="WeaponSlot4" parent="Weapons" instance=ExtResource( 13 )]
+position = Vector2( 100, 60 )
