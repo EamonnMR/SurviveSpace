@@ -74,10 +74,13 @@ func _physics_process(delta):
 		
 		if position.length() > PLAY_AREA_RADIUS:
 			position = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
-
+		
 		if $Controller.do_jump:
 			$Controller.do_jump = false  # Only jump once!
-			do_jump()
+			if $Equipment.can_hyperjump():
+				do_jump()
+			else:
+				Client.alert("Cannot enter hyperspace - craft and equip a hyperdrive")
 	
 func _jump_effects():
 	pass

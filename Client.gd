@@ -189,3 +189,5 @@ func victory():
 	game.queue_free()
 	root.add_child(preload("res://ui/WinScreen.tscn").instance())
 
+func alert(text: String):
+	get_ui().get_node("Hud/Alert").alert(text)

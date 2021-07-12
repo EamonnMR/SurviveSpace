@@ -99,3 +99,6 @@ func deserialize(data):
 				int(item_data.count)
 			)
 	apply()
+
+func can_hyperjump():
+	return hyperdrives.size() > 0 and hyperdrives[hyperdrives.keys()[0]] != null
