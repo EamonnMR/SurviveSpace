@@ -69,15 +69,18 @@ func _physics_process(delta):
 		rotation += delta * turn * $Controller.rotation_change
 		move_and_slide(linear_velocity)
 		if $Controller.shooting:
-			for weapon in $Weapons.get_children():
-				weapon.try_shooting()
+			for weapon_slot in $Weapons.get_children():
+				weapon_slot.try_shooting()
 		
 		if position.length() > PLAY_AREA_RADIUS:
 			position = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
-
+		
 		if $Controller.do_jump:
 			$Controller.do_jump = false  # Only jump once!
-			do_jump()
+			if $Equipment.can_hyperjump():
+				do_jump()
+			else:
+				Client.alert("Cannot enter hyperspace - craft and equip a hyperdrive")
 	
 func _jump_effects():
 	pass
@@ -110,25 +113,20 @@ func anglemod(angle):
 	# TODO: Recursive might be too slow
 	return fmod(angle + ARC, ARC)
 
-func add_weapon(weapon, _index):
-	$Weapons.add_child(weapon)
+func add_weapon(weapon, key):
+	$Weapons.get_node(key).add_child(weapon)
 	
-func remove_weapon(_index):
-	for child in $Weapons.get_children():
-		$Weapons.remove_child(child)
+func remove_weapon(key):
+	var weapon = $Weapons.get_node(key).get_children()
+	assert(weapon.size() == 1)
+	$Weapons.get_node(key).remove_child(weapon[0])
+	weapon[0].queue_free()
 
 func add_hyperdrive(drive):
 	pass
 	
 func remove_warpdrive(_index):
 	pass
-
-func get_weapon(_index):
-	var children = $Weapons.get_children()
-	if children.size() == 1:
-		return children[0]
-	else:
-		return null
 		
 func serialize() -> Dictionary:
 	return {
@@ -138,6 +136,7 @@ func serialize() -> Dictionary:
 		"health": $Health.serialize(),
 		"disabled": disabled,
 		"controller": serialize_controller(),
+		"equipment": $Equipment.serialize(),
 		"type": type
 	}
 
@@ -147,6 +146,7 @@ func deserialize(data):
 	rotation = data["rotation"]
 	$Inventory.deserialize(data["inventory"])
 	$Health.deserialize(data["health"])
+	$Equipment.deserialize(data["equipment"])
 	disabled = data["disabled"]
 	if data["controller"]:
 		add_child(deserialize_controller(data["controller"]))

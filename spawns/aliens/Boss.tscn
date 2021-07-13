@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ships/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/millionthvector_cc_by/Starship-by-MillionthVector/ospaceship-normals.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://effects/SerpensianEngine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://spawns/aliens/AlienController.gd" type="Script" id=6]
 [ext_resource path="res://weapons/ZipGun.tscn" type="PackedScene" id=7]
+[ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 122.336
@@ -15,10 +16,25 @@ radius = 122.336
 collision_mask = 2
 script = ExtResource( 4 )
 
-[node name="ZipGun" parent="Weapons" index="0" instance=ExtResource( 7 )]
+[node name="WeaponSlot" parent="Weapons" index="0" instance=ExtResource( 8 )]
+position = Vector2( 100, -30 )
 
-[node name="ZipGun2" parent="Weapons" index="1" instance=ExtResource( 7 )]
-position = Vector2( 83, 27 )
+[node name="ZipGun" parent="Weapons/WeaponSlot" index="0" instance=ExtResource( 7 )]
+
+[node name="WeaponSlot2" parent="Weapons" index="1" instance=ExtResource( 8 )]
+position = Vector2( 100, 30 )
+
+[node name="ZipGun" parent="Weapons/WeaponSlot2" index="0" instance=ExtResource( 7 )]
+
+[node name="WeaponSlot3" parent="Weapons" index="2" instance=ExtResource( 8 )]
+position = Vector2( 300, -140 )
+
+[node name="ZipGun" parent="Weapons/WeaponSlot3" index="0" instance=ExtResource( 7 )]
+
+[node name="WeaponSlot4" parent="Weapons" index="3" instance=ExtResource( 8 )]
+position = Vector2( 300, 140 )
+
+[node name="ZipGun" parent="Weapons/WeaponSlot4" index="0" instance=ExtResource( 7 )]
 
 [node name="Particles2D" parent="EngineEffects" index="0" instance=ExtResource( 5 )]
 position = Vector2( -95, 202 )

@@ -1,17 +1,19 @@
 extends RigidBody2D
 
 export var loot = {} # keys: loot type values: loot 
+var exploded = false
 
 func _ready():
 	Client.add_radar_pip(self)
 
 func explode():
 	var explo: Particles2D = $Explosion
-	remove_child(explo)
-	get_node("../../Effects").add_child(explo)
-	explo.position = position
-	explo.emitting = true
-	# TODO: Play Sound
+	if is_instance_valid(explo):
+		remove_child(explo)
+		get_node("../../Effects").add_child(explo)
+		explo.position = position
+		explo.emitting = true
+		# TODO: Play Sound
 
 func drop_loot():
 	var destination = get_node("../../Pickups")
@@ -24,9 +26,11 @@ func drop_loot():
 			destination.add_child(pickup)
 
 func _on_Health_ran_out():
-	explode()
-	drop_loot()
-	queue_free()
+	if not exploded:
+		var exploded = true
+		explode()
+		drop_loot()
+		queue_free()
 	
 func serialize() -> Dictionary:
 	return {

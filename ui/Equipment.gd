@@ -1,63 +1,53 @@
 extends Control
 
-onready var box_shield = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip/Shield")
-onready var box_armor = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip/Armor")
-onready var box_hyperdrive = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip/HyperDrive")
-onready var box_reactor = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip/Reactor")
-
-onready var box_weapon = get_node("Background/VBoxContainer/HBoxContainer/RightEquip/Weapon")
-
 var item_icon = preload("res://ui/ItemIcon.tscn")
+var EquipBox = preload("res://ui/EquipBox.tscn")
+onready var left_equip = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip")
+onready var right_equip = get_node("Background/VBoxContainer/HBoxContainer/RightEquip")
+onready var preview = $Background/VBoxContainer/HBoxContainer/Middle/ShipPreview
+onready var ship_type_name = $Background/VBoxContainer/HBoxContainer/Middle/Type
+
+func clear():
+	for i in [left_equip, right_equip]:
+		for child in i.get_children():
+			if not (child is MarginContainer):
+				i.remove_child(child)
+				child.queue_free()
 
 func rebuild():
-	for i in [
-		box_shield,
-		box_armor,
-		box_hyperdrive,
-		box_reactor,
-		box_weapon
-	]:
-		i.clear()
-	var weapon = Client.player.get_weapon(0)
-	if weapon:
-		var icon = item_icon.instance()
-		icon.init(Inventory.InvItem.new(weapon.type, 1))
-		box_weapon.attach_item_icon(icon)
-
-func _on_Shield_item_added(item):
-	pass # Replace with function body.
-
-
-func _on_Shield_item_removed():
-	pass # Replace with function body.
-
-
-func _on_Armor_item_added(item):
-	pass # Replace with function body.
-
-
-func _on_Armor_item_removed():
-	pass # Replace with function body.
-
-
-func _on_HyperDrive_item_added(item):
-	Client.player.add_hyperdrive(item)
-
-
-func _on_HyperDrive_item_removed():
-	pass # Replace with function body.
-
-
-func _on_Reactor_item_added(item):
-	pass # Replace with function body.
-
-
-func _on_Reactor_item_removed():
-	pass # Replace with function body.
-
-
-func _on_Weapon_item_added(item):
-	Client.player.add_weapon(preload("res://weapons/ZipGun.tscn").instance(), 0)
+	clear()
 	
-func _on_Weapon_item_removed():
-	Client.player.remove_weapon(0)
+	var player = Client.player
+	var equipment = Client.player.get_node("Equipment")
+	var eq_path = equipment.get_path()
+	preview.texture = player.get_node("Sprite").texture
+	ship_type_name.text = player.data.type_name
+	# Populate panels with slots for the ship
+	for i in [
+		["shield", left_equip, preload("res://assets/FontAwesome/32px-play.png")],
+		["hyperdrive", left_equip, preload("res://assets/FontAwesome/32px-star.png")],
+		["reactor", left_equip, preload("res://assets/FontAwesome/32px-charge.png")],
+		["armor", left_equip, preload("res://assets/FontAwesome/32px-shield.png")],
+		["weapon", right_equip, preload("res://assets/FontAwesome/32px-crosshairs.png")]
+	]:
+		# I yearn for Tuples
+		var category = i[0]
+		var destination = i[1]
+		var background = i[2]
+		var equipment_slots = equipment.slot_keys[category]
+		
+		for slot in equipment_slots:
+			var box = EquipBox.instance()
+			box.get_node("TextureRect").texture = background
+			box.category = category
+			
+			if equipment_slots[slot]:
+				var item = equipment_slots[slot]
+				var icon: ItemIcon = item_icon.instance()
+				icon.init(item)
+				box.attach_item_icon(icon)
+			destination.add_child(box)
+
+			box.connect("item_removed", equipment, "remove_item", [slot, category])
+			box.connect("item_added", equipment, "equip_item", [slot, category])
+			

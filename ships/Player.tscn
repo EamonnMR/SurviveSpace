@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ships/EngineEffects.tscn" type="PackedScene" id=1]
 [ext_resource path="res://effects/BasicEngine.tscn" type="PackedScene" id=2]
@@ -10,13 +10,15 @@
 [ext_resource path="res://InteractRange.gd" type="Script" id=8]
 [ext_resource path="res://components/Inventory.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/millionthvector_cc_by/Faction1-Spaceships-by-MillionthVector/tinyorange_disabled.png" type="Texture" id=10]
+[ext_resource path="res://components/WeaponSlot.tscn" type="PackedScene" id=11]
+[ext_resource path="res://components/Equipment.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 29.2614
-height = 121.727
+radius = 24.7717
+height = 39.9127
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 35.0952, 52.678 )
+extents = Vector2( 13.7684, 33.5962 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 91.3431
@@ -53,6 +55,12 @@ normal_map = ExtResource( 6 )
 
 [node name="Weapons" type="Node2D" parent="."]
 
+[node name="WeaponSlot" parent="Weapons" instance=ExtResource( 11 )]
+position = Vector2( 29.4961, -18.4056 )
+
+[node name="WeaponSlot2" parent="Weapons" instance=ExtResource( 11 )]
+position = Vector2( 29.496, 18.406 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource( 1 )
@@ -68,6 +76,7 @@ position = Vector2( -11.694, 0 )
 shape = SubResource( 2 )
 
 [node name="InteractRange" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange"]
@@ -77,6 +86,8 @@ shape = SubResource( 3 )
 [node name="Timer" type="Timer" parent="InteractRange"]
 wait_time = 0.1
 autostart = true
+
+[node name="Equipment" parent="." instance=ExtResource( 12 )]
 [connection signal="area_entered" from="InteractRange" to="InteractRange" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractRange" to="InteractRange" method="_on_area_exited"]
 [connection signal="body_entered" from="InteractRange" to="InteractRange" method="_on_body_entered"]

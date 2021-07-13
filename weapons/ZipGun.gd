@@ -5,7 +5,7 @@ class_name Weapon
 export var type: String = "zipgun"
 
 func parent():
-	return get_node("../../")
+	return get_node("../../../")
 
 func projectile_dest():
 	return parent().get_node("../../Projectiles")
