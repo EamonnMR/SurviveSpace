@@ -8,11 +8,12 @@ func _ready():
 
 func explode():
 	var explo: Particles2D = $Explosion
-	remove_child(explo)
-	get_node("../../Effects").add_child(explo)
-	explo.position = position
-	explo.emitting = true
-	# TODO: Play Sound
+	if is_instance_valid(explo):
+		remove_child(explo)
+		get_node("../../Effects").add_child(explo)
+		explo.position = position
+		explo.emitting = true
+		# TODO: Play Sound
 
 func drop_loot():
 	var destination = get_node("../../Pickups")
