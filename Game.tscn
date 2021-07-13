@@ -101,7 +101,10 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Equipment" parent="UI" instance=ExtResource( 15 )]
-visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -168.0
+margin_right = 168.0
 
 [node name="Inventory" parent="UI" instance=ExtResource( 22 )]
 visible = false

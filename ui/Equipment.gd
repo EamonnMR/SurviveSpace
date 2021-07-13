@@ -4,8 +4,8 @@ var item_icon = preload("res://ui/ItemIcon.tscn")
 var EquipBox = preload("res://ui/EquipBox.tscn")
 onready var left_equip = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip")
 onready var right_equip = get_node("Background/VBoxContainer/HBoxContainer/RightEquip")
-
-
+onready var preview = $Background/VBoxContainer/HBoxContainer/Middle/ShipPreview
+onready var ship_type_name = $Background/VBoxContainer/HBoxContainer/Middle/Type
 
 func clear():
 	for i in [left_equip, right_equip]:
@@ -16,11 +16,12 @@ func clear():
 
 func rebuild():
 	clear()
-	# TODO: Set ship preview to ship type's texture
+	
 	var player = Client.player
 	var equipment = Client.player.get_node("Equipment")
 	var eq_path = equipment.get_path()
-	
+	preview.texture = player.get_node("Sprite").texture
+	ship_type_name.text = player.data.type_name
 	# Populate panels with slots for the ship
 	for i in [
 		["shield", left_equip, preload("res://assets/FontAwesome/32px-play.png")],
