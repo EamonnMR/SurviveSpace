@@ -104,6 +104,9 @@ func map_select_system(system_id, system_node):
 func _get_background_node():
 	return get_tree().get_root().get_node("Game/Background/Control/Starfield")
 
+func _set_ambient_light():
+	return get_tree().get_root().get_node("Game/Gameplay/AmbientLight").set_ambient_light_for_system()
+
 func entity_became_interactive(entity):
 	emit_signal("became_interactive", entity)
 

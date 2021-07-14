@@ -126,7 +126,7 @@ func generate_systems(seed_value: int) -> String:
 						system.name = biome.fixed_name
 					else:
 						system.name = random_name(systems[system_id], rng)
-					
+					_set_light(system, biome)
 					if biome.startloc:
 						start_sys = system_id
 					break
@@ -150,6 +150,7 @@ func generate_systems(seed_value: int) -> String:
 		var system_id = random_select(systems.keys(), rng)
 		if not systems[system_id].biome:
 			systems[system_id].biome = biome_id
+			_set_light(systems[system_id], Data.biomes[biome_id])
 			systems[system_id].name = random_name(systems[system_id], rng)
 			seeds_planted += 1
 	# Player start system always gets the "start" biome
@@ -238,3 +239,7 @@ func random_circular_coordinate(radius: int, rng: RandomNumberGenerator) -> Vect
 func random_select(iterable, rng: RandomNumberGenerator):
 	""" Remember to seed the rng"""
 	return iterable[rng.randi() % iterable.size()]
+
+func _set_light(system: SystemData, biome: BiomeData):
+	system.ambient_color = biome.ambient_color
+	system.starlight_color = biome.starlight_color

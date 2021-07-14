@@ -13,6 +13,8 @@ var always_do_one: bool
 var startloc: bool
 var fixed_name: String
 var auto_explore: bool
+var ambient_color: Color
+var starlight_color: Color
 
 func _init(data: Dictionary):
 	init(data)
