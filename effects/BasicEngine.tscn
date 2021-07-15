@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/Eamonn/particle.png" type="Texture" id=1]
+[ext_resource path="res://effects/EngineLight.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/ScreamingBrain/Green Nebula/1024x1024 Green Nebula 3.png" type="Texture" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.294416, 0.604061, 1 )
@@ -35,3 +37,16 @@ amount = 35
 local_coords = false
 process_material = SubResource( 5 )
 texture = ExtResource( 1 )
+
+[node name="Light2D" parent="." instance=ExtResource( 2 )]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+position = Vector2( -7.77818, -0.707127 )
+rotation = 3.14159
+color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -241.296, 71.6744 )
+texture = ExtResource( 3 )
