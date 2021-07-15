@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ships/Ship.gd" type="Script" id=1]
 [ext_resource path="res://components/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/Inventory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://components/EngineEffects.gd" type="Script" id=4]
 [ext_resource path="res://components/Equipment.tscn" type="PackedScene" id=5]
+[ext_resource path="res://effects/Fullbright.tres" type="Material" id=6]
 
 [node name="Ship" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -22,5 +23,8 @@ script = ExtResource( 4 )
 
 [node name="SpriteDisabled" type="Sprite" parent="."]
 visible = false
+
+[node name="Fullbright" type="Sprite" parent="."]
+material = ExtResource( 6 )
 
 [node name="Equipment" parent="." instance=ExtResource( 5 )]

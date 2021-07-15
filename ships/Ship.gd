@@ -162,6 +162,7 @@ func deserialize_controller(_controller_data) -> Node:
 func set_disabled_texture():
 	$SpriteDisabled.show()
 	$Sprite.hide()
+	$Fullbright.hide()
 
 func can_interact():
 	return disabled
