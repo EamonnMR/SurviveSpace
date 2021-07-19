@@ -17,7 +17,7 @@ func _on_Area2D_body_entered(body):
 	if body == parent:
 		pass
 	else:
-		# explode()
+		explode()
 		if body.has_node("Health"):
 			body.get_node("Health").take_damage(damage, parent)
 		queue_free()
@@ -25,3 +25,8 @@ func _on_Area2D_body_entered(body):
 func _on_Timer_timeout():
 	queue_free()
 
+func explode():
+	var explo = preload("res://effects/ZipgunImpact.tscn").instance()
+	explo.position = position
+	var fx = Client.effects()
+	fx.add_child(explo)

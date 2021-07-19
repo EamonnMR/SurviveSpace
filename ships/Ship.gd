@@ -176,9 +176,13 @@ func disable_control():
 func enable_control():
 	remove_child($Controller)
 	add_child(preload("res://ships/PlayerController.tscn").instance())
-	var camera = Camera2D.new()
-	add_child(camera)
-	camera.current = true
+	if has_node("Camera"):
+		$Camera.current = true
+	else:
+		var camera = Camera2D.new()
+		camera.name = "Camera"
+		add_child(camera)
+		camera.current = true
 	connect("disabled", self, "_player_disabled")
 
 func do_jump():

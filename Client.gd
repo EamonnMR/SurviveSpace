@@ -35,7 +35,10 @@ func exit_system_hyperjump(new_system):
 	game.remove_child(old_gameplay)
 	old_gameplay.queue_free()
 	game.add_child(preload("res://Gameplay.tscn").instance())
+	setup_player()
 	spawn_player()
+	player.get_node("Camera").current = true
+	breakpoint
 	
 func player_respawn():
 	# TODO: Mark system with skull to remind them it's where they died
@@ -69,9 +72,9 @@ func respawn_player():
 	setup_player()
 
 func setup_player():
+	player.enable_control()
 	player.get_node("Inventory").connect("updated", get_ui().get_node("Crafting"), "rebuild")
 	get_ui().get_node("Inventory").assign(player.get_node("Inventory"), "Inventory")
-	player.enable_control()
 	
 func spawn_player():
 	get_player_dest().add_child(player)
@@ -106,6 +109,9 @@ func _get_background_node():
 
 func _set_ambient_light():
 	return get_tree().get_root().get_node("Game/Gameplay/AmbientLight").set_ambient_light_for_system()
+
+func effects():
+	return get_tree().get_root().get_node("Game/Gameplay/Effects")
 
 func entity_became_interactive(entity):
 	emit_signal("became_interactive", entity)

@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node2D
 
 const SERIAL_CHILDREN = [
 	"Stations",

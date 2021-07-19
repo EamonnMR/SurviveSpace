@@ -58,3 +58,5 @@ shape = SubResource( 3 )
 [node name="Equipment" parent="." instance=ExtResource( 6 )]
 
 [node name="Weapons" type="Node2D" parent="."]
+
+[node name="Fullbright" type="Node2D" parent="."]
