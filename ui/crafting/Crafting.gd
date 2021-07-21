@@ -96,7 +96,6 @@ func _get_product_description(blueprint):
 	return ""
 
 func clear(list):
-	current_blueprint = _blueprints().values()[0]
 	for child in list.get_children():
 		list.remove_child(child)
 
