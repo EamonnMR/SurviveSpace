@@ -28,10 +28,12 @@ func assign(crafting_level_object):
 	var bench_level = crafting_level_object.level
 	var player_level = Client.player.crafting_level
 	crafting_level =  max(bench_level, player_level)
+	current_blueprint = _blueprints().values()[0]
 	
 func unassign():
 	# Return to a state of using the player's crafting level
 	crafting_level = Client.player.crafting_level
+	current_blueprint = _blueprints().values()[0]
 
 func build_blueprint_list():
 	for blueprint_id in _blueprints():
@@ -94,6 +96,7 @@ func _get_product_description(blueprint):
 	return ""
 
 func clear(list):
+	current_blueprint = _blueprints().values()[0]
 	for child in list.get_children():
 		list.remove_child(child)
 
