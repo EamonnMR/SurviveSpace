@@ -38,7 +38,6 @@ func exit_system_hyperjump(new_system):
 	setup_player()
 	spawn_player()
 	player.get_node("Camera").current = true
-	breakpoint
 	
 func player_respawn():
 	# TODO: Mark system with skull to remind them it's where they died
@@ -74,10 +73,10 @@ func respawn_player():
 func setup_player():
 	player.enable_control()
 	player.get_node("Inventory").connect("updated", get_ui().get_node("Crafting"), "rebuild")
-	get_ui().get_node("Inventory").assign(player.get_node("Inventory"), "Inventory")
 	
 func spawn_player():
 	get_player_dest().add_child(player)
+	get_ui().get_node("Inventory").assign(player.get_node("Inventory"), "Inventory")
 
 func start_new_game(game_seed, player_name):
 	self.player_name = player_name
