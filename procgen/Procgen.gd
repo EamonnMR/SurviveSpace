@@ -173,7 +173,8 @@ func generate_systems(seed_value: int) -> String:
 					system.biome = random_select(possible_biomes, rng)
 					# TODO: Names - per - biome
 					system.name = random_name(system, rng)
-						
+					_set_light(system, Data.biomes[system.biome])
+					
 	# Fill in any systems that somehow fell through the cracks
 	for system in systems.values():
 		if not system.biome:
