@@ -276,4 +276,13 @@ File(s):
 
 ----------------------------------------
 
-
+Title:
+  150 Assorted Shields Large & Small
+Author:
+  JoesAlotofthings
+URL:
+  https://opengameart.org/content/150-assorted-shields-large-small-32x32px-transparent-png
+License:
+  CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/ )
+Files:
+  * assets/JoesAlotofthings_cc_by

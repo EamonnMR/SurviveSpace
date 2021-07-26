@@ -11,3 +11,4 @@ power,Power Cell,consumable,res://assets/gods_and_idols/energy_icon.png,Recharge
 redr,Red Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon12.png,Strange red with material properties,TRUE
 yellowr,Yellow Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon27.png,Strange material with yellow properties,TRUE
 scute,Scutes,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon23.png,Structural Material used in Serpensian Ships,TRUE
+armor,Armor,armor,res://assets/JoesAlotofthings_cc_by/basic_armor.png,Desperate times call for desperately welding junk to your hull,FALSE
