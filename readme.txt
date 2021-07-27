@@ -277,12 +277,23 @@ File(s):
 ----------------------------------------
 
 Title:
-  150 Assorted Shields Large & Small
+    150 Assorted Shields Large & Small
 Author:
-  JoesAlotofthings
+    JoesAlotofthings
 URL:
-  https://opengameart.org/content/150-assorted-shields-large-small-32x32px-transparent-png
+    https://opengameart.org/content/150-assorted-shields-large-small-32x32px-transparent-png
 License:
-  CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/ )
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/ )
 Files:
-  * assets/JoesAlotofthings_cc_by
+    * assets/JoesAlotofthings_cc_by/*
+
+----------------------------------------
+
+Titles:
+    * Health and Manabars
+Author:
+    Scrittl
+License:
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/ )
+Files:
+    * assets/Scrittl_cc_by/*
