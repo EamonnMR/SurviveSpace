@@ -3,6 +3,8 @@ extends KinematicBody2D
 class_name Ship
 
 const PLAY_AREA_RADIUS = 3000
+const AIR_BURN_RATE = 1.0
+const AIR_DAMAGE_RATE = 0.05
 
 var max_speed = 0
 var accel = 0
@@ -22,6 +24,12 @@ var linear_velocity = Vector2()
 var type: String
 var data: ShipData
 
+var air: float
+var max_air: int
+
+var energy: float
+var max_energy: int
+
 export var crafting_level: int = 0
 
 signal disabled;
@@ -29,6 +37,7 @@ signal disabled;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	apply_stats()
+	air = max_air
 	Client.add_radar_pip(self)
 	$Health.connect("ran_out", self, "_health_ran_out")
 	$Health.connect("took_damage", self, "_took_damage")
@@ -63,8 +72,15 @@ func apply_stats():
 	data = Data.ships[type]
 	data.apply(self)
 
+func life_support(delta):
+	air -= AIR_BURN_RATE * delta
+	if air < 0:
+		air = 0
+		$Health.take_damage(delta * AIR_DAMAGE_RATE, self)
+
 func _physics_process(delta):
 	if not disabled:
+		life_support(delta)
 		linear_velocity = get_limited_velocity_with_thrust(delta)
 		rotation += delta * turn * $Controller.rotation_change
 		move_and_slide(linear_velocity)
@@ -72,6 +88,7 @@ func _physics_process(delta):
 			for weapon_slot in $Weapons.get_children():
 				weapon_slot.try_shooting()
 		
+		# Wrap position
 		if position.length() > PLAY_AREA_RADIUS:
 			position = Vector2(PLAY_AREA_RADIUS / 2, 0).rotated(anglemod(transform.origin.angle() + PI))
 		

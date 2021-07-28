@@ -10,6 +10,8 @@ var max_speed: float
 var accel: float
 var turn: float
 var health: int
+var max_air: int
+var max_energy: int
 var inventory_size: int
 var armor_slots: int
 var scene: PackedScene
