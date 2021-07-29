@@ -8,6 +8,8 @@ var equip_category: String
 var icon: Texture
 var tooltip: String
 var stackable: bool
+var consumable_effect: String
+var consumable_magnitude: int
 
 func _init(data: Dictionary):
 	init(data)

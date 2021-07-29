@@ -98,6 +98,10 @@ func _physics_process(delta):
 				do_jump()
 			else:
 				Client.alert("Cannot enter hyperspace - craft and equip a hyperdrive")
+		
+		for index in $Controller.pop_consumables:
+			$Controller.pop_consumables.erase(index)
+			$Equipment.use_consumable_by_slot(index)
 	
 func _jump_effects():
 	pass

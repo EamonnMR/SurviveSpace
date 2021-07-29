@@ -5,8 +5,8 @@ var max_shields: int
 var health: float
 var shields: float
 
-var health_regen: float
-var shield_regen: float
+var health_regen: float = 1
+var shield_regen: float = 1
 
 signal ran_out
 signal took_damage(source)

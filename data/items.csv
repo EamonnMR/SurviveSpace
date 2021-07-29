@@ -1,14 +1,14 @@
-id,name,equip_category,icon,tooltip,stackable
-crew,Frozen Crew,,res://assets/FontAwesome/32px-friends.png,"Frozen for hyperspace travel, thawed to crew ships and stations.",TRUE
-metal,Metal,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon4.png,"Metal, the raw meterial of choice",TRUE
-drive_1,Type 1 Hyperdrive,hyperdrive,res://assets/GalagianArtwork_cc_by/raw/enemies/barrier-node.png,Plot short jumps through hyperspace to nearby star systems,FALSE
-zipgun,Zipgun,weapon,res://assets/damnwing_cc_by/zipgun.png,A crude weapon built with on-hand materials,FALSE
-o2,Oxygen,consumable,res://assets/gods_and_idols/oxygen.png,Vital for human life. Right click to fill o2 tanks.,TRUE
-si,Silica,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon10.png,Common mineral used in everything from glass to microchips,TRUE
-grnr,Green Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon22.png,Strange material with strange properties,TRUE
-prpl,Purple Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon39.png,Stranger material with stranger properties,TRUE
-power,Power Cell,consumable,res://assets/gods_and_idols/energy_icon.png,Recharge your power instantly,TRUE
-redr,Red Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon12.png,Strange red with material properties,TRUE
-yellowr,Yellow Rocks,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon27.png,Strange material with yellow properties,TRUE
-scute,Scutes,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon23.png,Structural Material used in Serpensian Ships,TRUE
-armor,Armor,armor,res://assets/JoesAlotofthings_cc_by/basic_armor.png,Desperate times call for desperately welding junk to your hull,FALSE
+id,name,equip_category,consumable_effect,consumable_magnitude,icon,tooltip,stackable
+crew,Frozen Crew,,,,res://assets/FontAwesome/32px-friends.png,"Frozen for hyperspace travel, thawed to crew ships and stations.",TRUE
+metal,Metal,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon4.png,"Metal, the raw meterial of choice",TRUE
+drive_1,Type 1 Hyperdrive,hyperdrive,,,res://assets/GalagianArtwork_cc_by/raw/enemies/barrier-node.png,Plot short jumps through hyperspace to nearby star systems,FALSE
+zipgun,Zipgun,weapon,,,res://assets/damnwing_cc_by/zipgun.png,A crude weapon built with on-hand materials,FALSE
+o2,Oxygen,consumable,air,500,res://assets/gods_and_idols/oxygen.png,Vital for human life. Right click to fill o2 tanks.,TRUE
+si,Silica,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon10.png,Common mineral used in everything from glass to microchips,TRUE
+grnr,Green Rocks,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon22.png,Strange material with strange properties,TRUE
+prpl,Purple Rocks,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon39.png,Stranger material with stranger properties,TRUE
+power,Power Cell,consumable,energy,1000,res://assets/gods_and_idols/energy_icon_32.png,Recharge your power instantly,TRUE
+redr,Red Rocks,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon12.png,Strange red with material properties,TRUE
+yellowr,Yellow Rocks,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon27.png,Strange material with yellow properties,TRUE
+scute,Scutes,,,,res://assets/CraftPix_dot_net_oga_by/PNG/Transperent/Icon23.png,Structural Material used in Serpensian Ships,TRUE
+armor,Armor,armor,,,res://assets/JoesAlotofthings_cc_by/basic_armor.png,Desperate times call for desperately welding junk to your hull,FALSE

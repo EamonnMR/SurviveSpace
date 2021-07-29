@@ -7,6 +7,7 @@ var shooting: bool
 var thrusting: bool
 var braking: bool
 var do_jump: bool
+var pop_consumables: Dictionary
 
 func is_player() -> bool:
 	return false

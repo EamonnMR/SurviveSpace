@@ -7,6 +7,7 @@ var braking: bool
 var do_jump: bool
 var selected_system: String
 var selected_system_circle_cache: Array =  []
+var pop_consumables: Dictionary
 
 func is_player() -> bool:
 	return true
@@ -26,6 +27,14 @@ func _physics_process(_delta: float):
 		_interact()
 	if Input.is_action_just_pressed("jump"):
 		do_jump = true
+	if Input.is_action_just_pressed("consumable_1"):
+		pop_consumables["1"] = true
+	if Input.is_action_just_pressed("consumable_2"):
+		pop_consumables["2"] = true
+	if Input.is_action_just_pressed("consumable_3"):
+		pop_consumables["3"] = true
+	if Input.is_action_just_pressed("consumable_4"):
+		pop_consumables["4"] = true
 
 func _get_rotation_change():
 	var dc = 0

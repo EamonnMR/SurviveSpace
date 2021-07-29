@@ -33,3 +33,9 @@ func remove_item_icon(item_icon):
 func clear():
 	remove_child($ItemIcon)
 	$TextureRect.show()
+	
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton \
+	and event.button_index == BUTTON_RIGHT \
+	and event.is_pressed():
+		print("Right Clicked")

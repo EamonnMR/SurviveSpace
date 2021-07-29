@@ -148,6 +148,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MiddleEquip" type="HBoxContainer" parent="Background/VBoxContainer/HBoxContainer/Middle"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -81.0288
+margin_top = -44.4983
+margin_right = 100.971
+margin_bottom = -4.49832
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RightEquip" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
 margin_left = 309.0
 margin_right = 349.0

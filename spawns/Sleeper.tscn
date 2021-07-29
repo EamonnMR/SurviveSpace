@@ -24,7 +24,8 @@ script = ExtResource( 1 )
 
 [node name="Inventory" parent="." instance=ExtResource( 3 )]
 default_contents = {
-"crew": 5
+"crew": 5,
+"o2": 1
 }
 
 [node name="Health" parent="." instance=ExtResource( 2 )]

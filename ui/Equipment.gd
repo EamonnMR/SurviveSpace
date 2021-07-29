@@ -4,6 +4,7 @@ var item_icon = preload("res://ui/ItemIcon.tscn")
 var EquipBox = preload("res://ui/EquipBox.tscn")
 onready var left_equip = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip")
 onready var right_equip = get_node("Background/VBoxContainer/HBoxContainer/RightEquip")
+onready var middle_equip = get_node("Background/VBoxContainer/HBoxContainer/Middle/MiddleEquip")
 onready var preview = $Background/VBoxContainer/HBoxContainer/Middle/ShipPreview
 onready var ship_type_name = $Background/VBoxContainer/HBoxContainer/Middle/Type
 
@@ -28,7 +29,8 @@ func rebuild():
 		["hyperdrive", left_equip, preload("res://assets/FontAwesome/32px-star.png")],
 		["reactor", left_equip, preload("res://assets/FontAwesome/32px-charge.png")],
 		["armor", left_equip, preload("res://assets/FontAwesome/32px-shield.png")],
-		["weapon", right_equip, preload("res://assets/FontAwesome/32px-crosshairs.png")]
+		["weapon", right_equip, preload("res://assets/FontAwesome/32px-crosshairs.png")],
+		["consumable", middle_equip, preload("res://assets/FontAwesome/32px-charge.png")] # TODO: Better icon
 	]:
 		# I yearn for Tuples
 		var category = i[0]

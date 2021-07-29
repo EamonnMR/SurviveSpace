@@ -13,13 +13,16 @@ var max_hyperdrives = 1
 var hyperdrives = {}
 var max_reactors = 1
 var reactors = {}
+var max_consumables = 3
+var consumables = {}
 
 var slot_keys = {
 	"armor": armors,
 	"shield": shields,
 	"hyperdrive": hyperdrives,
 	"reactor": reactors,
-	"weapon": weapons
+	"weapon": weapons,
+	"consumable": consumables
 }
 func _ready():
 	# Determine weapon slots by the ship
@@ -34,7 +37,8 @@ func _ready():
 		[max_armors, armors],
 		[max_shields, shields],
 		[max_hyperdrives, hyperdrives],
-		[max_reactors, reactors]
+		[max_reactors, reactors],
+		[max_consumables, consumables]
 	]:
 		var slots = i[1]
 		for j in range(i[0]):
@@ -50,11 +54,13 @@ func equip_item(item: Inventory.InvItem, key: String, category: String):
 	
 	_add(item, key, category)
 	
-func remove_item(key: String, category: String):
-	assert(slot_keys[category][key])
+func remove_item(key: String, category: String) -> Inventory.InvItem:
+	var item = slot_keys[category][key]
+	assert(item)
 	slot_keys[category][key] = null
 	
 	_remove(key, category)
+	return item
 	
 func _add(item: Inventory.InvItem, key: String, category: String):
 	if category == "weapon":
@@ -102,3 +108,28 @@ func deserialize(data):
 
 func can_hyperjump():
 	return hyperdrives.size() > 0 and hyperdrives[hyperdrives.keys()[0]] != null
+
+func use_consumable_by_slot(slot):
+	if consumables[slot]:
+		apply_consumable(remove_item(slot, "consumable"))
+
+# TODO: This could probably be its own class, esp. if it gets big
+func apply_consumable(item: Inventory.InvItem):
+	# TODO: Add sound effects
+	var effect = item.data().consumable_effect
+	var mag = item.data().consumable_effect_magnitude
+	var parent = _parent()
+	if effect == "air":
+		parent.air += mag
+		if parent.air > parent.max_air:
+			parent.air = parent.max_air
+	if effect == "health":
+		var health = parent.get_node("health")
+		health.gain_health(mag)
+	if effect == "shields":
+		var health = parent.get_node("health")
+		health.gain_shields(mag)
+	if effect == "energy":
+		parent.energy += mag
+		if parent.energy > parent.max_energy:
+			parent.energy = parent.max_energy
