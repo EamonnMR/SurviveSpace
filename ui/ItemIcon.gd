@@ -21,7 +21,7 @@ func update_count():
 	else:
 		$Count.text = ""
 
-func get_drag_data(position):
+func get_drag_data(_position):
 	var drag_texture = TextureRect.new()
 	drag_texture.texture = texture
 	drag_texture.expand = true

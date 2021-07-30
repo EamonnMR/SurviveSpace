@@ -25,12 +25,12 @@ func rebuild():
 	ship_type_name.text = player.data.type_name
 	# Populate panels with slots for the ship
 	for i in [
+		["consumable", middle_equip, preload("res://assets/FontAwesome/32px-charge.png")], # TODO: Better icon
 		["shield", left_equip, preload("res://assets/FontAwesome/32px-play.png")],
 		["hyperdrive", left_equip, preload("res://assets/FontAwesome/32px-star.png")],
 		["reactor", left_equip, preload("res://assets/FontAwesome/32px-charge.png")],
 		["armor", left_equip, preload("res://assets/FontAwesome/32px-shield.png")],
-		["weapon", right_equip, preload("res://assets/FontAwesome/32px-crosshairs.png")],
-		["consumable", middle_equip, preload("res://assets/FontAwesome/32px-charge.png")] # TODO: Better icon
+		["weapon", right_equip, preload("res://assets/FontAwesome/32px-crosshairs.png")]
 	]:
 		# I yearn for Tuples
 		var category = i[0]

@@ -10,6 +10,8 @@ func _ready():
 		$TextureRect.hide()
 
 func can_drop_data(pos, data):
+	print(category)
+	print(has_node("ItemIcon"))
 	if has_node("ItemIcon"):
 		return (data["dragged_item"].item.type == $ItemIcon.item.type) and (Data.items[$ItemIcon.item.type].stackable)
 	else:
@@ -33,9 +35,3 @@ func remove_item_icon(item_icon):
 func clear():
 	remove_child($ItemIcon)
 	$TextureRect.show()
-	
-func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton \
-	and event.button_index == BUTTON_RIGHT \
-	and event.is_pressed():
-		print("Right Clicked")
