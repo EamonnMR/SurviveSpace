@@ -9,7 +9,7 @@ onready var preview = $Background/VBoxContainer/HBoxContainer/Middle/ShipPreview
 onready var ship_type_name = $Background/VBoxContainer/HBoxContainer/Middle/Type
 
 func clear():
-	for i in [left_equip, right_equip]:
+	for i in [left_equip, middle_equip, right_equip]:
 		for child in i.get_children():
 			if not (child is MarginContainer):
 				i.remove_child(child)
