@@ -2,16 +2,16 @@ extends Control
 
 var item_icon = preload("res://ui/ItemIcon.tscn")
 var EquipBox = preload("res://ui/EquipBox.tscn")
-onready var left_equip = get_node("Background/VBoxContainer/HBoxContainer/LeftEquip")
-onready var right_equip = get_node("Background/VBoxContainer/HBoxContainer/RightEquip")
-onready var middle_equip = get_node("Background/VBoxContainer/HBoxContainer/Middle/MiddleEquip")
+onready var left_equip = $Background/VBoxContainer/HBoxContainer/LeftEquip
+onready var right_equip = $Background/VBoxContainer/HBoxContainer/RightEquip
+onready var middle_equip = $Background/VBoxContainer/MiddleEquip # I'd like this to be elsewhere in the scene tree, but there's a bug where when I put it in the ideal spot (inside Middle) it won't fire any is_droppable calls, so here we are.
 onready var preview = $Background/VBoxContainer/HBoxContainer/Middle/ShipPreview
 onready var ship_type_name = $Background/VBoxContainer/HBoxContainer/Middle/Type
 
 func clear():
 	for i in [left_equip, middle_equip, right_equip]:
 		for child in i.get_children():
-			if not (child is MarginContainer):
+			if not ((child is MarginContainer) or (child is TextureRect) or (child is RichTextLabel)):
 				i.remove_child(child)
 				child.queue_free()
 
