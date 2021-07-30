@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/danc_cc_by/radar.png" type="Texture" id=1]
 [ext_resource path="res://Gameplay.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://ui/crafting/Crafting.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/Scrittl_cc_by/airbar200x24.png" type="Texture" id=10]
 [ext_resource path="res://Statusbars.gd" type="Script" id=11]
+[ext_resource path="res://assets/Scrittl_cc_by/airbar200x24_background.png" type="Texture" id=12]
 [ext_resource path="res://ui/Equipment.tscn" type="PackedScene" id=15]
 [ext_resource path="res://environment/Starfield.gd" type="Script" id=17]
 [ext_resource path="res://assets/ScreamingBrain/Green Nebula/1024x1024 Green Nebula 4.png" type="Texture" id=18]
@@ -164,7 +165,7 @@ __meta__ = {
 [node name="Air" type="TextureProgress" parent="UI/Hud/Statusbars/Air"]
 margin_right = 200.0
 margin_bottom = 24.0
-texture_under = ExtResource( 5 )
+texture_under = ExtResource( 12 )
 texture_progress = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="UI/Hud/Statusbars/Air"]
