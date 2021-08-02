@@ -36,7 +36,6 @@ func gain_health(amount) -> bool:  # Returns false if health was full
 		health += amount
 		if health > max_health:
 			health = max_health
-			health = max_health
 		return true
 		
 func gain_shields(amount) -> bool:  # Returns false if health was full
@@ -58,3 +57,20 @@ func serialize() -> Dictionary:
 func deserialize(data: Dictionary):
 	health = data["health"]
 	shields = data["shields"]
+
+func increase_max_health(by: int):
+	max_health += by
+	health += by
+	
+func decrease_max_health(by: int):
+	max_shields -= by;
+	if health > max_health:
+		health = max_health
+
+func increase_max_shields(by: int):
+	max_shields += by
+	
+func decrease_max_shields(by: int):
+	max_shields -= by;
+	if shields > max_shields:
+		shields = max_shields

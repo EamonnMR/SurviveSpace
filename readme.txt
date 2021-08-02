@@ -297,3 +297,16 @@ License:
     * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/ )
 Files:
     * assets/Scrittl_cc_by/*
+    
+----------------------------------------
+
+Titles:
+    * Painterly Spell Icons 1-4
+URLs:
+	https://opengameart.org/content/painterly-spell-icons-part-1 2, 3, 4
+Author:
+    J. W. Bjerk
+License:
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/ )
+Files:
+    * assets/JWBjerk_cc_by/*

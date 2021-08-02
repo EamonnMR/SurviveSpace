@@ -59,17 +59,25 @@ func remove_item(key: String, category: String) -> Inventory.InvItem:
 	assert(item)
 	slot_keys[category][key] = null
 	
-	_remove(key, category)
+	_remove(key, category, item)
 	return item
 	
 func _add(item: Inventory.InvItem, key: String, category: String):
 	if category == "weapon":
 		_parent().add_weapon(preload("res://weapons/ZipGun.tscn").instance(), key)
+	if category == "armor":
+		_parent().get_node("Health").increase_max_health(item.data().consumable_magnitude)
+	if category == "shield":
+		_parent().get_node("Health").increase_max_shields(item.data().consumable_magnitude)
 
-func _remove(key: String, category: String):
+func _remove(key: String, category: String, item: Inventory.InvItem):
 	if category == "weapon":
 		_parent().remove_weapon(key)
-		
+	if category == "armor":
+		_parent().get_node("Health").decrease_max_health(item.data().consumable_magnitude)
+	if category == "shield":
+		_parent().get_node("Health").decrease_max_shields(item.data().consumable_magnitude)
+
 func apply():
 	# Use this if the data has been instantiated but _add hasn't been called for all items yet.
 	for group_name in slot_keys:
@@ -110,8 +118,12 @@ func can_hyperjump():
 	return hyperdrives.size() > 0 and hyperdrives[hyperdrives.keys()[0]] != null
 
 func use_consumable_by_slot(slot):
+	slot = str(slot)
+	print("use consumable by slot: ", slot)
 	if consumables[slot]:
-		apply_consumable(remove_item(slot, "consumable"))
+		var item = remove_item(slot, "consumable")
+		apply_consumable(item)
+		breakpoint
 
 # TODO: This could probably be its own class, esp. if it gets big
 func apply_consumable(item: Inventory.InvItem):

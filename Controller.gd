@@ -28,6 +28,7 @@ func _physics_process(_delta: float):
 	if Input.is_action_just_pressed("jump"):
 		do_jump = true
 	if Input.is_action_just_pressed("consumable_1"):
+		print("Pop Consumable 1")
 		pop_consumables["1"] = true
 	if Input.is_action_just_pressed("consumable_2"):
 		pop_consumables["2"] = true
